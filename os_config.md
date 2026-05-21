@@ -1,4 +1,4 @@
-# Guía de Optimización — EndeavourOS / CachyOS
+# Guía de Optimización — Distro-agnóstica
 
 > **Hardware de referencia**: Celeron N4500 · 8GB RAM · 1080p
 > **Objetivo**: Máximo rendimiento, mínima fricción, configuración fácil o automática.
@@ -10,7 +10,7 @@
 1. [Elegir el camino](#1-elegir-el-camino)
 2. [Instalación rápida](#2-instalación-rápida)
 3. [Entorno de escritorio](#3-entorno-de-escritorio)
-4. [Laptop features (automático)](#4-laptop-features-automático)
+4. [Laptop features](#4-laptop-features)
 5. [Rendimiento máximo](#5-rendimiento-máximo)
 6. [Hermoso sin esfuerzo](#6-hermoso-sin-esfuerzo)
 7. [Apps mínimas y funcionales](#7-apps-mínimas-y-funcionales)
@@ -20,115 +20,89 @@
 
 ## 1. Elegir el camino
 
-| Si quieres...                                              | Elige                      |
-| ---------------------------------------------------------- | -------------------------- |
-| Máxima velocidad + estética moderna (con 1 tarde de setup) | **Hyprland**               |
-| Que funcione ya, con GUI, sin tocar configs                | **KDE Plasma 6** (minimal) |
-| Lo que estoy usando pero mejor                             | **Hyprland**               |
+| Si quieres...                                                                              | Elige                    |
+| ------------------------------------------------------------------------------------------ | ------------------------ |
+| Máxima velocidad + estética moderna (con GUI, sin terminal, +119 plugins)                  | **Hyprland + Noctalia**  |
+| Máxima velocidad + estética moderna (alternativa estable, más comunidad)                   | **Hyprland + nwg-shell** |
+| Máxima velocidad + estética moderna (tú controlas todo)                                    | **Hyprland vanilla**     |
+| Instalar y usar en cualquier dispositivo, con GUI, sin tocar terminal para configuraciones | **Gnome**                |
 
-### ¿CachyOS o EndeavourOS?
+### Rolling vs Fixed — el criterio real
 
-| Aspecto                | CachyOS                                        | EndeavourOS                       |
-| ---------------------- | ---------------------------------------------- | --------------------------------- |
-| Kernel optimizado      | ✅ `linux-cachyos` (auto)                      | ❌ kernel stock (servible)        |
-| Rendimiento extra      | ~5-10% en CPU moderna                          | igual que Arch normal             |
-| En N4500 (Jasper Lake) | ❌ Ganancia mínima, puede ser contraproducente | ✅ Más estable en hardware básico |
-| Instalador GUI         | ✅ sí                                          | ✅ sí                             |
-| Driver GPU auto        | ✅ sí                                          | ✅ sí                             |
-| AUR habilitado         | ✅ sí                                          | ✅ sí                             |
+| Criterio                    | Rolling               | Fixed             |
+| --------------------------- | --------------------- | ----------------- |
+| Tolerancia a breakages      | Alta                  | Baja              |
+| Frecuencia de reinstall     | Cada 1-2 años         | Cada 2-3 años     |
+| Gusto por actualizar        | Disfruto estar al día | Prefiero no tocar |
+| Uso profesional/servidor    | ❌ NO                 | ✅ SÍ             |
+| Hardware moderno (1-2 años) | ✅ Sí (kernel nuevo)  | Puede servir      |
+| Hardware básico (4+ años)   | ✅ Va bien            | ✅ Va bien        |
 
-**Recomendación**: EndeavourOS para este hardware. Es más predecible, no fuerza optimizaciones que apenas benefician a un Celeron, y tiene el mismo ecosistema Arch + AUR.
+**Regla simple**: Si te molesta actualizar, usa fixed. Si te gusta estar al día y sabes resolver problemas, rolling es para ti.
 
 ---
 
 ## 2. Instalación rápida
 
-### EndeavourOS — ~20 minutos
+Independientemente de la distro, el proceso general es:
 
-1. Descargar ISO desde [endeavouros.com](https://endeavouros.com)
-2. Bootear → elegir **"Online Desktop"**
-3. En el instalador gráfico:
-   - Elegir **"Desktop: Hyprland"** o **"Desktop: KDE Plasma"**
-   - Marcar `endeavouros-hyprland-conf` o `plasma-meta` según tu elección
-   - Marcar `NVIDIA` solo si tienes GPU NVIDIA (en este caso Intel UHD → NO marcar)
+1. Descargar el ISO desde el sitio oficial de la distro
+2. Bootear desde USB (usar `dd`, Balena Etcher, o Ventoy para crear el USB)
+3. Seguir el instalador gráfico
+4. Elegir el entorno de escritorio o ventanas (Hyprland, KDE, etc.)
+5. Particionado: si hay duda, usar particionado automático guiado
+6. Configurar usuario y contraseña
+7. Al reiniciar, el asistente post-instalación de la distro (si existe) guía drivers, AUR/OBS, snapshots, etc.
 
-4. Termina la instalación → reiniciar → **Welcome App** se abre sola:
-   - `Enable AUR` → sí
-   - `Install Nvidia drivers` → omitir (Intel)
-   - `Install printer support` → solo si tienes impresora
-   - `Timeshift auto-snapshots` → recomiendo SÍ
-
-**Resultado**: Sistema funcionando con drivers, AUR, y firewall en <30 minutos.
-
-### CachyOS — ~20 minutos
-
-1. Descargar ISO desde [cachyos.org](https://cachyos.org)
-2. Bootear → elegir edición **Hyprland** o **KDE**
-3. En `cachyos-hello` (se abre automáticamente al iniciar):
-   - `Easy Installation` → drivers detectados automáticamente
-   - `Kernel Manager` → dejar `linux-cachyos` por defecto
-   - `Proton` → solo si juegas
+**Tiempo estimado**: ~20-30 minutos según la distro y velocidad de descarga.
 
 ---
 
 ## 3. Entorno de escritorio
 
-### Opción A: Hyprland — la recomendada (fácil + moderno + ligero)
+### Hyprland + Shell (GUI sin terminal)
 
-**Tiempo total**: 1 hora incluida configuración visual.
-**RAM idle**: ~350MB.
-**Setup**: 90% con GUI gracias a `nwg-shell`.
+Dos opciones de shell con GUI para Hyprland:
 
-#### Post-instalación automática (un solo comando)
+| Shell         | Plugins | Compositors                | Comunidad | Estado               |
+| ------------- | ------- | -------------------------- | --------- | -------------------- |
+| **Noctalia**  | 119+    | Hyprland, Sway, Niri, etc. | Activa    | En desarrollo activo |
+| **nwg-shell** | menos   | Mainly Hyprland            | Estable   | Estable              |
 
-**EndeavourOS** (si elegiste Hyprland en el instalador, ya tienes lo básico):
+#### Opción 1: Noctalia (recomendada)
 
-```bash
-# Un solo comando: todo lo que necesitas para un Hyprland funcional y bonito
-sudo pacman -S nwg-shell hyprpaper waybar rofi-wayland \
-  swaync dunst polkit-kde-agent xdg-desktop-portal-hyprland \
-  ttf-jetbrains-mono-nerd noto-fonts-emoji \
-  brightnessctl playerctl pamixer
-```
+- **Web**: [noctalia.dev](https://noctalia.dev)
+- Se instala desde el gestor de paquetes de la distro, AUR, OBS, o desde GitHub
+- Al ejecutarlo se configura solo — 119+ plugins disponibles
+- Múltiples compositors: Hyprland, Sway, Niri, MangoWC, etc.
+- Paletas de temas integradas, diseño minimalista "quiet by design"
 
-**CachyOS** (similar):
+Plugins populares:
 
-```bash
-sudo pacman -S nwg-shell hyprpaper waybar rofi-wayland \
-  swaync dunst brightnessctl pamixer playerctl
-```
+- Listar plugins disponibles
+- Instalar plugins individuales por nombre
 
-#### Configurar Hyprland con GUI
+#### Opción 2: nwg-shell (alternativa estable)
 
-```bash
-# El asistente gráfico de nwg-shell — ejecuta esto UNA SOLA VEZ:
-nwg-shell-install
-```
-
-Esto te da:
-
-- ✅ Panel superior/inferior configurable con clicks
-- ✅ App launcher con íconos
-- ✅ Gestión de ventanas con tiling automático
-- ✅ Atajos de teclado pre-configurados
-- ✅ Temas pre-instalados
+- RAM idle: ~350MB
+- Setup: 90% con GUI
+- Se instala desde el gestor de paquetes de la distro
+- Incluye: panel configurable, app launcher con íconos, tiling automático, atajos pre-configurados
 
 **Lo que configuras con clicks (no terminal)**:
 
-- `Super + M` → abrir el menú de nwg-shell
-- `nwg-look` → tema GTK, íconos, cursors (GUI)
-- `nwg-bar` → botón de apagado/suspender/reboot
-- `nwg-menu` → lanzador de apps
+| Acción      | Descripción                       |
+| ----------- | --------------------------------- |
+| `Super + M` | Menú nwg-shell                    |
+| `nwg-look`  | Tema GTK, íconos, cursores (GUI)  |
+| `nwg-bar`   | Botón de apagado/suspender/reboot |
+| `nwg-menu`  | Lanzador de apps                  |
 
-#### Archivos que puedes tocar si quieres (OPCIONAL, no obligatorio)
+**Archivos de configuración** (opcionales, no necesarios si usas la shell):
 
-```bash
-~/.config/hypr/hyprland.conf    # muevas, atajos, monitores
-~/.config/waybar/config.jsonc    # barra de estado
-~/.config/waybar/style.css       # estilos de la barra
-```
-
-Pero **no necesitas tocarlos** si usas `nwg-shell`.
+- `~/.config/hypr/hyprland.conf` — monitores, atajos, ventanas
+- `~/.config/waybar/config.jsonc` — barra de estado
+- `~/.config/waybar/style.css` — estilos de la barra
 
 #### Atajos básicos que funcionan desde el primer boot
 
@@ -147,375 +121,199 @@ Pero **no necesitas tocarlos** si usas `nwg-shell`.
 
 ### Opción B: KDE Plasma 6 — si NO quieres tocar nada
 
-**RAM idle**: ~550MB (con ajustes).
-**Setup**: 100% GUI desde System Settings.
+- RAM idle: ~550MB (con ajustes)
+- Setup: 100% GUI desde System Settings
 
-#### Instalación minimalista (evita el grupo completo que trae 50 apps)
+**Ajustes para rendimiento** (System Settings → buscar con la lupa):
 
-**EndeavourOS** — durante la instalación elige "KDE Plasma" → ya viene razonable.
-Después:
+| Ajuste                  | Dónde                        | Valor                            |
+| ----------------------- | ---------------------------- | -------------------------------- |
+| Compositor → Renderizer | Display → Compositor         | `XRender`                        |
+| Animaciones             | Workspace Behavior → Effects | Desactivar sombras/transparencia |
+| Baloo (búsqueda)        | Search → File Search         | DESACTIVAR                       |
+| Sesión                  | Startup & Shutdown           | `Empty session`                  |
+| Power Management        | Hardware → Power Management  | `Power Save` en batería          |
 
-```bash
-# Remover apps que no necesitas
-sudo pacman -Rns elisa gwenview okular kate ktorrent krdc krfb \
-  kmail kontact akregator korganizer kaddressbook dragon \
-  kamoso kmahjongg kmines kpat ksnakeduel katomic kblackbox \
-  kbounce kdiamond kfourinline kgoldrunner kollision konquest \
-  kreversi kshisen ksquares ksudoku ktuberling kubrick \
-  kapman klickety kolf
-```
-
-Perdón por la lista larga — **esto es lo que pesa**. Si instalaste KDE sin editar, te viene TODO eso.
-
-**Alternativa más limpia**: instalar solo el grupo core desde terminal:
-
-```bash
-sudo pacman -S plasma-desktop plasma-wayland-session
-# Luego agregar solo lo que necesitas:
-sudo pacman -S dolphin konsole kscreen krunner kwrite
-```
-
-**Ajustes para rendimiento** (System Settings → lo buscas en la lupa):
-
-| Ajuste                            | Dónde                        | Valor                            |
-| --------------------------------- | ---------------------------- | -------------------------------- |
-| Compositor → Renderizer           | Display → Compositor         | `XRender`                        |
-| Animaciones                       | Workspace Behavior → Effects | Desactivar sombras/transparencia |
-| Baloo (búsqueda)                  | Search → File Search         | DESACTIVAR                       |
-| Sesión → Restore previous session | Startup & Shutdown           | `Empty session`                  |
-| Power Management                  | Hardware → Power Management  | `Power Save` en batería          |
+**Apps innecesarias**: KDE instala muchas por defecto. Revisar y remover juegos, apps de oficina, y herramientas que no se usen. Dejar solo el grupo core: panel, terminal, gestor de archivos, ajustes.
 
 ---
 
-## 4. Laptop features (automático)
+## 4. Laptop features
 
-### Power Management — un solo paquete lo hace todo
+### Power Management
 
-**Opción 1 — power-profiles-daemon** (recomendada, más simple):
+Dos opciones para gestión de energía:
 
-```bash
-sudo pacman -S power-profiles-daemon
-sudo systemctl enable --now power-profiles-daemon
-```
+1. **power-profiles-daemon** — Detectar y cambiar entre perfiles (powersave / balanced / performance). La mayoría de entornos lo detectan automáticamente.
+2. **auto-cpufreq** — Alternativa más agresiva. Detecta batería vs AC y ajusta frecuencias de CPU automáticamente. No requiere intervención tras instalarlo como servicio.
 
-Luego usas:
+**Recomendación**: Usar **power-profiles-daemon** e instalar **auto-cpufreq** solo como respaldo.
 
-```bash
-powerprofilesctl set power-saver   # batería
-powerprofilesctl set balanced      # normal
-powerprofilesctl set performance   # rendimiento
-```
+### Hibernación / Suspensión
 
-Hyprland y KDE lo detectan automáticamente.
+- Crear un archivo de intercambio (swap) del mismo tamaño que la RAM. En este hardware, 8GB.
+- Activar el swap al arranque del sistema.
+- El instalador de la mayoría de distros pregunta el tamaño de swap durante la instalación — elegir 8GB o "Suspend to disk".
 
-**Opción 2 — auto-cpufreq** (más agresiva, automática):
+### WiFi
 
-```bash
-# Detectar batería/AC y ajustar CPU automáticamente
-yay -S auto-cpufreq
-sudo systemctl enable --now auto-cpufreq
-```
+- Normalmente funciona out of the box al instalar.
+- Si hay problemas, usar `nmtui` (interfaz TUI de NetworkManager — fácil, con menús).
+- NetworkManager viene activado por defecto en casi todas las distros.
 
-Listo. No tocas nada más. Detecta cuando estás enchufado vs batería y ajusta frecuencias.
+### Bluetooth
 
-**Recomendación**: usa **power-profiles-daemon** + instala **auto-cpufreq** solo como respaldo.
+- Instalar bluez, bluez-utils, y un gestor como Blueman.
+- Activar el servicio Bluetooth para que arranque automáticamente.
+- Blueman tiene applet de bandeja que se auto-integra en Hyprland y KDE.
 
-### Hibernación / Suspensión — automático
+### Brillo y teclas de función
 
-```bash
-# Tamaño del archivo de hibernación (8GB RAM → 8GB swap)
-sudo fallocate -l 8G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
+- `brightnessctl` es la herramienta universal para control de brillo.
+- En la mayoría de laptops, las teclas de brillo (Fn) funcionan out of the box.
+- Si no, se mapean en la configuración del compositor (Hyprland) o en System Settings (KDE).
 
-# Hacerlo permanente
-echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
-```
+### Suspender al cerrar tapa
 
-**CachyOS** ya configura swap automáticamente durante la instalación.
-**EndeavourOS** te pregunta el tamaño de swap en el instalador — elige **8GB o "Suspend to disk"**.
-
-Después:
-
-```bash
-# En Hyprland: Super + L (bloquear), el botón de apagado en nwg-bar tiene "Suspend"
-# En KDE: todo desde System Settings → Power Management → "Sleep and Hibernation" → automático
-```
-
-### WiFi — automático (ya funciona al instalar)
-
-Si no ves redes:
-
-```bash
-# Solo si hay problemas:
-sudo nmtui  # interfaz TUI para NetworkManager - fácil, con menús
-```
-
-`nm-applet` (icono en la bandeja del sistema) se instala automáticamente con EndeavourOS/CachyOS.
-
-### Bluetooth — un comando y funciona
-
-```bash
-sudo pacman -S bluez bluez-utils blueman
-sudo systemctl enable --now bluetooth
-```
-
-Luego abres **Blueman** (`blueman-manager` o desde el menú de apps) y conectas con clicks.
-
-En **Hyprland**, `blueman-applet` se agrega al tray automáticamente si lo ejecutas en el `hyprland.conf`:
-
-```conf
-exec-once = blueman-applet
-```
-
-(nwg-shell ya lo incluye si Blueman está instalado)
-
-### Brillo y teclas de función (automático)
-
-```bash
-sudo pacman -S brightnessctl
-```
-
-En la mayoría de laptops, las teclas de brillo funcionan OUT OF THE BOX con EndeavourOS/CachyOS.
-
-Si no funcionan, en Hyprland:
-
-```conf
-# En ~/.config/hypr/hyprland.conf
-bindel = ,XF86MonBrightnessUp, exec, brightnessctl s +5%
-bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 5%-
-```
-
-En KDE → System Settings → Keyboard → Shortcuts → ya están mapeadas.
-
-### Suspender al cerrar tapa (automático en ambos)
-
-**EndeavourOS**: en `/etc/systemd/logind.conf`:
-
-```
-HandleLidSwitch=suspend
-HandleLidSwitchExternalPower=suspend   # opcional: también suspendido cuando enchufado
-```
-
-**CachyOS**: ya viene configurado para suspender al cerrar tapa.
-
-En KDE: System Settings → Power Management → Energy Saving → "When laptop lid closed" → elegir.
+- Configurar en `/etc/systemd/logind.conf`: `HandleLidSwitch=suspend`.
+- En KDE: System Settings → Power Management → Energy Saving → "When laptop lid closed".
 
 ---
 
 ## 5. Rendimiento máximo
 
-### Plan de 5 pasos (pocos comandos, mucho efecto)
+### Plan conceptual (5 pasos, sin comandos)
 
-#### 1. Kernel params de arranque (menos latencia)
+#### 1. Parámetros de arranque del kernel
 
-Editar `/etc/default/grub` (o en EndeavourOS `/etc/default/grub`):
+Para reducir latencia en un sistema personal:
 
-```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off nowatchdog"
-```
+- **Desactivar mitigaciones de CPU**: En un equipo personal con hardware básico, las mitigaciones de seguridad de CPU (Spectre, Meltdown) consumen ciclos que no tenemos de sobra. Se pueden desactivar sin riesgo real en un entorno doméstico.
+- **Desactivar watchdog**: Libera un núcleo de CPU que watchdog usa constantemente. En un Celeron de 2 núcleos, cada ciclo cuenta.
 
-Luego:
+Estos parámetros se configuran en el gestor de arranque (GRUB, systemd-boot, etc.) antes de que el kernel arranque.
 
-```bash
-sudo grub-mkconfig -o /boot/grub/grub.cfg   # BIOS
-# o
-sudo grub-mkconfig -o /boot/efi/EFI/GRUB/grub.cfg   # UEFI
-```
+#### 2. Swappiness baja
 
-Esto desactiva:
+Por defecto, el sistema tiende a usar swap incluso cuando hay RAM disponible. Reducir el valor de swappiness hace que el sistema use swap SOLO cuando sea realmente necesario (memoria cerca del límite).
 
-- `mitigations=off` → desactiva parches de seguridad de CPU (en un Celeron personal, asumimos riesgo aceptable)
-- `nowatchdog` → libera un núcleo que watchdog usa (en N4500 de 2 núcleos, importa)
+#### 3. Servicios innecesarios
 
-#### 2. Swappiness baja (menos swap, más RAM)
+En un equipo de escritorio personal, estos servicios normalmente pueden desactivarse si no se usan:
 
-```bash
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
-```
+- Bluetooth — si no se usa
+- CUPS (impresión) — si no hay impresora
+- systemd-resolved — si se usa NetworkManager (el gestor de red ya maneja DNS)
 
-Esto hace que el sistema use swap SOLO cuando sea realmente necesario.
+#### 4. earlyoom
 
-#### 3. Servicios que puedes desactivar (innecesarios en desktop)
+**Esto es lo más importante para este hardware**. Con 8GB de RAM, si una aplicación se vuelve loca y consume toda la memoria, el sistema se congelaría por minutos. earlyoom detecta falta de RAM y mata el proceso culpable al instante. Esencial para sistemas con poca memoria.
 
-```bash
-sudo systemctl disable --now bluetooth.service   # si no usas BT
-sudo systemctl disable --now cups.service        # si no tienes impresora
-sudo systemctl disable --now systemd-resolved    # si usas NetworkManager (default)
-```
+#### 5. I/O scheduler para SSD
 
-#### 4. Usar `earlyoom` (evita que el sistema se congele por falta de RAM)
-
-```bash
-sudo pacman -S earlyoom
-sudo systemctl enable --now earlyoom
-```
-
-Con 8GB de RAM, **esto es lo más importante que puedes instalar**. Si una app se vuelve loca y consume toda la RAM, en vez de que la laptop se congele 5 minutos, earlyoom mata el proceso culpable al toque.
-
-#### 5. I/O scheduler para SSD (si tu laptop tiene SSD — casi seguro)
-
-```bash
-# Verificar qué scheduler tienes
-cat /sys/block/nvme0n1/queue/scheduler
-
-# Para NVMe → `none` es ideal
-echo 'ACTION=="add|change", KERNEL=="nvme*", ATTR{queue/scheduler}="none"' | sudo tee /etc/udev/rules.d/60-iosched.rules
-
-# Para SATA SSD → `mq-deadline`
-echo 'ACTION=="add|change", KERNEL=="sd*[!0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"' | sudo tee -a /etc/udev/rules.d/60-iosched.rules
-```
+Los SSD no necesitan los planificadores de I/O tradicionales (diseñados para discos giratorios). Para NVMe, el scheduler más eficiente es `none`. Para SATA SSD, `mq-deadline`. Esta configuración se aplica a través de reglas de udev que detectan el tipo de disco al arrancar.
 
 ---
 
 ## 6. Hermoso sin esfuerzo
 
-### Hyprland — belleza en 5 minutos
+### Hyprland — belleza rápida
 
-```bash
-# Tema Catppuccin Mocha (el más popular, funciona out of the box)
-yay -S catppuccin-gtk-theme-mocha nwg-look
+- **Tema**: Catppuccin Mocha (GTK) — el más popular, out of the box.
+- **Aplicar**: Usar `nwg-look` (GUI) para seleccionar el tema GTK.
+- **Wallpaper**: Usar `hyprpaper` para gestionar fondos de pantalla.
+- **Dónde encontrar**: [hyprwall.me](https://hyprwall.me) o buscar "hyprland wallpaper".
+- **Recomendación**: Fondos oscuros (Catppuccin, Nord) — se ven modernos y en pantalla LCD gastan menos batería.
 
-# Aplicar tema GTK
-nwg-look  # GUI — seleccionas "Catppuccin-Mocha-Standard-..." y aplicas
+### KDE — belleza rápida (todo GUI)
 
-# Wallpaper bonito (autocambiante)
-sudo pacman -S hyprpaper
-```
+Desde System Settings → Appearance:
 
-`~/.config/hypr/hyprpaper.conf`:
+- **Global Theme**: Breeze (viene instalado) o instalar Catppuccin KDE desde "Get New Global Theme".
+- **Iconos**: Tela Circle.
+- **Cursor**: Bibata Modern.
+- **Dock**: Hacer el panel flotante (click derecho → Edit Mode → flotante).
 
-```conf
-preload = ~/Pictures/wallpaper.jpg
-wallpaper = ,~/Pictures/wallpaper.jpg
-```
-
-Descargar wallpapers: [hyprwall.me](https://hyprwall.me) o buscar "hyprland wallpaper" en Google.
-Recomendación personal: fondos oscuros de **Catppuccin** o **Nord** — se ven modernos y gastan menos batería (pantalla LCD).
-
-### KDE — belleza en 2 minutos (GUI)
-
-System Settings → Appearance:
-
-- **Global Theme**: Breeze (viene instalado) o instalar **Catppuccin KDE** desde `systemsettings` → "Get New Global Theme"
-- **Iconos**: Tela Circle (instalar con `yay -S tela-circle-icon-theme`)
-- **Cursor**: Bibata Modern (`yay -S bibata-cursor-theme`)
-- **Dock**: Latte Dock o `panel flotante` → click derecho en panel → "Edit Mode" → hacerlo flotante
-
-En 5 minutos se ve así:
-
-- Tema oscuro
-- Iconos redondeados modernos
-- Panel flotante transparente
-- Dock estilo macOS
-
-### Wallpaper Manager automático (opcional)
-
-```bash
-sudo pacman -S variety
-```
-
-Variety cambia el wallpaper cada cierto tiempo desde carpetas locales o fuentes online. Funciona tanto en Hyprland como KDE.
+En 5 minutos se ve: tema oscuro, iconos redondeados modernos, panel flotante transparente.
 
 ---
 
 ## 7. Apps mínimas y funcionales
 
-| Categoría | App                                       | Por qué                                                                  |
-| --------- | ----------------------------------------- | ------------------------------------------------------------------------ |
-| Terminal  | **Kitty** o **Foot**                      | Foot es Wayland nativo, super ligero (~15MB RAM). Kitty es más completo. |
-| Navegador | **Firefox** o **Brave**                   | Firefox con `Wayland` nativo. Brave es más rápido con el mismo hardware. |
-| Archivos  | **Thunar** (Hyprland) o **Dolphin** (KDE) | Thunar: 20MB, rápido. Dolphin: integración KDE.                          |
-| Captura   | **Grim + Slurp** (Hyprland)               | `grim` captura, `slurp` selecciona área. Sin interfaz que consuma.       |
-| Editor    | **Geany** o **Kate**                      | Geany 25MB, Kate ~80MB. VS Code pesa 400MB+.                             |
-| Notas     | **Notion web** o **Obsidian**             | Ambos corre en Chromium, 200-300MB, pero son productivos.                |
-| Música    | **Spotify** (Flatpak) o **ncspot** (TUI)  | Spotify ~200MB, ncspot ~15MB.                                            |
-| Video     | **mpv**                                   | Reproductor de video más ligero que existe, acelera GPU automático.      |
+| Categoría | App                                      | Por qué                                                                  |
+| --------- | ---------------------------------------- | ------------------------------------------------------------------------ |
+| Terminal  | **Kitty** o **Foot**                     | Foot es Wayland nativo, super ligero (~15MB RAM). Kitty es más completo. |
+| Navegador | **Firefox** o **Brave**                  | Firefox con Wayland nativo. Brave es más rápido en el mismo hardware.    |
+| Archivos  | **Thunar** (WM) o **Dolphin** (KDE)      | Thunar: 20MB, rápido. Dolphin: integración KDE.                          |
+| Captura   | **Grim + Slurp**                         | Captura de pantalla en Wayland. Sin interfaz que consuma.                |
+| Editor    | **Geany** o **Kate**                     | Geany 25MB, Kate ~80MB. Alternativas ligeras a VS Code (400MB+).         |
+| Notas     | **Notion web** o **Obsidian**            | Corre en Chromium, 200-300MB, pero productivos.                          |
+| Música    | **Spotify** (Flatpak) o **ncspot** (TUI) | Spotify ~200MB, ncspot ~15MB.                                            |
+| Video     | **mpv**                                  | Reproductor más ligero, acelera GPU automáticamente.                     |
+
+### Estrategia de instalación (distro-agnóstica)
+
+La estrategia completa está en `stack.md`. En resumen:
+
+| Tipo               | Método                                | Razón                                                    |
+| ------------------ | ------------------------------------- | -------------------------------------------------------- |
+| GUI                | **Flatpak** (Flathub)                 | Aislado, actualizado, mismo método en cualquier distro   |
+| CLI                | **Homebrew**                          | Misma experiencia en Linux y macOS                       |
+| Servicio           | **Podman**                            | Sin Docker daemon, rootless, OCI-compatible              |
+| Driver/lib sistema | **Gestor nativo** (zypper, apt, etc.) | Lo que toca el kernel debe ir por el gestor de la distro |
 
 ### Apps que NO instalar (peso innecesario)
 
-| ❌ App      | Alternativa                                                  |
-| ----------- | ------------------------------------------------------------ |
-| LibreOffice | **OnlyOffice** (más ligero, compatible MS) o Google Docs web |
-| GIMP        | **Pinta** o **Krita** (solo si editas fotos)                 |
-| Thunderbird | **Mail web** (Gmail/Outlook/Proton) en Firefox               |
-| VirtualBox  | **Quickemu** (más ligero, sin módulos kernel)                |
+| ❌ App      | Alternativa                                              |
+| ----------- | -------------------------------------------------------- |
+| LibreOffice | OnlyOffice (más ligero, compatible MS) o Google Docs web |
+| GIMP        | Pinta o Krita (solo si editas fotos)                     |
+| Thunderbird | Mail web (Gmail/Outlook/Proton) en Firefox               |
+| VirtualBox  | Quickemu (más ligero, sin módulos kernel)                |
 
 ---
 
 ## 8. Checklist post-instalación
 
-Después de instalar, sigue este orden:
-
 ### Día 1 — Base funcional (~1 hora)
 
-- [ ] Instalar SO (EndeavourOS recomendado)
-- [ ] Conectar WiFi (automático)
-- [ ] Abrir Welcome App → habilitar AUR, instalar drivers
-- [ ] `sudo pacman -Syu` (actualizar todo)
-- [ ] `sudo pacman -S power-profiles-daemon earlyoom` (rendimiento)
-- [ ] `sudo systemctl enable --now power-profiles-daemon earlyoom`
-- [ ] Instalar Hyprland o ajustar KDE (ver sección 3)
-- [ ] Configurar swap/hibernación (sección 4)
-- [ } Instalar Bluetooth (solo si lo usas)
-- [ ] Instalar `nwg-shell` + `nwg-shell-install` (Hyprland) o ajustar KDE
+- [ ] Instalar SO
+- [ ] Conectar WiFi
+- [ ] Ejecutar asistente post-instalación (si la distro lo tiene)
+- [ ] Actualizar todo el sistema
+- [ ] Instalar power-profiles-daemon y earlyoom
+- [ ] Activar ambos como servicios
+- [ ] Instalar/configurar Hyprland o KDE (ver sección 3)
+- [ ] Configurar swap/hibernación
+- [ ] Instalar Bluetooth (solo si se usa)
+- [ ] Instalar nwg-shell (Hyprland) o ajustar KDE
 
 ### Día 2 — Belleza + apps (~30 min)
 
 - [ ] Aplicar tema Catppuccin (Hyprland) o KDE global theme
 - [ ] Poner wallpaper
-- [ ] Instalar navegador + extensions
+- [ ] Instalar navegador + extensiones
 - [ ] Instalar OnlyOffice o similar
 - [ ] Configurar auto-cpufreq (opcional)
 
 ### Día 3 — Ajustes finos (~15 min)
 
-- [ ] Editar `/etc/sysctl.d/99-swappiness.conf` (vm.swappiness=10)
+- [ ] Reducir swappiness
 - [ ] Desactivar servicios no necesarios
 - [ ] Probar hibernación/suspensión
 
 ---
 
-## Resumen — script post-instalación
-
-Todo lo anterior en un solo script. **Copiar, pegar, ejecutar, reiniciar**.
-
-```bash
-#!/bin/bash
-set -e
-
-echo "=== PAQUETES BASE ==="
-sudo pacman -S --noconfirm power-profiles-daemon earlyoom \
-  brightnessctl playerctl pamixer
-
-echo "=== ENCENDER SERVICIOS ==="
-sudo systemctl enable --now power-profiles-daemon earlyoom
-
-echo "=== SWAPPINESS ==="
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
-
-echo "=== EARLYOOM ya activo ==="
-
-echo ""
-echo "✅ Sistema optimizado."
-echo "❓ Si usas Hyprland, ejecuta ahora: nwg-shell-install"
-echo "❓ Si usas KDE, abre System Settings → ajusta compositor."
-```
-
----
-
-## Notas finales
+## Resumen
 
 | Concepto                  | Respuesta                                                          |
 | ------------------------- | ------------------------------------------------------------------ |
 | ¿Cuánto tiempo toma TODO? | **~2 horas** incluyendo descarga del ISO                           |
-| ¿Cuánto en terminal?      | **~5 comandos**, el resto es GUI o asistentes                      |
 | ¿Qué tan bonito queda?    | **Mucho.** Catppuccin Mocha + fondos oscuros + animaciones sutiles |
-| ¿Pesa?                    | **~350MB** en idle (Hyprland) / **~550MB** (KDE optimizado)        |
-| ¿Batería?                 | **Mejor que Windows** con power-profiles-daemon                    |
-| ¿Wifi/BT funcionan?       | **Sí, out of the box** en ambos                                    |
+| RAM en idle               | **~350MB** (Hyprland) / **~550MB** (KDE optimizado)                |
+| Batería                   | **Mejor que Windows** con power-profiles-daemon                    |
+| ¿Wifi/BT funcionan?       | **Sí, out of the box**                                             |
 
 ---
 
-_Última actualización: 2026-05-17_
+_Última actualización: 2026-05-20_ — Distro-agnóstica. Sin comandos: solo conceptos y qué hacer.

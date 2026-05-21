@@ -12,36 +12,57 @@ Estrategia de instalación (distro-agnóstico):
 
 ## 📦 Flatpak — GUI (integrado, actualizado, sin pensar)
 
+### GUI - Sistema y configuracion
+
+- [ ] Software (Flatpak GUI) - Simple rampisa y eficiente. GTK3/4.
+- [ ] Blak Box terminal. Hermoza, configurable, GTK3/4
+
 ### 🧠 Desarrollo + IA
 
-- [ ] **Jan** (`ai.jan.Jan`) — Asistente IA local 100% offline. Descarga y corre modelos (Llama, Qwen, Gemma) sin conexión. API compatible con OpenAI en `localhost:1337`. MCP support.
-- [ ] **OpenCode GUI** (`ai.opencode.opencode`) — Coding agent open-source, multi-model, extensible vía plugins.
-- [ ] **Gentle AI** (config: `~/.config/opencode/AGENTS.md`) — Orquestador SDD con skills especializados (explore, propose, spec, design, tasks, apply, verify, archive). Corre sobre OpenCode.
-- [ ] **DBeaver** (`io.dbeaver.DBeaverCommunity`) — Gestor multi-DB (PostgreSQL, MongoDB, etc.)
-- [ ] **Bruno** (`com.usebruno.Bruno`) — API testing offline-first
-- [ ] **GitHub Desktop** (`io.github.shiftey.Desktop`) — Cliente Git GUI. Fork comunitario con soporte Linux. Diffs syntax highlighted, gestión de PRs, integración con editor y terminal.
+- [x] **Jan** (`ai.jan.Jan`) — Asistente IA local 100% offline. Descarga y corre modelos (Llama, Qwen, Gemma) sin conexión. API compatible con OpenAI en `localhost:1337`. MCP support.
+- [x] **OpenCode GUI (beta)** (`ai.opencode.opencode`) — Coding agent open-source, multi-model, extensible vía plugins.
+- [x] **Gentle AI** (config: `~/.config/opencode/AGENTS.md`) — Orquestador SDD con skills especializados (explore, propose, spec, design, tasks, apply, verify, archive). Corre sobre OpenCode.
+- [x] **DBeaver** (`io.dbeaver.DBeaverCommunity`) — Gestor multi-DB (PostgreSQL, MongoDB, etc.)
+- [x] **Bruno** (`com.usebruno.Bruno`) — API testing offline-first
+- [x] **GitHub Desktop** (`io.github.shiftey.Desktop`) — Cliente Git GUI. Fork comunitario con soporte Linux. Diffs syntax highlighted, gestión de PRs, integración con editor y terminal.
 
 ### 📝 Productividad
 
-- [ ] **AppFlowy** (`io.appflowy.AppFlowy`) — Alternativa open-source a Notion. Notas, bases de datos, tareas, todo en uno. Nativo Rust+Flutter, offline, 84MB.
-- [ ] **Obsidian** (`md.obsidian.Obsidian`) — Notas Markdown
-- [ ] **OnlyOffice** (`org.onlyoffice.desktopeditors`) — Ofimática (Word, Excel, PPT)
-- [ ] **draw.io** (`com.jgraph.drawio.desktop`) — Diagramas
-- [ ] **Thunderbird** (`org.mozilla.Thunderbird`) — Email + Calendario
+- [x] **AppFlowy** (`io.appflowy.AppFlowy`) — Alternativa open-source a Notion. Notas, bases de datos, tareas, todo en uno. Nativo Rust+Flutter, offline, 84MB.
+- [x] **Obsidian** (`md.obsidian.Obsidian`) — Notas Markdown
+- [x] **OnlyOffice** (`org.onlyoffice.desktopeditors`) — Ofimática (Word, Excel, PPT)
+- [x] **draw.io** (`com.jgraph.drawio.desktop`) — Diagramas
+- [x] **Thunderbird** (`org.mozilla.Thunderbird`) — Email + Calendario
 
 ### 🎨 Diseño UI/UX
 
-- [ ] **Lunacy** (`com.icons8.Lunacy`) — Editor gráfico para UI/UX. Gratuito, offline, importa `.fig` de Figma. IA integrada: upscaling, remover fondos, generar texto/avatares. Librería de 1.5M+ iconos, fotos e ilustraciones.
+- [x] **Lunacy** (`com.icons8.Lunacy`) — Editor gráfico para UI/UX. Gratuito, offline, importa `.fig` de Figma. IA integrada: upscaling, remover fondos, generar texto/avatares. Librería de 1.5M+ iconos, fotos e ilustraciones.
+
+### 🖥️ Interfaz unificada (GTK3/4) — evita conflictos de decoradores
+
+> Para Hyprland/Noctalia: todas GTK para mantener theme consistente
+
+| Categoría   | App (Flatpak)            | ID Flatpak                        | Notas                  |
+| ----------- | ------------------------ | --------------------------------- | ---------------------- |
+|             | **Black Box** (KGX)      | `com.raggesilver.BlackBox`        | GTK4 native            |
+| Archivos    | **Nautilus**             | `org.gnome.Nautilus`              | Offic. GNOME Files     |
+|             | **Thunar**               | `org.xfce.Thunar`                 | Más ligero             |
+| Video       | **Celluloid**            | `io.github.GnomeDoctor.Celluloid` | GTK4, MPV frontend     |
+|             | **GNOME Videos** (Totem) | `org.gnome.Totem`                 | Reproductor oficial    |
+| Visor       | **Loupe**                | `org.gnome.Loupe`                 | Visor de imágenes GTK4 |
+|             | **Eye of GNOME**         | `org.gnome.eog`                   | Alternativa            |
+| Calculadora | **GNOME Calculator**     | `org.gnome.Calculator`            | GTK4                   |
+| Mapas       | **Photon**               | `com.github.maoschanz.Photon`     | Visor de fotos GTK     |
 
 ### 🔧 Sistema
 
-- [ ] **KeePassXC** (`org.keepassxc.KeePassXC`) — Gestor de contraseñas
-- [ ] **Flameshot** (`org.flameshot.Flameshot`) — Capturas de pantalla
-- [ ] **OBS Studio** (`com.obsproject.Studio`) — Grabación de pantalla
-- [ ] **Inkscape** (`org.inkscape.Inkscape`) — Diseño vectorial/SVG
-- [ ] **GIMP** (`org.gimp.GIMP`) — Editor de imágenes
-- [ ] **Font Manager** (`org.gnome.FontManager`) — Gestión de fuentes
-- [ ] **Flatseal** (`com.github.tchx84.Flatseal`) — Gestor de permisos Flatpak
+- [x] **KeePassXC** (`org.keepassxc.KeePassXC`) — Gestor de contraseñas
+- [x] **Flameshot** (`org.flameshot.Flameshot`) — Capturas de pantalla
+- [x] **OBS Studio** (`com.obsproject.Studio`) — Grabación de pantalla
+- [x] **Inkscape** (`org.inkscape.Inkscape`) — Diseño vectorial/SVG
+- [x] **GIMP** (`org.gimp.GIMP`) — Editor de imágenes
+- [x] **Font Manager** (`org.gnome.FontManager`) — Gestión de fuentes
+- [x] **Flatseal** (`com.github.tchx84.Flatseal`) — Gestor de permisos Flatpak
 
 ### ⏱ Time & Tasks
 
@@ -51,7 +72,6 @@ Estrategia de instalación (distro-agnóstico):
 
 - [ ] **Steam** (`com.valvesoftware.Steam`) — Tienda y lanzador de juegos. Proton para juegos Windows.
 - [ ] **Lutris** (`net.lutris.Lutris`) — Plataforma de preservación de juegos. Lo UNIFICATODO: Steam, GOG, Epic, ISOs, .exe sueltos, Wine prefixes, emuladores. Un solo lanzador para cubrir todo.
-- [ ] **RetroArch** (`org.libretro.RetroArch`) — Frontend de emuladores para consolas retro (NES, SNES, PSX, etc.). Cores descargables desde la app.
 
 ### 🎮 Periféricos (por si acaso)
 
