@@ -1,0 +1,309 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <value type="int" value="2"/>
+    <property name="dark-mode" type="bool" value="true"/>
+    <property name="panel-2" type="empty">
+      <property name="autohide-behavior" type="uint" value="0"/>
+      <property name="position" type="string" value="p=10;x=0;y=0"/>
+      <property name="length" type="double" value="100"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="size" type="uint" value="45"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="2"/>
+        <value type="int" value="25"/>
+        <value type="int" value="39"/>
+        <value type="int" value="41"/>
+        <value type="int" value="5"/>
+        <value type="int" value="6"/>
+        <value type="int" value="27"/>
+        <value type="int" value="23"/>
+        <value type="int" value="14"/>
+        <value type="int" value="11"/>
+        <value type="int" value="15"/>
+        <value type="int" value="28"/>
+        <value type="int" value="4"/>
+        <value type="int" value="1"/>
+        <value type="int" value="42"/>
+        <value type="int" value="17"/>
+        <value type="int" value="35"/>
+        <value type="int" value="36"/>
+        <value type="int" value="3"/>
+        <value type="int" value="37"/>
+        <value type="int" value="26"/>
+        <value type="int" value="13"/>
+      </property>
+      <property name="length-adjust" type="bool" value="false"/>
+      <property name="border-width" type="uint" value="0"/>
+      <property name="enter-opacity" type="uint" value="90"/>
+      <property name="leave-opacity" type="uint" value="90"/>
+      <property name="enable-struts" type="bool" value="true"/>
+      <property name="background-style" type="uint" value="0"/>
+      <property name="background-rgba" type="array">
+        <value type="double" value="0.14117647058823529"/>
+        <value type="double" value="0.12156862745098039"/>
+        <value type="double" value="0.19215686274509805"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="nrows" type="uint" value="1"/>
+    </property>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-27" type="string" value="whiskermenu">
+      <property name="recent" type="array">
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="xfce-display-settings.desktop"/>
+        <value type="string" value="firefox-esr.desktop"/>
+        <value type="string" value="debian-uxterm.desktop"/>
+        <value type="string" value="debian-xterm.desktop"/>
+        <value type="string" value="xfce-ui-settings.desktop"/>
+        <value type="string" value="onlyoffice-desktopeditors.desktop"/>
+        <value type="string" value="xfce-settings-manager.desktop"/>
+        <value type="string" value="xfce4-settings-editor.desktop"/>
+        <value type="string" value="xfce-keyboard-settings.desktop"/>
+      </property>
+      <property name="view-mode" type="int" value="2"/>
+      <property name="button-icon" type="string" value="folder-windows"/>
+      <property name="launcher-icon-size" type="int" value="3"/>
+      <property name="category-icon-size" type="int" value="3"/>
+      <property name="menu-width" type="int" value="551"/>
+      <property name="menu-height" type="int" value="325"/>
+      <property name="favorites" type="array">
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="code.desktop"/>
+        <value type="string" value="firefox-esr.desktop"/>
+        <value type="string" value="thunar.desktop"/>
+        <value type="string" value="onlyoffice-desktopeditors.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-28" type="string" value="docklike"/>
+    <property name="plugin-1" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="true"/>
+    </property>
+    <property name="plugin-2" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="notes" type="empty">
+      <property name="global" type="empty">
+        <property name="version" type="string" value="1.11.1"/>
+        <property name="background-color" type="string" value="GTK+"/>
+      </property>
+    </property>
+    <property name="plugin-3" type="string" value="weather">
+      <property name="location" type="empty">
+        <property name="name" type="string" value="Bayamo, Granma"/>
+        <property name="latitude" type="string" value="20.373414"/>
+        <property name="longitude" type="string" value="-76.649424"/>
+      </property>
+      <property name="msl" type="int" value="62"/>
+      <property name="timezone" type="string" value="America/Havana"/>
+      <property name="offset" type="string" value="-04:00"/>
+      <property name="cache-max-age" type="int" value="172800"/>
+      <property name="power-saving" type="bool" value="true"/>
+      <property name="units" type="empty">
+        <property name="temperature" type="int" value="0"/>
+        <property name="pressure" type="int" value="0"/>
+        <property name="windspeed" type="int" value="0"/>
+        <property name="precipitation" type="int" value="0"/>
+        <property name="altitude" type="int" value="0"/>
+        <property name="apparent-temperature" type="int" value="2"/>
+      </property>
+      <property name="round" type="bool" value="true"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="tooltip-style" type="int" value="1"/>
+      <property name="forecast" type="empty">
+        <property name="layout" type="int" value="1"/>
+        <property name="days" type="int" value="5"/>
+      </property>
+      <property name="theme-dir" type="string" value="/usr/share/xfce4/weather/icons/liquid-dark"/>
+      <property name="scrollbox" type="empty">
+        <property name="show" type="bool" value="true"/>
+        <property name="animate" type="bool" value="true"/>
+        <property name="lines" type="int" value="1"/>
+        <property name="color" type="string" value="rgba(0,0,0,0)"/>
+        <property name="use-color" type="bool" value="false"/>
+      </property>
+    </property>
+    <property name="plugin-11" type="string" value="smartbookmark"/>
+    <property name="plugin-13" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="plugin-14" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-15" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-17" type="string" value="xfce4-clipman-plugin"/>
+    <property name="plugin-23" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/diorges"/>
+    </property>
+    <property name="plugin-25" type="string" value="cpufreq"/>
+    <property name="plugin-26" type="string" value="battery"/>
+    <property name="plugin-35" type="string" value="notification-plugin"/>
+    <property name="plugin-36" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="known-players" type="string" value="firefox-esr"/>
+    </property>
+    <property name="plugin-37" type="string" value="clock">
+      <property name="timezone" type="string" value="America/Havana"/>
+      <property name="mode" type="uint" value="4"/>
+      <property name="show-seconds" type="bool" value="true"/>
+      <property name="show-military" type="bool" value="false"/>
+      <property name="flash-separators" type="bool" value="true"/>
+      <property name="show-meridiem" type="bool" value="true"/>
+      <property name="show-inactive" type="bool" value="true"/>
+    </property>
+    <property name="plugin-39" type="string" value="cpugraph">
+      <property name="update-interval" type="int" value="0"/>
+      <property name="time-scale" type="int" value="0"/>
+      <property name="size" type="int" value="80"/>
+      <property name="mode" type="int" value="1"/>
+      <property name="color-mode" type="int" value="2"/>
+      <property name="frame" type="int" value="1"/>
+      <property name="border" type="int" value="1"/>
+      <property name="bars" type="int" value="1"/>
+      <property name="per-core" type="int" value="0"/>
+      <property name="tracked-core" type="int" value="0"/>
+      <property name="in-terminal" type="int" value="1"/>
+      <property name="startup-notification" type="int" value="0"/>
+      <property name="load-threshold" type="int" value="0"/>
+      <property name="smt-stats" type="int" value="0"/>
+      <property name="smt-issues" type="int" value="0"/>
+      <property name="per-core-spacing" type="int" value="1"/>
+      <property name="command" type="string" value=""/>
+      <property name="background" type="array">
+        <value type="double" value="1"/>
+        <value type="double" value="1"/>
+        <value type="double" value="1"/>
+        <value type="double" value="0"/>
+      </property>
+      <property name="foreground-1" type="array">
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-2" type="array">
+        <value type="double" value="1"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-3" type="array">
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="smt-issues-color" type="array">
+        <value type="double" value="0.90000000000000002"/>
+        <value type="double" value="0"/>
+        <value type="double" value="0"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-system" type="array">
+        <value type="double" value="0.90000000000000002"/>
+        <value type="double" value="0.10000000000000001"/>
+        <value type="double" value="0.10000000000000001"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-user" type="array">
+        <value type="double" value="0.10000000000000001"/>
+        <value type="double" value="0.40000000000000002"/>
+        <value type="double" value="0.90000000000000002"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-nice" type="array">
+        <value type="double" value="0.90000000000000002"/>
+        <value type="double" value="0.80000000000000004"/>
+        <value type="double" value="0.20000000000000001"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="foreground-iowait" type="array">
+        <value type="double" value="0.20000000000000001"/>
+        <value type="double" value="0.90000000000000002"/>
+        <value type="double" value="0.40000000000000002"/>
+        <value type="double" value="1"/>
+      </property>
+      <property name="bars-color" type="array">
+        <value type="double" value="0.89803921568627454"/>
+        <value type="double" value="0.6470588235294118"/>
+        <value type="double" value="0.039215686274509803"/>
+        <value type="double" value="1"/>
+      </property>
+    </property>
+    <property name="plugin-41" type="string" value="systemload">
+      <property name="timeout-seconds" type="uint" value="1"/>
+      <property name="timeout" type="uint" value="500"/>
+      <property name="uptime" type="empty">
+        <property name="enabled" type="bool" value="false"/>
+      </property>
+      <property name="swap" type="empty">
+        <property name="enabled" type="bool" value="false"/>
+      </property>
+      <property name="network" type="empty">
+        <property name="enabled" type="bool" value="false"/>
+      </property>
+    </property>
+    <property name="plugin-42" type="string" value="systray">
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="la conexión de red inalámbrica a «redmi 9a» está activa: redmi 9a (79%)"/>
+        <value type="string" value="la conexión de red inalámbrica a «redmi 9a» está activa: redmi 9a (77%)"/>
+        <value type="string" value="la conexión de red inalámbrica a «redmi 9a» está activa: redmi 9a (78%)"/>
+        <value type="string" value="notas"/>
+        <value type="string" value="configurando la conexión de red inalámbrica «nauta_hogare63438»…"/>
+        <value type="string" value="sin conexión de red"/>
+        <value type="string" value="panel ibus"/>
+      </property>
+      <property name="square-icons" type="bool" value="false"/>
+      <property name="hide-new-items" type="bool" value="false"/>
+      <property name="hidden-legacy-items" type="array">
+        <value type="string" value="panel ibus"/>
+        <value type="string" value="sin conexión de red"/>
+      </property>
+      <property name="menu-is-primary" type="bool" value="false"/>
+      <property name="symbolic-icons" type="bool" value="true"/>
+      <property name="icon-size" type="int" value="24"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="known-items" type="array">
+        <value type="string" value="tlrbR9O-mQ"/>
+        <value type="string" value="1ie4fpDUYU"/>
+        <value type="string" value="Hc1ro4wPyX"/>
+        <value type="string" value="8Rjbzkb43V"/>
+      </property>
+    </property>
+    <property name="clipman" type="empty">
+      <property name="settings" type="empty">
+        <property name="add-primary-clipboard" type="bool" value="false"/>
+        <property name="show-qr-code" type="bool" value="false"/>
+        <property name="history-ignore-primary-clipboard" type="bool" value="true"/>
+      </property>
+      <property name="tweaks" type="empty">
+        <property name="paste-on-activate" type="uint" value="1"/>
+      </property>
+    </property>
+    <property name="plugin-4" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="true"/>
+    </property>
+    <property name="plugin-6" type="string" value="clock">
+      <property name="digital-time-format" type="string" value="                                                                                                                                                     "/>
+      <property name="mode" type="uint" value="2"/>
+      <property name="tooltip-format" type="string" value=""/>
+      <property name="digital-layout" type="uint" value="3"/>
+      <property name="show-week-numbers" type="bool" value="false"/>
+    </property>
+    <property name="plugin-5" type="string" value="pager">
+      <property name="rows" type="uint" value="2"/>
+      <property name="miniature-view" type="bool" value="true"/>
+      <property name="numbering" type="bool" value="true"/>
+      <property name="workspace-scrolling" type="bool" value="false"/>
+    </property>
+  </property>
+</channel>

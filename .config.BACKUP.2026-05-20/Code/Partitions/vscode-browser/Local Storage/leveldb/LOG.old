@@ -1,0 +1,30 @@
+2026/05/10-11:32:38.672 819 Reusing MANIFEST /home/diorges/.config/Code/Partitions/vscode-browser/Local Storage/leveldb/MANIFEST-000001
+2026/05/10-11:32:38.673 819 Recovering log #3
+2026/05/10-11:32:38.676 819 Reusing old log /home/diorges/.config/Code/Partitions/vscode-browser/Local Storage/leveldb/000003.log 
+2026/05/10-11:45:27.452 806 Level-0 table #5: started
+2026/05/10-11:45:27.463 806 Level-0 table #5: 27507 bytes OK
+2026/05/10-11:45:27.466 806 Delete type=0 #3
+2026/05/10-12:30:29.936 818 Level-0 table #7: started
+2026/05/10-12:30:29.942 818 Level-0 table #7: 25411 bytes OK
+2026/05/10-12:30:29.944 818 Delete type=0 #4
+2026/05/10-12:40:59.140 806 Level-0 table #9: started
+2026/05/10-12:40:59.147 806 Level-0 table #9: 34314 bytes OK
+2026/05/10-12:40:59.151 806 Delete type=0 #6
+2026/05/10-12:51:53.162 818 Level-0 table #11: started
+2026/05/10-12:51:53.169 818 Level-0 table #11: 38754 bytes OK
+2026/05/10-12:51:53.171 818 Delete type=0 #8
+2026/05/10-12:52:27.384 818 Level-0 table #13: started
+2026/05/10-12:52:27.390 818 Level-0 table #13: 36164 bytes OK
+2026/05/10-12:52:27.393 818 Delete type=0 #10
+2026/05/10-13:45:41.775 818 Level-0 table #15: started
+2026/05/10-13:45:41.780 818 Level-0 table #15: 30225 bytes OK
+2026/05/10-13:45:41.784 818 Delete type=0 #12
+2026/05/10-13:45:41.785 818 Compacting 4@0 + 1@1 files
+2026/05/10-13:45:41.790 818 Generated table #16@0: 40 keys, 9858 bytes
+2026/05/10-13:45:41.790 818 Compacted 4@0 + 1@1 files => 9858 bytes
+2026/05/10-13:45:41.793 818 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/05/10-13:45:41.794 818 Delete type=2 #9
+2026/05/10-13:45:41.794 818 Delete type=2 #13
+2026/05/10-13:45:41.794 818 Delete type=2 #7
+2026/05/10-13:45:41.794 818 Delete type=2 #15
+2026/05/10-13:45:41.795 818 Delete type=2 #11

@@ -1,0 +1,2 @@
+2026-05-19 19:33:00.875 [error] #2: https://main.vscode-cdn.net/core/stable.json - error GET Fetch timeout: 20000ms
+2026-05-19 19:33:07.018 [error] #1: https://main.vscode-cdn.net/extensions/chat.json - error GET Failed to fetch

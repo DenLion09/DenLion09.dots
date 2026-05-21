@@ -1,0 +1,23 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 60px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #333;
+  padding: 15px 20px;
+}
+
+nav {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}

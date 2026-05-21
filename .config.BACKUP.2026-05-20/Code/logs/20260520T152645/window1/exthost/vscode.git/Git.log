@@ -1,0 +1,371 @@
+2026-05-20 15:26:55.600 [info] [main] Log level: Info
+2026-05-20 15:26:55.600 [info] [main] Validating found git in: "git"
+2026-05-20 15:26:55.600 [info] [main] Using git "2.53.0" from "git"
+2026-05-20 15:26:55.600 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-20 15:26:55.600 [info] > git rev-parse --show-toplevel [304ms]
+2026-05-20 15:26:55.600 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [317ms]
+2026-05-20 15:26:56.323 [info] [Model][openRepository] Opened repository (path): /home/diorges/Work/DenLion09.dots
+2026-05-20 15:26:56.323 [info] [Model][openRepository] Opened repository (real path): /home/diorges/Work/DenLion09.dots
+2026-05-20 15:26:56.323 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-20 15:26:56.446 [info] > git config --get commit.template [75ms]
+2026-05-20 15:26:56.446 [info] > git config --get --local core.virtualfilesystem [99ms]
+2026-05-20 15:26:56.446 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-20 15:26:56.471 [info] > git rev-parse --show-toplevel [69ms]
+2026-05-20 15:26:56.475 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-20 15:26:56.685 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [184ms]
+2026-05-20 15:26:56.924 [info] > git status -z -uall [85ms]
+2026-05-20 15:26:56.924 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [45ms]
+2026-05-20 15:26:56.993 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [27ms]
+2026-05-20 15:26:57.011 [info] > git config --get commit.template [24ms]
+2026-05-20 15:26:57.066 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [39ms]
+2026-05-20 15:26:57.067 [info] > git config --get --local branch.master.vscode-merge-base [60ms]
+2026-05-20 15:26:57.067 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-20 15:26:57.217 [info] > git status -z -uall [77ms]
+2026-05-20 15:26:57.218 [info] > git reflog master --grep-reflog=branch: Created from *. [142ms]
+2026-05-20 15:26:57.264 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [98ms]
+2026-05-20 15:26:57.349 [info] > git symbolic-ref --short refs/remotes/origin/HEAD [104ms]
+2026-05-20 15:26:57.349 [info] fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+2026-05-20 15:26:57.349 [warning] [Repository][getDefaultBranch] Failed to get default branch details: Failed to execute git.
+2026-05-20 15:26:57.464 [info] > git merge-base refs/heads/master refs/remotes/origin/master [53ms]
+2026-05-20 15:26:57.492 [info] > git merge-base refs/heads/master refs/remotes/origin/master [104ms]
+2026-05-20 15:26:57.525 [info] > git diff --raw --numstat --diff-filter=ADMR -z --find-renames=50% 23c2ff3dd572320c25d497d58b26cb8090e0b2cd...refs/remotes/origin/master -- [34ms]
+2026-05-20 15:26:57.532 [info] > git diff --raw --numstat --diff-filter=ADMR -z --find-renames=50% 23c2ff3dd572320c25d497d58b26cb8090e0b2cd...refs/remotes/origin/master -- [13ms]
+2026-05-20 15:26:57.857 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:26:58.434 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:26:58.632 [info] > git show --textconv :os_config.md [58ms]
+2026-05-20 15:26:58.632 [info] > git ls-files --stage -- os_config.md [47ms]
+2026-05-20 15:26:58.723 [info] > git cat-file -s 639873664429e7b291539aab206e1a87652b1860 [83ms]
+2026-05-20 15:26:59.868 [info] > git blame --root --incremental 23c2ff3dd572320c25d497d58b26cb8090e0b2cd -- os_config.md [5ms]
+2026-05-20 15:26:59.890 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:28:19.651 [info] [main] Log level: Info
+2026-05-20 15:28:19.651 [info] [main] Validating found git in: "git"
+2026-05-20 15:28:19.651 [info] [main] Using git "2.53.0" from "git"
+2026-05-20 15:28:19.651 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-20 15:28:19.651 [info] > git rev-parse --show-toplevel [236ms]
+2026-05-20 15:28:19.651 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:19.651 [info] [Model][doInitialScan] Initial repository scan completed - repositories (0), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-20 15:28:19.664 [info] > git rev-parse --show-toplevel [85ms]
+2026-05-20 15:28:19.664 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:19.729 [info] > git rev-parse --show-toplevel [9ms]
+2026-05-20 15:28:19.729 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:20.558 [info] > git rev-parse --show-toplevel [5ms]
+2026-05-20 15:28:20.558 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:21.455 [info] > git rev-parse --show-toplevel [20ms]
+2026-05-20 15:28:21.455 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:21.655 [info] > git rev-parse --show-toplevel [4ms]
+2026-05-20 15:28:21.655 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:35.913 [info] > git rev-parse --show-toplevel [2ms]
+2026-05-20 15:28:35.913 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:28:37.563 [info] > git rev-parse --show-toplevel [62ms]
+2026-05-20 15:28:37.563 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:32:15.382 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-20 15:32:15.382 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:32:32.237 [info] > git rev-parse --show-toplevel [6ms]
+2026-05-20 15:32:32.237 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:32:32.252 [info] > git rev-parse --show-toplevel [4ms]
+2026-05-20 15:32:32.253 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:33:33.043 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-20 15:33:33.043 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:33:40.859 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-20 15:33:40.859 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:34:11.785 [info] > git rev-parse --show-toplevel [9ms]
+2026-05-20 15:34:11.785 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:34:17.844 [info] > git rev-parse --show-toplevel [77ms]
+2026-05-20 15:34:17.844 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:34:53.288 [info] > git rev-parse --show-toplevel [21ms]
+2026-05-20 15:34:53.288 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:43:04.615 [info] > git rev-parse --show-toplevel [1ms]
+2026-05-20 15:43:04.615 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-20 15:43:18.466 [info] > git init -b main [11ms]
+2026-05-20 15:43:18.476 [info] > git rev-parse --show-toplevel [3ms]
+2026-05-20 15:43:18.490 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [8ms]
+2026-05-20 15:43:18.519 [info] [Model][openRepository] Opened repository (path): /home/diorges/Work/whetherApp
+2026-05-20 15:43:18.519 [info] [Model][openRepository] Opened repository (real path): /home/diorges/Work/whetherApp
+2026-05-20 15:43:18.519 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-20 15:43:18.546 [info] > git config --get --local core.virtualfilesystem [17ms]
+2026-05-20 15:43:18.546 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-20 15:43:18.548 [info] > git config --get commit.template [7ms]
+2026-05-20 15:43:18.555 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:43:18.558 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [4ms]
+2026-05-20 15:43:18.558 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:43:18.593 [info] > git status -z -uall [28ms]
+2026-05-20 15:43:18.593 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-20 15:43:18.633 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [18ms]
+2026-05-20 15:43:18.634 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:43:18.636 [error] [GitHistoryProvider][resolveHEADMergeBase] Failed to resolve merge base for main: Error: No such branch: main.
+2026-05-20 15:43:18.638 [info] > git config --get commit.template [5ms]
+2026-05-20 15:43:18.644 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:43:18.672 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [28ms]
+2026-05-20 15:43:18.672 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:43:18.697 [info] > git status -z -uall [14ms]
+2026-05-20 15:43:18.700 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [6ms]
+2026-05-20 15:43:18.967 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [10ms]
+2026-05-20 15:43:18.967 [info] fatal: bad revision 'refs/heads/main'
+2026-05-20 15:43:18.968 [error] [GitHistoryProvider][provideHistoryItems] Failed to get history items with options '{"historyItemRefs":["refs/heads/main"],"limit":50,"skip":0}': Failed to execute git {
+  "exitCode": 128,
+  "gitCommand": "log",
+  "stdout": "",
+  "stderr": "fatal: bad revision 'refs/heads/main'\n"
+}
+2026-05-20 15:43:19.513 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:43:19.789 [info] > git config --get commit.template [7ms]
+2026-05-20 15:43:19.799 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:43:19.804 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2026-05-20 15:43:19.804 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:43:19.832 [info] > git status -z -uall [18ms]
+2026-05-20 15:43:19.835 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [4ms]
+2026-05-20 15:43:46.042 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:44:04.473 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:44:04.870 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:44:04.872 [info] > git config --get commit.template [10ms]
+2026-05-20 15:44:04.872 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [2ms]
+2026-05-20 15:44:04.873 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:44:04.892 [info] > git status -z -uall [12ms]
+2026-05-20 15:44:04.892 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-20 15:44:13.855 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:44:14.341 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:44:14.344 [info] > git config --get commit.template [22ms]
+2026-05-20 15:44:14.347 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2026-05-20 15:44:14.348 [warning] [Git][getBranch] No such branch: main
+2026-05-20 15:44:14.377 [info] > git status -z -uall [16ms]
+2026-05-20 15:44:14.380 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [5ms]
+2026-05-20 15:44:20.987 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [4ms]
+2026-05-20 15:44:20.987 [info] fatal: bad revision 'refs/heads/main'
+2026-05-20 15:44:20.987 [error] [GitHistoryProvider][provideHistoryItems] Failed to get history items with options '{"historyItemRefs":["refs/heads/main"],"limit":50,"skip":0}': Failed to execute git {
+  "exitCode": 128,
+  "gitCommand": "log",
+  "stdout": "",
+  "stderr": "fatal: bad revision 'refs/heads/main'\n"
+}
+2026-05-20 15:44:21.598 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:44:25.614 [info] > git add -A -- . [39ms]
+2026-05-20 15:44:25.732 [info] > git -c user.useConfigOnly=true commit --quiet --allow-empty-message --file - [20ms]
+2026-05-20 15:44:25.774 [info] > git config --get commit.template [27ms]
+2026-05-20 15:44:25.799 [info] > git config --get commit.template [3ms]
+2026-05-20 15:44:25.809 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:44:25.812 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [3ms]
+2026-05-20 15:44:25.853 [info] > git status -z -uall [18ms]
+2026-05-20 15:44:25.853 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-05-20 15:44:25.984 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [11ms]
+2026-05-20 15:44:26.175 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:44:26.177 [info] > git config --get commit.template [24ms]
+2026-05-20 15:44:26.180 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2026-05-20 15:44:26.219 [info] > git status -z -uall [25ms]
+2026-05-20 15:44:26.219 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-05-20 15:44:26.382 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:44:26.417 [info] > git show --textconv :components/Header.tsx [20ms]
+2026-05-20 15:44:26.419 [info] > git ls-files --stage -- components/Header.tsx [3ms]
+2026-05-20 15:44:26.431 [info] > git cat-file -s 1005a0cc0879a0565349b8bdc49dabe804be7ad4 [5ms]
+2026-05-20 15:44:26.460 [info] > git blame --root --incremental a6ba75ce656b80107fcb750ab170af73d8256d34 -- components/Header.tsx [5ms]
+2026-05-20 15:44:27.035 [info] > git ls-files --stage -- components/Header.tsx [3ms]
+2026-05-20 15:44:27.046 [info] > git cat-file -s 1005a0cc0879a0565349b8bdc49dabe804be7ad4 [3ms]
+2026-05-20 15:44:27.061 [info] > git show --textconv :components/Header.tsx [3ms]
+2026-05-20 15:45:00.421 [info] > git check-ignore -v -z --stdin [15ms]
+2026-05-20 15:45:01.991 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:45:03.630 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:45:04.567 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:45:05.506 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:45:05.512 [info] > git config --get commit.template [23ms]
+2026-05-20 15:45:05.515 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [9ms]
+2026-05-20 15:45:05.551 [info] > git status -z -uall [20ms]
+2026-05-20 15:45:05.551 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-20 15:45:05.868 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:45:56.096 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:02.841 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:46:05.135 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:06.994 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:08.797 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:09.129 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:24.162 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:46:24.425 [info] > git check-ignore -v -z --stdin [18ms]
+2026-05-20 15:46:25.380 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:27.020 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:27.949 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:28.346 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:46:28.624 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:29.226 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:46:30.024 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:31.516 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:46:31.930 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:46:32.317 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:46:32.893 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:46:33.323 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:46:34.052 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:34.407 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:36.295 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:46:36.301 [info] > git config --get commit.template [23ms]
+2026-05-20 15:46:36.302 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [8ms]
+2026-05-20 15:46:36.334 [info] > git status -z -uall [18ms]
+2026-05-20 15:46:36.337 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [6ms]
+2026-05-20 15:46:40.337 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:40.716 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-20 15:46:41.114 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:46:41.506 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:46:41.940 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:46:42.360 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:46:42.765 [info] > git check-ignore -v -z --stdin [17ms]
+2026-05-20 15:46:42.995 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:46:43.891 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:44.588 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:46:45.086 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:46:45.812 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:46:48.813 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:46:53.103 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:46:59.940 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:47:01.701 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:47:02.266 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:47:02.545 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:47:04.056 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:47:05.728 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:47:07.254 [info] > git check-ignore -v -z --stdin [89ms]
+2026-05-20 15:47:07.501 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:47:11.139 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:47:11.952 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:47:14.617 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:47:14.620 [info] > git config --get commit.template [20ms]
+2026-05-20 15:47:14.625 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [9ms]
+2026-05-20 15:47:14.664 [info] > git status -z -uall [18ms]
+2026-05-20 15:47:14.669 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [6ms]
+2026-05-20 15:47:19.918 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:47:20.641 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:47:22.835 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:47:22.836 [info] > git config --get commit.template [18ms]
+2026-05-20 15:47:22.838 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [5ms]
+2026-05-20 15:47:22.851 [info] > git status -z -uall [7ms]
+2026-05-20 15:47:22.852 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-20 15:47:23.252 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:47:39.886 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:47:42.043 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:47:42.045 [info] > git config --get commit.template [16ms]
+2026-05-20 15:47:42.047 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [4ms]
+2026-05-20 15:47:42.066 [info] > git status -z -uall [11ms]
+2026-05-20 15:47:42.068 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-20 15:47:53.218 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:47:55.838 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:47:59.214 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:47:59.216 [info] > git config --get commit.template [18ms]
+2026-05-20 15:47:59.219 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2026-05-20 15:47:59.258 [info] > git status -z -uall [19ms]
+2026-05-20 15:47:59.259 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [7ms]
+2026-05-20 15:48:57.920 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:48:58.562 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:49:00.833 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:49:00.834 [info] > git config --get commit.template [16ms]
+2026-05-20 15:49:00.836 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [3ms]
+2026-05-20 15:49:00.852 [info] > git status -z -uall [10ms]
+2026-05-20 15:49:00.853 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [4ms]
+2026-05-20 15:49:11.104 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:49:13.348 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:49:13.351 [info] > git config --get commit.template [20ms]
+2026-05-20 15:49:13.387 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [40ms]
+2026-05-20 15:49:13.400 [info] > git status -z -uall [7ms]
+2026-05-20 15:49:13.405 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [6ms]
+2026-05-20 15:49:37.958 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-20 15:49:39.352 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:49:40.297 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:49:41.334 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:49:41.916 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:49:42.663 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:49:43.999 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:49:46.805 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:49:46.806 [info] > git config --get commit.template [12ms]
+2026-05-20 15:49:46.808 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [3ms]
+2026-05-20 15:49:46.829 [info] > git status -z -uall [12ms]
+2026-05-20 15:49:46.833 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [5ms]
+2026-05-20 15:49:47.424 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:49:47.803 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:49:50.231 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:49:54.782 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:49:57.645 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:49:57.647 [info] > git config --get commit.template [18ms]
+2026-05-20 15:49:57.650 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [6ms]
+2026-05-20 15:49:57.680 [info] > git status -z -uall [17ms]
+2026-05-20 15:49:57.683 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [5ms]
+2026-05-20 15:49:59.488 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:50:20.149 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:50:21.941 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:50:23.738 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:50:23.740 [info] > git config --get commit.template [16ms]
+2026-05-20 15:50:23.743 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [5ms]
+2026-05-20 15:50:23.761 [info] > git status -z -uall [11ms]
+2026-05-20 15:50:23.762 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-20 15:50:42.655 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:50:43.340 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:50:43.767 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:50:45.856 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:50:45.860 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [5ms]
+2026-05-20 15:50:45.860 [info] > git config --get commit.template [17ms]
+2026-05-20 15:50:45.877 [info] > git status -z -uall [11ms]
+2026-05-20 15:50:45.877 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-05-20 15:50:57.476 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:50:57.477 [info] > git config --get commit.template [9ms]
+2026-05-20 15:50:57.478 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [2ms]
+2026-05-20 15:50:57.492 [info] > git status -z -uall [8ms]
+2026-05-20 15:50:57.494 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-20 15:51:07.807 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:51:09.283 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:51:10.213 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-20 15:51:11.833 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:51:13.207 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:51:14.064 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:51:17.031 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:51:21.767 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:51:22.608 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:51:23.139 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:24.523 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:25.417 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:51:26.068 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:26.437 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:51:28.923 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:51:29.544 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:51:29.867 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:51:31.170 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:51:32.340 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:51:32.878 [info] > git check-ignore -v -z --stdin [17ms]
+2026-05-20 15:51:33.110 [info] > git check-ignore -v -z --stdin [25ms]
+2026-05-20 15:51:33.298 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-20 15:51:33.604 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:51:33.990 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:36.169 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:51:40.545 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:51:41.510 [info] > git check-ignore -v -z --stdin [14ms]
+2026-05-20 15:51:41.731 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:43.657 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:44.280 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:51:44.684 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:51:45.245 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:51:45.759 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:51:47.557 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:51:48.061 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:51:49.108 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:51:50.677 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:51:56.265 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:51:56.427 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:51:57.079 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:51:57.852 [info] > git check-ignore -v -z --stdin [16ms]
+2026-05-20 15:51:58.106 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:52:01.377 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:52:03.300 [info] > git check-ignore -v -z --stdin [3ms]
+2026-05-20 15:52:04.110 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-20 15:52:05.557 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:52:06.138 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:52:06.592 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:52:19.275 [info] > git check-ignore -v -z --stdin [6ms]
+2026-05-20 15:53:00.109 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:53:04.264 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:53:08.322 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-20 15:53:09.069 [info] > git check-ignore -v -z --stdin [2ms]
+2026-05-20 15:53:09.981 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:53:11.412 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-20 15:53:11.890 [info] > git check-ignore -v -z --stdin [9ms]
+2026-05-20 15:53:12.881 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:53:14.184 [info] > git check-ignore -v -z --stdin [7ms]
+2026-05-20 15:53:14.927 [info] > git check-ignore -v -z --stdin [8ms]
+2026-05-20 15:53:16.154 [info] > git check-ignore -v -z --stdin [5ms]
+2026-05-20 15:53:17.533 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-20 15:53:18.734 [info] > git check-ignore -v -z --stdin [4ms]
+2026-05-20 15:53:19.659 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-20 15:53:19.662 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/main refs/remotes/main [3ms]
+2026-05-20 15:53:19.662 [info] > git config --get commit.template [19ms]
+2026-05-20 15:53:19.682 [info] > git status -z -uall [13ms]
+2026-05-20 15:53:19.685 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [5ms]

@@ -1,0 +1,25 @@
+2026-05-19 19:59:17.370 [info] StorageMainService: creating application shared storage
+2026-05-19 19:59:17.371 [info] StorageMainService: creating application shared storage with local application storage fallback
+2026-05-19 19:59:17.371 [info] [shared storage] Creating shared storage database at '/home/diorges/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-05-19 19:59:17.371 [info] [shared storage] Initializing fallback application storage (type: local, path: /home/diorges/.config/Code/User/globalStorage/state.vscdb)
+2026-05-19 19:59:17.419 [info] [shared storage] Fallback application storage initialized with 134 items
+2026-05-19 19:59:17.425 [info] update#setState idle
+2026-05-19 19:59:43.515 [info] Extension host with pid 4602 exited with code: 0, signal: unknown.
+2026-05-19 19:59:44.519 [error] Extension host with pid 4602 still exists, forcefully killing it...
+2026-05-19 19:59:47.426 [info] update#setState checking for updates
+2026-05-19 19:59:47.458 [error] #1: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?u=none - error undefined net::ERR_NAME_NOT_RESOLVED
+2026-05-19 19:59:47.463 [error] update#isLatestVersion(): failed to check for updates
+2026-05-19 19:59:47.463 [error] Error: net::ERR_NAME_NOT_RESOLVED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-19 20:00:00.501 [error] #3: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?bg=true&u=none - error undefined net::ERR_NAME_NOT_RESOLVED
+2026-05-19 20:00:00.502 [error] Error: net::ERR_NAME_NOT_RESOLVED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-19 20:00:00.502 [info] update#setState idle
+2026-05-19 20:00:00.504 [error] #2: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?u=none - error undefined net::ERR_NAME_NOT_RESOLVED
+2026-05-19 20:00:00.505 [error] update#isLatestVersion(): failed to check for updates
+2026-05-19 20:00:00.505 [error] Error: net::ERR_NAME_NOT_RESOLVED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-19 20:12:21.164 [info] Extension host with pid 4815 exited with code: 0, signal: unknown.

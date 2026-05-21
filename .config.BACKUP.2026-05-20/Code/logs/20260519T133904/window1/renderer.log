@@ -1,0 +1,34 @@
+2026-05-19 13:39:06.664 [info] Started local extension host with pid 10596.
+2026-05-19 13:39:06.915 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:39:06.915 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:39:06.921 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:39:07.993 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:39:09.524 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:39:12.131 [info] [perf] Render performance baseline is 67ms
+2026-05-19 13:39:12.959 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:39:40.576 [error] [Extension Host] GET /repos/DenLion09/DenLion09.dots - 404 with id 11EB:112B24:5A2FEB0:15CAEBBD:6A0CA063 in 569ms
+2026-05-19 13:40:03.122 [warning] [DefaultAccount] Attempt 1 to get sessions failed: Canceled
+2026-05-19 13:40:04.365 [info] Started local extension host with pid 10800.
+2026-05-19 13:40:04.492 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:04.493 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:04.493 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:06.185 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:40:07.261 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:40:07.392 [error] [Extension Host] (node:10800) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-19 13:40:09.255 [info] [perf] Render performance baseline is 113ms
+2026-05-19 13:40:11.170 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:40:28.210 [info] Started local extension host with pid 10854.
+2026-05-19 13:40:28.337 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:28.340 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:28.349 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:40:30.033 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-19 13:40:31.267 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:40:31.277 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-19 13:40:35.517 [error] [Extension Host] (node:10854) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-19 13:40:36.291 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:40:37.875 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:40:38.700 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-19 13:40:40.493 [info] [perf] Render performance baseline is 36ms
+2026-05-19 13:41:45.482 [warning] [backup tracker] suspended, ignoring unregister event file:///home/diorges/Work/calculator/package.json 

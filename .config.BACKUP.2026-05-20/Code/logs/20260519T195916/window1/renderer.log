@@ -1,0 +1,39 @@
+2026-05-19 19:59:19.468 [info] Started local extension host with pid 4602.
+2026-05-19 19:59:19.663 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:19.668 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:19.673 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:22.861 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 19:59:24.978 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 19:59:25.771 [error] [Extension Host] (node:4602) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-19 19:59:27.860 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 19:59:44.820 [warning] [LM] Failed to request chat control data Failed to fetch
+2026-05-19 19:59:44.990 [info] Started local extension host with pid 4815.
+2026-05-19 19:59:45.138 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:45.143 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:45.143 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 19:59:46.550 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 19:59:47.127 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 19:59:51.541 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 19:59:51.820 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 19:59:55.718 [error] [Extension Host] (node:4815) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-19 20:00:00.970 [info] [perf] Render performance baseline is 58ms
+2026-05-19 20:00:08.603 [error] Error: Fetch timeout: 20000ms
+    at EFo (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:4918:51263)
+    at async ymt.logAndRequest (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:935:10286)
+    at async q$e.doFetchAlerts (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:5295:7975)
+    at async q$e.fetchAlerts (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:5295:7883)
+2026-05-19 20:00:17.911 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:00:44.001 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:01:10.104 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:01:36.200 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:09:00.987 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:09:01.058 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:09:27.459 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:09:53.551 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:10:19.648 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:10:45.744 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:11:11.842 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:11:37.939 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-19 20:12:04.039 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user

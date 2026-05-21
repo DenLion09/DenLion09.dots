@@ -1,0 +1,18 @@
+2026-05-20 10:50:52.306 [info] StorageMainService: creating application shared storage
+2026-05-20 10:50:52.306 [info] StorageMainService: creating application shared storage with local application storage fallback
+2026-05-20 10:50:52.761 [info] [shared storage] Creating shared storage database at '/home/diorges/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-05-20 10:50:52.768 [info] [shared storage] Initializing fallback application storage (type: local, path: /home/diorges/.config/Code/User/globalStorage/state.vscdb)
+2026-05-20 10:50:52.986 [info] [shared storage] Fallback application storage initialized with 134 items
+2026-05-20 10:50:52.994 [info] update#setState idle
+2026-05-20 10:51:22.998 [info] update#setState checking for updates
+2026-05-20 10:51:23.870 [info] update#setState available for download
+2026-05-20 10:57:50.706 [info] Extension host with pid 2994 exited with code: 0, signal: unknown.
+2026-05-20 13:26:56.907 [info] Extension host with pid 3360 exited with code: 0, signal: unknown.
+2026-05-20 13:26:57.005 [error] [UtilityProcess id: 1, type: fileWatcher, pid: 3347]: crashed with code 15 and reason 'killed'
+2026-05-20 13:27:15.983 [error] #4: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?u=none - error undefined net::ERR_NAME_NOT_RESOLVED
+2026-05-20 13:27:15.986 [error] update#isLatestVersion(): failed to check for updates
+2026-05-20 13:27:15.987 [error] Error: net::ERR_NAME_NOT_RESOLVED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-20 14:55:59.662 [info] Extension host with pid 13025 exited with code: 0, signal: unknown.
+2026-05-20 14:55:59.921 [error] [UtilityProcess id: 1, type: fileWatcher, pid: 13038]: crashed with code 15 and reason 'killed'

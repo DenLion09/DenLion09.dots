@@ -1,0 +1,192 @@
+{
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "e54ccc19c86749980334e82a36d0a0a83db8a7db7f77879df347bdc6f822c6e0",
+    "telemetry.devDeviceId": "56157daf-d671-4471-b760-a709dfe2252c",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [],
+        "emptyWindows": [
+            {
+                "backupFolder": "1779316073117"
+            }
+        ]
+    },
+    "windowControlHeight": 30,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///home/diorges/Work/my_first_projet": "__default__profile__",
+            "file:///home/diorges/Work/temp_blog": "__default__profile__",
+            "file:///home/diorges/.config/Code": "__default__profile__",
+            "file:///home/diorges/Work/portfolio": "__default__profile__",
+            "file:///home/diorges/Work": "__default__profile__",
+            "file:///home/diorges/Work/contador": "__default__profile__",
+            "file:///home/diorges/Work/mi_suit": "__default__profile__",
+            "file:///home/diorges/Work/calculator": "__default__profile__",
+            "file:///home/diorges/Work/react-component": "__default__profile__",
+            "file:///home/diorges/Work/portfolio/node_modules": "__default__profile__",
+            "file:///home/diorges/Work/curso_hola_mundo": "__default__profile__",
+            "file:///home/diorges/.opencode": "__default__profile__",
+            "file:///home/diorges/Work/mi_suit/specs": "__default__profile__",
+            "file:///home/diorges/Work/javascipt_withow_filter": "__default__profile__",
+            "file:///home/diorges/Work/mi_suit/editor": "__default__profile__",
+            "file:///home/diorges/Work/mi_suit/ia_chat": "__default__profile__",
+            "vscode-remote://codespaces%2Bsolid-invention-6qp5544ppwrc5qrq/workspaces/IA-Chat-DenLion09": "__default__profile__",
+            "file:///home/diorges/Work/mi_suit/ia_chat/IA-Chat-DenLion09": "__default__profile__",
+            "file:///home/diorges/Work/javascipt_withow_filter/basic/ejercisios/portfolio2": "__default__profile__",
+            "file:///home/diorges/Work/DenLion09.dots": "__default__profile__",
+            "file:///home/diorges/Work/xfce-smart-tiling": "__default__profile__",
+            "file:///home/diorges/curso": "__default__profile__",
+            "file:///home/diorges/Work/whetherApp": "__default__profile__"
+        },
+        "emptyWindows": {
+            "1779316073117": "__default__profile__"
+        }
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#0d1117",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#c9d1d9",
+            "background": "#0d1117",
+            "editorBackground": "#0d1117",
+            "titleBarBackground": "#0d1117",
+            "titleBarBorder": "#30363d",
+            "activityBarBackground": "#0d1117",
+            "activityBarBorder": "#30363d",
+            "sideBarBackground": "#010409",
+            "sideBarBorder": "#30363d",
+            "statusBarBackground": "#0d1117",
+            "statusBarBorder": "#30363d",
+            "statusBarNoFolderBackground": "#0d1117"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 30,
+            "activityBarWidth": 0,
+            "sideBarWidth": 0,
+            "auxiliaryBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "backupPath": "/home/diorges/.config/Code/Backups/1779316073117",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 17,
+                "width": 1920,
+                "height": 1014
+            }
+        },
+        "openedWindows": []
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 240,
+            "auxiliaryBarWidth": 245,
+            "workspaces": {
+                "157e4488f46a2074fe3307ee08764808": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "a5bb4f2e46a580c78ec6e64846698cfe": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "b8c5039e622983a6967b480996b546c6": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "ef12b788abd0699a6e538e7d4f8d9fe3": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "3573d0dce39072372779055d9df89ba1": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d1f72468148a6c54018411eb86a7dc5a": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "779d99714f8befbcbdf2f86cbc5216b6": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "a5e68427ebd7947ba468d1043e2a29e4": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "ce1b6291030a95a8e968c96abc840905": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "18fb53d679dd982babd44df83d25f948": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "934e390dae6b04db153ebe4bb9c15455": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "a2dd14a4cdf5fcf602225a399a40543e": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "c74cbd6bee99181e2345b63491f3e845": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "b404b4cdddfb75dff5cbbb1f7516c7c8": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "8b52308064261387c639d1986c724ded": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "882cef58cab9eeb3f8ee720999291474": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "ec3a1d5d82d8d5052fd7f59c9153f35e": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "a4f2bad786b45d4c7152890fb9de8765": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "eae8cdaba839654eec7dd1c1f8377e13": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d273d852562a639fbdb0b56c3adc4239": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "7038e336de04331af688769153a1fe1c": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "8d9762e8df87fc3ede2ed40937cd31b7": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "94bd2f1022d24f7d9cb4424497f97e86": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "c793e979cf1bf62863da215aa6c0899e": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                }
+            }
+        }
+    }
+}

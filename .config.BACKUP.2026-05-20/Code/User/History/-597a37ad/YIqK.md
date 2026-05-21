@@ -1,0 +1,21 @@
+# **Inicio** - Eleccion del stack
+
+- **Tech Radar:** Es una estrategia que permite visualizar y evaluar las tecnologias emergentes y consolidadas. Facilita la toma de desiciones informadas y adoptar, experimentar, mantener o dejar segun la nesecidades actuales y futuras.
+
+- **Adopt:** Tecnologías probadas y recomendadas para su uso generalizado.
+- **Trial:** Tecnologías que vale la pena probar en proyectos piloto.
+- **Eval:** Tecnologías que se deben investigar para entender su potencial.
+- **Hold:** Tecnologías que no se recomiendan en este momento.
+
+**¿Cómo se hace?**
+
+Se crea una serie de capas, cada una representa un una tag (Adopt, Trial, Eval, Hold) en estas se situan las tegnologias segun la ovservacion y se van moviendo en dependencia de la necesidad y la inovacion que representa. y adoptar son las tecnonologias adoptadas para su uso en produccion.
+
+## **Harnes Ingeniering** - Sistemas robustos desde el diseño
+
+Conoser y identificar las **amenazas** y **riesgos** potenciales:
+
+- **Vulneravilidades de seguridad:** Fallos en el codigo que pueden ser explotados y comprometen la seguridad.
+- **Errores de configuracion:** Configuraciones incorrectas que pueden afectar el correcto funconamiento.
+- **Prevencion de agentes externos:** Preconsiderar la infraestructura y diseñar la infraestructura necesaria.
+-

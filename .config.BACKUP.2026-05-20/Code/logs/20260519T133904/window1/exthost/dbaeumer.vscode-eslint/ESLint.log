@@ -1,0 +1,6 @@
+2026-05-19 13:40:41.151 [info] ESLint server is starting.
+2026-05-19 13:40:41.151 [info] ESLint server running in node v22.22.1
+2026-05-19 13:40:41.186 [info] ESLint server is running.
+2026-05-19 13:40:42.486 [info] ESLint library loaded from: /home/diorges/Work/calculator/node_modules/eslint/lib/api.js
+2026-05-19 13:40:42.487 [info] ESLint version 10.3.0 only supports flat configs. Setting is ignored.
+2026-05-19 13:41:45.629 [info] ESLint server stopped.

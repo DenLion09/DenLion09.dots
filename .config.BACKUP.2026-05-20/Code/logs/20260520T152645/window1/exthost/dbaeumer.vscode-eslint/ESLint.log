@@ -1,0 +1,10 @@
+2026-05-20 15:26:56.800 [info] ESLint server is starting.
+2026-05-20 15:26:56.993 [info] ESLint server running in node v22.22.1
+2026-05-20 15:26:57.035 [info] ESLint server is running.
+2026-05-20 15:28:14.622 [info] ESLint server stopped.
+2026-05-20 15:33:33.689 [info] ESLint server is starting.
+2026-05-20 15:33:33.689 [info] ESLint server running in node v22.22.1
+2026-05-20 15:33:33.693 [info] ESLint server is running.
+2026-05-20 15:34:19.519 [info] ESLint library loaded from: /home/diorges/Work/whetherApp/node_modules/eslint/lib/api.js
+2026-05-20 15:34:19.522 [info] ESLint version 10.4.0 only supports flat configs. Setting is ignored.
+2026-05-20 15:54:18.492 [info] ESLint server stopped.

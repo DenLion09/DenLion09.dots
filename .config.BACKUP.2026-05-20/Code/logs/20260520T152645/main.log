@@ -1,0 +1,11 @@
+2026-05-20 15:26:46.063 [info] StorageMainService: creating application shared storage
+2026-05-20 15:26:46.065 [info] StorageMainService: creating application shared storage with local application storage fallback
+2026-05-20 15:26:46.300 [info] [shared storage] Creating shared storage database at '/home/diorges/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-05-20 15:26:46.304 [info] [shared storage] Initializing fallback application storage (type: local, path: /home/diorges/.config/Code/User/globalStorage/state.vscdb)
+2026-05-20 15:26:46.474 [info] [shared storage] Fallback application storage initialized with 134 items
+2026-05-20 15:26:46.490 [info] update#setState idle
+2026-05-20 15:27:16.492 [info] update#setState checking for updates
+2026-05-20 15:27:16.712 [info] update#setState available for download
+2026-05-20 15:28:14.628 [info] Extension host with pid 50293 exited with code: 0, signal: unknown.
+2026-05-20 15:28:14.797 [error] [UtilityProcess id: 1, type: fileWatcher, pid: 50307]: crashed with code 15 and reason 'killed'
+2026-05-20 15:54:18.497 [info] Extension host with pid 50847 exited with code: 0, signal: unknown.

@@ -1,0 +1,68 @@
+2026-05-20 10:50:56.514 [info] Started local extension host with pid 2994.
+2026-05-20 10:50:56.941 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:50:56.945 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:50:56.945 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:50:59.322 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 10:51:01.661 [error] [Extension Host] (node:2994) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-20 10:51:08.733 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 10:51:08.741 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 10:51:11.153 [info] [perf] Render performance baseline is 84ms
+2026-05-20 10:57:50.742 [warning] [DefaultAccount] Attempt 1 to get sessions failed: Canceled
+2026-05-20 10:57:52.508 [info] Started local extension host with pid 3360.
+2026-05-20 10:57:52.658 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:57:52.659 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:57:52.662 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 10:57:54.602 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 10:57:57.470 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 10:57:58.368 [info] [perf] Render performance baseline is 84ms
+2026-05-20 10:57:59.589 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 10:59:05.050 [error] [Extension Host] (node:3360) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-20 13:26:49.096 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:26:54.405 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:26:58.847 [info] Started local extension host with pid 13025.
+2026-05-20 13:26:58.989 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 13:26:58.990 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 13:26:58.990 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 13:27:01.334 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 13:27:01.343 [error] [Extension Host] (node:13025) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-20 13:27:04.603 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 13:27:05.496 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:27:06.420 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 13:27:12.328 [error] TypeError: Failed to fetch
+    at EFo (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:4918:51053)
+    at vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:4918:52349
+    at ymt.logAndRequest (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:935:10292)
+    at ymt.request (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:4918:52329)
+    at q$e.doFetchAlerts (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:5295:8001)
+    at q$e.fetchAlerts (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:5295:7894)
+    at new q$e (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:5295:7725)
+    at a._createInstance (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1904:2000)
+    at a.createInstance (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1904:1440)
+    at a.safeCreateContribution (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:924:46882)
+    at c (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:924:46483)
+2026-05-20 13:27:15.763 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:27:16.536 [info] [perf] Render performance baseline is 38ms
+2026-05-20 13:27:21.421 [error] Error while getting the latest version for the extension github.copilot-chat from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:21.431 [error] Error while getting the latest version for the extension dbaeumer.vscode-eslint from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:21.437 [error] Error while getting the latest version for the extension esbenp.prettier-vscode from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:21.445 [error] Error while getting the latest version for the extension github.codespaces from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:21.463 [error] Error while getting the latest version for the extension github.github-vscode-theme from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:21.464 [error] Error while getting the latest version for the extension pkief.material-icon-theme from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:26.592 [error] Error while getting the latest version for the extension sst-dev.opencode from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:26.597 [error] Error while getting the latest version for the extension sumanta.javascript-mastermind-snippets from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:26.601 [error] Error while getting the latest version for the extension yzhang.markdown-all-in-one from https://marketplace.visualstudio.com/_apis/public/gallery/vscode/{publisher}/{name}/latest. Trying the fallback https://www.vscode-unpkg.net/_gallery/{publisher}/{name}/latest Failed
+2026-05-20 13:27:36.775 [error] Error while getting the latest version for the extension esbenp.prettier-vscode. TypeError: Failed to fetch
+2026-05-20 13:27:36.780 [error] Error while getting the latest version for the extension github.codespaces. TypeError: Failed to fetch
+2026-05-20 13:27:36.786 [error] Error while getting the latest version for the extension github.github-vscode-theme. TypeError: Failed to fetch
+2026-05-20 13:27:36.803 [error] Error while getting the latest version for the extension pkief.material-icon-theme. TypeError: Failed to fetch
+2026-05-20 13:27:36.808 [error] Error while getting the latest version for the extension dbaeumer.vscode-eslint. TypeError: Failed to fetch
+2026-05-20 13:27:36.810 [error] Error while getting the latest version for the extension github.copilot-chat. TypeError: Failed to fetch
+2026-05-20 13:27:41.924 [error] Error while getting the latest version for the extension sst-dev.opencode. TypeError: Failed to fetch
+2026-05-20 13:27:41.933 [error] Error while getting the latest version for the extension sumanta.javascript-mastermind-snippets. TypeError: Failed to fetch
+2026-05-20 13:27:41.938 [error] Error while getting the latest version for the extension yzhang.markdown-all-in-one. TypeError: Failed to fetch
+2026-05-20 13:27:47.973 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:27:59.007 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user
+2026-05-20 13:28:18.317 [error] [DefaultAccount] request: error TypeError: Failed to fetch https://api.github.com/copilot_internal/user

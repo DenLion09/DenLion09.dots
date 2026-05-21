@@ -1,0 +1,22 @@
+2026-05-20 15:26:48.470 [info] Started local extension host with pid 50293.
+2026-05-20 15:26:48.853 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:26:48.853 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:26:48.854 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:26:51.177 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 15:26:53.205 [error] [Extension Host] (node:50293) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-20 15:26:54.878 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 15:26:56.167 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 15:26:59.708 [info] [perf] Render performance baseline is 66ms
+2026-05-20 15:28:14.677 [warning] [DefaultAccount] Attempt 1 to get sessions failed: Canceled
+2026-05-20 15:28:15.868 [info] Started local extension host with pid 50847.
+2026-05-20 15:28:16.168 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:28:16.168 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:28:16.175 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 15:28:18.487 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 15:28:20.511 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 15:28:21.933 [info] [perf] Render performance baseline is 169ms
+2026-05-20 15:28:23.483 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 15:28:36.427 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-20 15:28:37.602 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-20 15:41:21.103 [error] An unknown error occurred. Please consult the log for more details.

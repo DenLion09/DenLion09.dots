@@ -1,0 +1,18 @@
+2026-05-19 19:32:32.026 [info] StorageMainService: creating application shared storage
+2026-05-19 19:32:32.028 [info] StorageMainService: creating application shared storage with local application storage fallback
+2026-05-19 19:32:32.197 [info] [shared storage] Creating shared storage database at '/home/diorges/.vscode-shared/sharedStorage/state.vscdb' (wasCreated: false)
+2026-05-19 19:32:32.208 [info] [shared storage] Initializing fallback application storage (type: local, path: /home/diorges/.config/Code/User/globalStorage/state.vscdb)
+2026-05-19 19:32:32.314 [info] [shared storage] Fallback application storage initialized with 134 items
+2026-05-19 19:32:32.341 [info] update#setState idle
+2026-05-19 19:33:02.344 [info] update#setState checking for updates
+2026-05-19 19:33:11.423 [error] #1: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?u=none - error undefined net::ERR_CONNECTION_CLOSED
+2026-05-19 19:33:11.426 [error] update#isLatestVersion(): failed to check for updates
+2026-05-19 19:33:11.427 [error] Error: net::ERR_CONNECTION_CLOSED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-19 19:33:11.440 [error] #2: https://update.code.visualstudio.com/api/update/linux-x64/stable/034f571df509819cc10b0c8129f66ef77a542f0e?bg=true&u=none - error undefined net::ERR_CONNECTION_CLOSED
+2026-05-19 19:33:11.441 [error] Error: net::ERR_CONNECTION_CLOSED
+    at SimpleURLLoaderWrapper.<anonymous> (node:electron/js2c/browser_init:2:132354)
+    at SimpleURLLoaderWrapper.emit (node:events:519:28)
+2026-05-19 19:33:11.442 [info] update#setState idle
+2026-05-19 19:33:11.850 [info] Extension host with pid 2430 exited with code: 0, signal: unknown.

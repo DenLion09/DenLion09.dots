@@ -1,0 +1,5 @@
+2026-05-20 10:51:03.969 [info] Log level: Info
+2026-05-20 10:57:57.106 [info] Log level: Info
+2026-05-20 13:27:03.622 [info] Log level: Info
+2026-05-20 13:27:06.868 [warning] [GitHubBranchProtectionProvider][updateRepositoryBranchProtection] Failed to update repository branch protection: getaddrinfo EAI_AGAIN api.github.com
+2026-05-20 14:43:23.242 [info] [GitHubSourceControlHistoryItemDetailsProvider][_getCommitAuthor] Incomplete commit author for DenLion09/DenLion09.dots/23c2ff3dd572320c25d497d58b26cb8090e0b2cd: {"author":{"name":"DenLion09","email":"diorgedaniel.gonzalez.com","avatarUrl":"https://camo.githubusercontent.com/af171afd4807b8ba4a20c9ca1e862fee085896f2e291f94e5c4ad5e44a420ad3/68747470733a2f2f312e67726176617461722e636f6d2f6176617461722f32306635646434623434643066616232336264303636613532303038656439653f643d68747470732533412532462532466769746875622e6769746875626173736574732e636f6d253246696d6167657325324667726176617461727325324667726176617461722d757365722d3432302e706e6726723d67","user":null}}

@@ -1,0 +1,16 @@
+# GitHub Configuration
+# Copia este archivo como .env.local y agrega tu token
+
+# Token personal de GitHub (solo lectura)
+# Genera en: https://github.com/settings/tokens
+# Selecciona "repo" para acceso completo o "public_repo" para solo repos públicos
+GITHUB_TOKEN=
+
+# EmailJS Configuration (server-side only — NEVER expose in client code)
+# Obtén tus credenciales en: https://dashboard.emailjs.com
+EMAILJS_SERVICE_ID=service_corr7qp
+EMAILJS_TEMPLATE_ID=template_y9dlv4h
+EMAILJS_PUBLIC_KEY=xOLlpSZ6BSs6JH-or
+# CV Download URL
+# URL donde tengas tu CV hosted (Google Drive, S3, GitHub Releases, etc.)
+CV_URL=https://github.com/DenLion09/DenLion09/raw/main/CV-Diorges.pdf

@@ -1,0 +1,95 @@
+2026-05-19 13:39:10.271 [info] [main] Log level: Info
+2026-05-19 13:39:10.271 [info] [main] Validating found git in: "git"
+2026-05-19 13:39:10.271 [info] [main] Using git "2.53.0" from "git"
+2026-05-19 13:39:10.271 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-19 13:39:10.271 [info] > git rev-parse --show-toplevel [64ms]
+2026-05-19 13:39:10.271 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [5ms]
+2026-05-19 13:39:10.271 [info] [Model][openRepository] Opened repository (path): /home/diorges/Work/DenLion09.dots
+2026-05-19 13:39:10.271 [info] [Model][openRepository] Opened repository (real path): /home/diorges/Work/DenLion09.dots
+2026-05-19 13:39:10.271 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-19 13:39:10.271 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-19 13:39:10.271 [info] > git config --get --local core.virtualfilesystem [29ms]
+2026-05-19 13:39:10.271 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-19 13:39:10.271 [info] > git config --get commit.template [21ms]
+2026-05-19 13:39:10.271 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-19 13:39:10.271 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2026-05-19 13:39:10.271 [info] > git status -z -uall [19ms]
+2026-05-19 13:39:10.271 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [12ms]
+2026-05-19 13:39:10.271 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [1ms]
+2026-05-19 13:39:10.272 [info] > git config --get --local branch.master.vscode-merge-base [4ms]
+2026-05-19 13:39:10.272 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-19 13:39:10.272 [info] > git reflog master --grep-reflog=branch: Created from *. [7ms]
+2026-05-19 13:39:10.404 [info] > git config --get commit.template [40ms]
+2026-05-19 13:39:10.437 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-19 13:39:10.457 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [21ms]
+2026-05-19 13:39:10.914 [info] > git status -z -uall [444ms]
+2026-05-19 13:39:10.914 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [410ms]
+2026-05-19 13:39:11.451 [info] > git check-ignore -v -z --stdin [500ms]
+2026-05-19 13:39:20.153 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [4ms]
+2026-05-19 13:39:42.676 [info] > git remote add origin https://github.com/DenLion09/DenLion09.dots.git [9ms]
+2026-05-19 13:39:42.693 [info] > git config --get commit.template [8ms]
+2026-05-19 13:39:42.696 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [6ms]
+2026-05-19 13:39:42.712 [info] > git status -z -uall [11ms]
+2026-05-19 13:39:42.714 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-19 13:39:45.402 [info] > git push -u origin master [2674ms]
+2026-05-19 13:39:45.402 [info] To https://github.com/DenLion09/DenLion09.dots.git
+ * [new branch]      master -> master
+2026-05-19 13:39:45.421 [info] > git config --get commit.template [9ms]
+2026-05-19 13:39:45.424 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [5ms]
+2026-05-19 13:39:45.442 [info] > git status -z -uall [11ms]
+2026-05-19 13:39:45.444 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-19 13:39:45.484 [info] > git merge-base refs/heads/master refs/remotes/origin/master [16ms]
+2026-05-19 13:39:45.513 [info] > git diff --raw --numstat --diff-filter=ADMR -z --find-renames=50% 23c2ff3dd572320c25d497d58b26cb8090e0b2cd...refs/remotes/origin/master -- [19ms]
+2026-05-19 13:39:45.519 [info] > git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%D%n%B -z --shortstat --diff-merges=first-parent -n50 --skip=0 --topo-order --decorate=full --stdin [7ms]
+2026-05-19 13:39:46.424 [info] > git merge-base master origin/master [9ms]
+2026-05-19 13:39:46.506 [info] > git config --get commit.template [10ms]
+2026-05-19 13:39:46.509 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [6ms]
+2026-05-19 13:39:46.524 [info] > git status -z -uall [9ms]
+2026-05-19 13:39:46.527 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [5ms]
+2026-05-19 13:40:08.095 [info] [main] Log level: Info
+2026-05-19 13:40:08.095 [info] [main] Validating found git in: "git"
+2026-05-19 13:40:08.095 [info] [main] Using git "2.53.0" from "git"
+2026-05-19 13:40:08.095 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-19 13:40:08.095 [info] > git rev-parse --show-toplevel [22ms]
+2026-05-19 13:40:08.095 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-19 13:40:08.095 [info] [Model][doInitialScan] Initial repository scan completed - repositories (0), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-19 13:40:08.240 [info] > git rev-parse --show-toplevel [24ms]
+2026-05-19 13:40:08.240 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-19 13:40:09.116 [info] > git rev-parse --show-toplevel [3ms]
+2026-05-19 13:40:09.116 [info] fatal: not a git repository (or any of the parent directories): .git
+2026-05-19 13:40:39.427 [info] [main] Log level: Info
+2026-05-19 13:40:39.427 [info] [main] Validating found git in: "git"
+2026-05-19 13:40:39.427 [info] [main] Using git "2.53.0" from "git"
+2026-05-19 13:40:39.427 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-19 13:40:39.427 [info] > git rev-parse --show-toplevel [535ms]
+2026-05-19 13:40:39.463 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [53ms]
+2026-05-19 13:40:39.651 [info] [Model][openRepository] Opened repository (path): /home/diorges/Work/calculator
+2026-05-19 13:40:39.651 [info] [Model][openRepository] Opened repository (real path): /home/diorges/Work/calculator
+2026-05-19 13:40:39.651 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-19 13:40:40.030 [info] > git config --get commit.template [318ms]
+2026-05-19 13:40:40.031 [info] > git config --get --local core.virtualfilesystem [331ms]
+2026-05-19 13:40:40.031 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-19 13:40:40.237 [info] > git rev-parse --show-toplevel [236ms]
+2026-05-19 13:40:40.324 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-19 13:40:40.599 [info] > git rev-parse --show-toplevel [251ms]
+2026-05-19 13:40:40.600 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [277ms]
+2026-05-19 13:40:40.895 [info] > git check-ignore -v -z --stdin [311ms]
+2026-05-19 13:40:40.903 [info] > git status -z -uall [266ms]
+2026-05-19 13:40:40.903 [info] > git check-ignore -v -z --stdin [186ms]
+2026-05-19 13:40:40.910 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [239ms]
+2026-05-19 13:40:41.009 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [60ms]
+2026-05-19 13:40:41.017 [info] > git rev-parse --show-toplevel [232ms]
+2026-05-19 13:40:41.096 [info] > git config --get --local branch.master.vscode-merge-base [79ms]
+2026-05-19 13:40:41.096 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-19 13:40:41.106 [info] > git config --get commit.template [105ms]
+2026-05-19 13:40:41.148 [info] > git rev-parse --show-toplevel [58ms]
+2026-05-19 13:40:41.169 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-19 13:40:41.233 [info] > git reflog master --grep-reflog=branch: Created from *. [126ms]
+2026-05-19 13:40:41.295 [info] > git rev-parse --show-toplevel [118ms]
+2026-05-19 13:40:41.300 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-19 13:40:41.334 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [166ms]
+2026-05-19 13:40:41.353 [info] > git show --textconv :src/App.tsx [29ms]
+2026-05-19 13:40:41.353 [info] > git status -z -uall [12ms]
+2026-05-19 13:40:41.354 [info] > git ls-files --stage -- src/App.tsx [20ms]
+2026-05-19 13:40:41.373 [info] > git cat-file -s 857cfc83f06741fc121e3842898acb1452f8216c [9ms]
+2026-05-19 13:40:41.375 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [28ms]

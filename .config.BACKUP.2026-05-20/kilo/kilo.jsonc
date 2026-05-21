@@ -1,0 +1,12 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "permission": {
+    "bash": "ask",
+    "external_directory": "allow",
+    "edit": "ask"
+  },
+  "username": "Diorges",
+  "commit_message": {
+    "prompt": ""
+  }
+}

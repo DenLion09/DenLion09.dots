@@ -1,0 +1,33 @@
+2026-05-19 13:42:02.095 [info] Started local extension host with pid 11407.
+2026-05-19 13:42:02.161 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:42:02.164 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:42:02.166 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:42:03.641 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:42:05.055 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:42:06.976 [info] [perf] Render performance baseline is 98ms
+2026-05-19 13:42:08.586 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:43:06.380 [error] Error: The editor could not be opened because the file was not found.
+    at t9.handleSetInputError (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:3876:92375)
+    at async t9.setInput (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:3876:91384)
+    at async qRe.doSetInput (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1203:33679)
+    at async qRe.doOpenEditor (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1203:31465)
+    at async qRe.openEditor (vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1203:30413)
+    at async vscode-file://vscode-app/usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:1315:31397
+2026-05-19 13:43:06.508 [info] Started local extension host with pid 11513.
+2026-05-19 13:43:06.565 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:06.573 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:06.573 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:08.593 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:43:09.287 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:43:12.644 [info] [perf] Render performance baseline is 104ms
+2026-05-19 13:43:13.592 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:43:25.054 [info] Started local extension host with pid 11746.
+2026-05-19 13:43:25.164 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:25.165 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:25.165 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-19 13:43:26.346 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:43:27.024 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-19 13:43:29.296 [info] [perf] Render performance baseline is 95ms
+2026-05-19 13:43:31.349 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-19 13:45:00.194 [error] [Extension Host] (node:11746) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)

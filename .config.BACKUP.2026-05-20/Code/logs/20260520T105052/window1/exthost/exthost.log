@@ -1,0 +1,80 @@
+2026-05-20 10:50:59.586 [info] Extension host with pid 2994 started
+2026-05-20 10:50:59.586 [info] Skipping acquiring lock for /home/diorges/.config/Code/User/workspaceStorage/7038e336de04331af688769153a1fe1c.
+2026-05-20 10:51:00.069 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-20 10:51:00.256 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-20 10:51:00.336 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:51:00.384 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:51:00.869 [info] ExtensionService#_doActivateExtension yzhang.markdown-all-in-one, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:51:01.630 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: yzhang.markdown-all-in-one
+2026-05-20 10:51:01.727 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-05-20 10:51:02.534 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-05-20 10:51:02.953 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-20 10:51:03.850 [info] Eager extensions activated
+2026-05-20 10:51:04.024 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:51:04.074 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:51:04.137 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:51:04.231 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:51:04.233 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:51:04.890 [warning] DiagnosticCollection with name 'eslint' does already exist.
+2026-05-20 10:57:50.647 [info] Extension host terminating: received terminate message from renderer
+2026-05-20 10:57:50.703 [info] Extension host with pid 2994 exiting with code 0
+2026-05-20 10:57:54.925 [info] Extension host with pid 3360 started
+2026-05-20 10:57:54.925 [info] Skipping acquiring lock for /home/diorges/.config/Code/User/workspaceStorage/a2dd14a4cdf5fcf602225a399a40543e.
+2026-05-20 10:57:55.028 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-20 10:57:55.141 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-20 10:57:55.313 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-05-20 10:57:55.352 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-05-20 10:57:55.748 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-20 10:57:56.552 [info] Eager extensions activated
+2026-05-20 10:57:56.957 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:57:56.965 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:57:57.006 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:57:57.079 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:57:57.080 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 10:59:04.013 [warning] DiagnosticCollection with name 'eslint' does already exist.
+2026-05-20 10:59:04.201 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:59:04.263 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:59:04.661 [info] ExtensionService#_doActivateExtension yzhang.markdown-all-in-one, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 10:59:05.542 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: yzhang.markdown-all-in-one
+2026-05-20 13:26:56.817 [info] Extension host terminating: received terminate message from renderer
+2026-05-20 13:26:56.904 [info] Extension host with pid 3360 exiting with code 0
+2026-05-20 13:27:00.481 [info] Extension host with pid 13025 started
+2026-05-20 13:27:00.481 [info] Skipping acquiring lock for /home/diorges/.config/Code/User/workspaceStorage/7038e336de04331af688769153a1fe1c.
+2026-05-20 13:27:00.620 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-20 13:27:00.710 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-20 13:27:00.747 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 13:27:00.793 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 13:27:00.964 [info] ExtensionService#_doActivateExtension yzhang.markdown-all-in-one, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-20 13:27:01.367 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: yzhang.markdown-all-in-one
+2026-05-20 13:27:01.846 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-05-20 13:27:02.005 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-05-20 13:27:02.232 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-20 13:27:03.573 [info] Eager extensions activated
+2026-05-20 13:27:03.992 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 13:27:04.001 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 13:27:04.039 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 13:27:04.125 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 13:27:04.127 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-20 13:27:05.557 [warning] DiagnosticCollection with name 'eslint' does already exist.
+2026-05-20 14:55:59.478 [info] Extension host terminating: received terminate message from renderer
+2026-05-20 14:55:59.585 [error] ProxyResolver#resolveProxy DIRECT Canceled: Canceled
+	at new sx (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:151020)
+	at i._remoteCall (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:157072)
+	at r.<computed>.s.charCodeAt.r.<computed> (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:153867)
+	at ug.resolveProxy (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:500:80099)
+	at Object.resolveProxy (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:644:25127)
+	at useProxySettings (/usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:208:16)
+	at /usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:145:13
+	at /usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:1038:13
+	at process.processTicksAndRejections (node:internal/process/task_queues:103:5) 
+2026-05-20 14:55:59.586 [error] ProxyResolver#resolveProxy DIRECT Canceled: Canceled
+	at new sx (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:151020)
+	at i._remoteCall (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:157072)
+	at r.<computed>.s.charCodeAt.r.<computed> (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:153867)
+	at ug.resolveProxy (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:500:80099)
+	at Object.resolveProxy (file:///usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:644:25127)
+	at useProxySettings (/usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:208:16)
+	at /usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:145:13
+	at /usr/share/code/resources/app/node_modules/@vscode/proxy-agent/out/index.js:1038:13
+	at process.processTicksAndRejections (node:internal/process/task_queues:103:5) 
+2026-05-20 14:55:59.658 [info] Extension host with pid 13025 exiting with code 0

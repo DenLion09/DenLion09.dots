@@ -1,0 +1,17 @@
+[Added Associations]
+text/plain=org.xfce.mousepad.desktop;nvim.desktop;
+text/markdown=code.desktop;
+image/jpeg=org.xfce.ristretto.desktop;
+application/x-7z-compressed=thunar.desktop;
+image/png=org.xfce.ristretto.desktop;
+video/mp4=org.xfce.Parole.desktop;
+video/vnd.avi=org.xfce.Parole.desktop;
+video/x-matroska=org.xfce.Parole.desktop;
+application/pdf=onlyoffice-desktopeditors.desktop;
+
+[Default Applications]
+application/x-7z-compressed=thunar.desktop
+image/png=org.xfce.ristretto.desktop
+video/mp4=org.xfce.Parole.desktop
+video/vnd.avi=org.xfce.Parole.desktop
+video/x-matroska=org.xfce.Parole.desktop

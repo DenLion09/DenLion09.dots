@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-terminal" version="1.0">
+  <property name="misc-cursor-shape" type="string" value="TERMINAL_CURSOR_SHAPE_IBEAM"/>
+  <property name="misc-cursor-blinks" type="bool" value="true"/>
+  <property name="font-name" type="string" value="CaskaydiaCove Nerd Font Mono 14"/>
+  <property name="misc-default-geometry" type="string" value="85x30"/>
+  <property name="misc-toolbar-default" type="bool" value="false"/>
+  <property name="misc-menubar-default" type="bool" value="false"/>
+  <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
+  <property name="background-darkness" type="double" value="0.90000000000000002"/>
+  <property name="misc-slim-tabs" type="bool" value="true"/>
+</channel>

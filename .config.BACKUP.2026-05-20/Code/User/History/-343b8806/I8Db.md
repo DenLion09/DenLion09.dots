@@ -1,0 +1,331 @@
+# DESIGN.md — Portfolio de Diorges
+
+> Documento de arquitectura y diseño técnico del proyecto
+
+---
+
+## 1. ARQUITECTURA
+
+### 1.1 Visión General
+
+**Tipo de proyecto:** Sitios web estático/ISR (Next.js App Router)  
+**Propósito:** Portfolio personal para mostrar proyectos, experiencia y habilidades  
+** stack: ** Next.js 15 + React 19 + Tailwind CSS 4
+
+### 1.2 Estructura de Directorios
+
+```
+/app
+  ├── layout.js          # Root layout global
+  ├── page.js           # Home page (ISR con GitHub API)
+  └── globals.css       # Tailwind 4 + custom properties
+/components
+  ├── Hero.js          # Sección principal (info personal)
+  ├── Navbar.js        # Navegación + ThemeToggle
+  ├── Footer.js        # Copyright
+  ├── ProjectCard.js   # Tarjeta de proyecto
+  ├── ThemeToggle.js  # Botón dark/light
+  └── ThemeProvider.js# Wrapper para next-themes
+/lib
+  └── github.js       # Fetch a GitHub API + fallback
+/data
+  └── projects.json  # Fallback de proyectos
+```
+
+### 1.3 Patrones de Arquitectura
+
+| Patrón                                | Aplicación                                                                    |
+| ------------------------------------- | ----------------------------------------------------------------------------- |
+| Container/Presentational              | Todos los componentes                                                         |
+| Server Components                     | `page.js`, `layout.js`, `Hero.js`                                             |
+| Client Components                     | `Navbar.js`, `ThemeToggle.js`, `ThemeProvider.js`                             |
+| ISR (Incremental Static Regeneration) | `fetchRepos()` con revalidate=3600                                            |
+| Atomic Design                         | `/components` — átomos (ThemeToggle), moléculas (Navbar), organismos (Layout) |
+
+### 1.4 Flujo de Datos
+
+```
+GitHub API (remoto)
+       ↓
+   /lib/github.js (fetch + transform)
+       ↓
+   /app/page.js (Server Component)
+       ↓
+   ProjectCard (presentational)
+       ↓
+   UI (render)
+```
+
+### 1.5 Dependencias del Core
+
+| Paquete      | Versión  | Propósito       |
+| ------------ | -------- | --------------- |
+| next         | ^15.1.0  | Framework       |
+| react        | ^19.0.0  | UI library      |
+| react-dom    | ^19.0.0  | DOM rendering   |
+| next-themes  | ^0.4.0   | Dark/Light mode |
+| lucide-react | ^0.468.0 | Iconos          |
+| tailwindcss  | ^4.1.0   | CSS framework   |
+
+---
+
+## 2. INFRAESTRUCTURA
+
+### 2.1 Configuración de Build
+
+```javascript
+// next.config.mjs
+{
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "raw.githubusercontent.com" },
+    ];
+  }
+}
+```
+
+### 2.2 Variables de Entorno
+
+| Variable        | Default   | Propósito                   |
+| --------------- | --------- | --------------------------- |
+| GITHUB_USERNAME | DenLion09 | Usuario para fetch de repos |
+
+### 2.3 Configuración de Linting
+
+- ESLint 9 con `eslint-config-next`
+- Configuración base en `eslint.config.mjs`
+
+### 2.4 Rendering Strategy
+
+| Página       | Strategy | Revalidate     |
+| ------------ | -------- | -------------- |
+| Home         | ISR      | 3600s (1 hora) |
+| Static pages | Static   | N/A            |
+
+### 2.5 Despliegue (Pendiente)
+
+- **OPCIÓN A:** Vercel (recomendado para Next.js)
+- **OPCIÓN B:** Docker + nginx
+- **OPCIÓN C:** VPS con nginx + PM2
+
+---
+
+## 3. FEATURES SPECS
+
+### 3.1 Features Implementadas
+
+#### F1: Página Principal
+
+- **Descripción:** Layout split 40/60 con Hero + Proyectos
+- **Estado:** ✅ Implementado
+- **Componentes:** `Hero.js`, `ProjectCard.js`, `page.js`
+- **Datos:** Fetch a GitHub API, fallback local
+
+#### F2: Modo Oscuro/Claro
+
+- **Descripción:** Toggle para cambiar theme
+- **Estado:** ✅ Implementado
+- **Componentes:** `ThemeProvider.js`, `ThemeToggle.js`
+- **Biblioteca:** next-themes
+- **Preferencia:** Persistida en localStorage
+- **Soporte:** system preference + manual override
+
+#### F3: Fetch de Proyectos
+
+- **Descripción:** Obtiene repositorios desde GitHub API
+- **Estado:** ✅ Implementado
+- **Lógica:**
+  - Fetch a `api.github.com/users/{username}/repos`
+  - Filtra forks y repos del propio usuario
+  - Ordena por `updated_at`
+  - Limita a 6 repos
+  - Cache ISR 1 hora
+
+#### F4: Navegación
+
+- **Descripción:** Navbar con links + logo
+- **Estado:** ✅ Implementado
+- **Links:** Inicio, Proyectos
+
+#### F5: Footer
+
+- **Descripción:** Copyright dinámico
+- **Estado:** ✅ Implementado
+
+### 3.2 Features Pendientes / Propuestas
+
+#### P1: Página "Sobre mí" Separada
+
+- **Descripción:** Ruta `/about` con información detallada
+- **Prioridad:** MEDIA
+- ** Estado: ** Pendiente
+- **Contenido:**
+  - Biografía extendida
+  - Experiencia por año
+  - Habilidades técnicas
+  - logros (GDE, MVP)
+
+#### P2: Página de Contacto
+
+- **Descripción:** Ruta `/contact` con info de contacto
+- **Prioridad:** MEDIA
+- **Estado:** Pendiente
+- **Contenido:**
+  - Email (protegido)
+  - Links sociales (GitHub, LinkedIn, Twitter)
+  - Formulario de contacto (opcional, requiere backend)
+
+#### P3: Detalle de Proyecto
+
+- **Descripción:** Ruta `/projects/[name]` con detalles
+- **Prioridad:** BAJA
+- **Estado:** Pendiente
+- **Contenido:**
+  - Descripción extendida
+  - Screenshots
+  - Tech stack
+  - Links externos
+
+#### P4: Animaciones y Transiciones
+
+- **Descripción:** Agregar movimiento al UI
+- **Prioridad:** BAJA
+- ** Estado: ** Pendiente
+- **Opciones:**
+  - Framer Motion
+  - CSS transitions
+  - Tailwind animate
+
+#### P5: Testing
+
+- **Descripción:** Cobertura de tests
+- **Prioridad:** MEDIA
+- **Estado:** Pendiente
+- **Frameworks:** Vitest + React Testing Library
+
+#### P6: Optimización de Performance
+
+- **Descripción:** Core Web Vitals
+- **Prioridad:** BAJA
+- **Estado:** Pendiente
+- **Mejoras:**
+  - Image optimization
+  - Code splitting
+  - Bundle analysis
+
+---
+
+## 4. DISEÑO UI/UX
+
+### 4.1 Sistema de Diseño
+
+**Tipografía:**
+
+- Font primary: Inter (`--font-inter`)
+- Heading sizes: h1 (4xl), h2 (2xl), h3 (xl)
+- Body: default Tailwind
+
+**Colores:**
+
+- Background: `#ffffff` (light) / `#0a0a0a` (dark)
+- Foreground: `#171717` (light) / `#ededed` (dark)
+- Border: `gray-200` (light) / `gray-800` (dark)
+- Accent: `primary-*` ( Tailwind default)
+
+**Spacing:**
+
+- Root: Tailwind default scale (1 = 4px)
+- Padding containers: `p-4`, `p-6`, `p-8`
+- Max width: `max-w-7xl`
+
+### 4.2 Layout
+
+```
+┌─────────────────────────────────────┐
+│             HEADER                  │
+│  ┌──────┐                 ┌───────┐ │
+│  │ LOGO │                 │ THEME │ │
+│  └──────┘                 └───────┘ │
+├─────────────────────────────────────┤
+│              MAIN                   │
+│  ┌─────────────┬───────────────┐    │
+│  │             │               │    │
+│  │    HERO     │    PROJECTS   │    │
+│  │   (40%)     │     (60%)     │    │
+│  │             │               │    │
+│  └─────────────┴───────────────┘    │
+├─────────────────────────────────────┤
+│              FOOTER                 │
+│            COPYRIGHT                │
+└─────────────────────────────────────┘
+```
+
+```
+┌────────────────────────────────────┐
+|           PROJECT TARGET           |
+|┌──────────────────────────────────┐|
+||               img                ||
+||              (50%)               ||
+||                                  ||
+||                                  ||
+|└──────────────────────────────────┘|
+|┌──────────────────────────────────┐|
+|| <li> tecnologies                 ||
+||          DESCRIPTION             ||
+|└──────────────────────────────────┘|
+└────────────────────────────────────┘
+```
+
+### 4.3 Responsive Breakpoints
+
+| Breakpoint | Ancho  | Layout               |
+| ---------- | ------ | -------------------- |
+| sm         | 640px  | Stacked              |
+| md         | 768px  | Stacked              |
+| lg         | 1024px | Side-by-side (40/60) |
+| xl         | 1280px | Side-by-side         |
+
+---
+
+## 5. RIESGOS Y GOTC HAS
+
+### 5.1 Riesgos Identificados
+
+| Riesgo                      | Impacto | Mitigación                   |
+| --------------------------- | ------- | ---------------------------- |
+| GitHub API rate limit       | ALTO    | Fallback a datos locales     |
+| Hydration mismatch en theme | MEDIO   | mounted check en ThemeToggle |
+| SSR errors con next-thymes  | MEDIO   | suppressHydrationWarning     |
+
+### 5.2 Gotchas
+
+- **Tailwind 4:** Syntax `@import "tailwindcss"` vs v3 `@tailwind base`
+- **next-themes:** Requiere `suppressHydrationWarning` en html
+- **Next.js 15:** Cambios en App Router vs v14
+- **ISR:** `revalidate` en fetch, no en page export
+
+---
+
+## 6. PRÓXIMOS PASOS
+
+1. **Implementar P1:** Página "Sobre mí" (/about)
+2. **Implementar P2:** Página de Contacto (/contact)
+3. **Testing:** Agregar Vitest + RTL
+4. **Deploy:** Vercel o Docker
+
+---
+
+## 7. METADATOS
+
+| Campo   | Valor                            |
+| ------- | -------------------------------- |
+| Versión | 0.1.0                            |
+| Fecha   | 2026-04-20                       |
+| Autor   | Diorges                          |
+| Estado  | En desarrollo                    |
+| Stack   | Next.js 15, React 19, Tailwind 4 |
+
+---
+
+_Documento generado siguiendo SDD workflow. Actualizar con cada cambio significativo._

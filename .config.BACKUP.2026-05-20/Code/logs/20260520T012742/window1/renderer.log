@@ -1,0 +1,11 @@
+2026-05-20 01:27:45.588 [info] Started local extension host with pid 21080.
+2026-05-20 01:27:45.966 [error] Extension 'github.copilot-chat' wants API proposal 'agentsWindowConfiguration' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 01:27:45.975 [error] Extension 'github.copilot-chat' wants API proposal 'languageModelPricing' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 01:27:45.976 [error] Extension 'github.copilot-chat' wants API proposal 'chatInputNotification' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-20 01:27:48.796 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 01:27:50.338 [error] [Extension Host] (node:21080) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-20 01:27:53.940 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-05-20 01:27:55.923 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-05-20 01:27:57.204 [info] [perf] Render performance baseline is 175ms
+2026-05-20 01:58:04.439 [warning] [lifecycle] onWillShutdown is taking a long time, pending operations: join.workingCopyHistory

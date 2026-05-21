@@ -1,0 +1,75 @@
+# Exploration: IA Chat
+
+## Current State
+
+El proyecto **mi_suit** es una suite AI-First basada en **Rust + Tauri + AI SDK.rs**. El Chat IA es el **orquestador central** del sistema. Actualmente NO hay código implementado - solo documentación de especificaciones en:
+
+- `specs/IA_Chat.md` (spec de features)
+- `specs/proposal.md` (propuesta formal)
+- `specs/design.md` (diseño técnico)
+- `specs/SPEC.md` (especificación detallada - este documento)
+
+El stack tecnológico definido:
+
+- **Core**: Tauri (Rust)
+- **UI**: Leptos (Rust) - seleccionado por mejor integración con async/Tokio
+- **LLM**: AI SDK.rs con soporte para Ollama (local), OpenAI, Anthropic (cloud)
+- **Markdown**: pulldown-cmark para rendering GFM
+
+## Affected Areas
+
+| Archivo             | Relevancia                           |
+| ------------------- | ------------------------------------ |
+| `specs/IA_Chat.md`  | Spec de features del Chat IA         |
+| `specs/proposal.md` | Propuesta formal                     |
+| `specs/design.md`   | Diseño técnico                       |
+| `specs/SPEC.md`     | Especificación detallada (este docs) |
+
+## Fases de Desarrollo
+
+### Fase 1: MVP (Ready to Production)
+
+**Alcance**: Chat funcional básico con LLM local
+
+- Chat UI con estados (IDLE → STREAMING)
+- Markdown rendering (GFM + código)
+- Main Agent con herramientas básicas (read, grep, glob, web search)
+- Context Manager básico (buffer de mensajes)
+- AI SDK.rs + Ollama (solo local por defecto)
+- Provider selector (elegir modelo)
+
+**Excluido**: Sub-agents, Skills, Terminal tool, MCP, Guardian (→ reemplazado por FSM en Fase 2), Input Enhancer
+
+### Fase 2: Expansión (Post-MVP)
+
+**Alcance**: Sistema multiagente completo
+
+- Sub-agents (architect → coder → reviewer)
+- Sistema de Skills
+- Terminal tool (sandboxed)
+- MCP integration
+- Provider dashboard (consumo/rendimiento)
+- Memoria persistente
+
+## Approach Recomendado
+
+**Core + Extensibility** es el adoptado porque:
+
+1. Permite entregar el MVP rápidamente (2-4 semanas)
+2. La arquitectura de plugins (MCP, Skills) se diseña desde el inicio
+3. Evita rewrites cuando se agreguen features de Fase 2
+
+## Risks
+
+- **Sin código base**: Todo está por construir - requiere setup de Tauri primero
+- **Dependencias externas**: AI SDK.rs, Ollama
+- **Guardian**: REEMPLAZADO por State Machines con guards (Fase 2) - validaciones embebidas en el flujo de agentes
+- **Stack confirmado**: Leptos (UI), no hay más pendientes para MVP
+
+## Ready for Implementation
+
+**Sí** — La exploración y specs están listos. El siguiente paso es:
+
+1. Crear `SPEC.md` con requisitos detallados
+2. Generar tareas de implementación con sdd-tasks
+3. Ejecutar con sdd-apply

@@ -1,0 +1,10 @@
+planifica la inplementacion de las caracteristicas faltantes para poder compilar un mvp funcional: iasdk para proveedores reales,
+filtro de modelos no compatibles con las necesidades del sistema usando models.dev (tools, rasoning),
+ui (tauiri), 
+
+Fix #1: ReadTool path sanitization + GrepTool DoS limits (src/chat/tools/file_tool.rs)
+Fix #2: LLM error handling + state transition propagation (src/chat/orchestrator.rs, state.rs)
+Fix #3: CI cache key, actions update, clippy/fmt steps (.github/workflows/ci.yml, .gitignore)
+Fix #4: Use ia_chat_mvp::agent en main.rs en vez de mod agent duplicado
+Fix #5: Reducir tokio features de 'full' a lo mínimo necesario
+Fix #6: Tests — usar load_agent() real y limpiar archivos temporales

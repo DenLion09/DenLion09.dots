@@ -1,0 +1,48 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 60px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #333;
+  padding: 15px 20px;
+}
+
+nav {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+nav:hover {
+  color: #f39c12;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-whidth: 769px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background: #333;
+}

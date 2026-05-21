@@ -1,0 +1,37 @@
+2026-05-19 19:59:21.687 [info] Extension host with pid 4602 started
+2026-05-19 19:59:22.851 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-19 19:59:23.108 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-19 19:59:23.253 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:skill'
+2026-05-19 19:59:24.027 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-05-19 19:59:24.322 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-05-19 19:59:24.686 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-19 19:59:25.288 [info] Eager extensions activated
+2026-05-19 19:59:25.695 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:25.707 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:25.890 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:26.002 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:26.003 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:26.032 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-05-19 19:59:26.045 [info] ExtensionService#_doActivateExtension yzhang.markdown-all-in-one, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-05-19 19:59:43.436 [info] Extension host terminating: received terminate message from renderer
+2026-05-19 19:59:43.513 [info] Extension host with pid 4602 exiting with code 0
+2026-05-19 19:59:47.767 [info] Extension host with pid 4815 started
+2026-05-19 19:59:47.767 [info] Skipping acquiring lock for /home/diorges/.config/Code/User/workspaceStorage/7038e336de04331af688769153a1fe1c.
+2026-05-19 19:59:47.905 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-19 19:59:47.949 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-19 19:59:48.163 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-05-19 19:59:48.238 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-05-19 19:59:48.481 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-19 19:59:49.153 [info] Eager extensions activated
+2026-05-19 19:59:49.295 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:49.298 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:49.327 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:49.390 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:49.391 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-19 19:59:54.668 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-19 19:59:54.716 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-19 19:59:55.001 [info] ExtensionService#_doActivateExtension yzhang.markdown-all-in-one, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-19 19:59:55.616 [warning] DiagnosticCollection with name 'eslint' does already exist.
+2026-05-19 19:59:55.741 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: yzhang.markdown-all-in-one
+2026-05-19 20:12:20.707 [info] Extension host terminating: received terminate message from renderer
+2026-05-19 20:12:21.151 [info] Extension host with pid 4815 exiting with code 0

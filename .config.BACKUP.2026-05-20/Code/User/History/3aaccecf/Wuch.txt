@@ -1,0 +1,1 @@
+planifica la inplementacion de las caracteristicas faltantes para poder compilar un mvp funcional: iasdk para proveedores reales, filtro de modelos no compatibles con las necesidades del sistema (tools, rasoning), ui (tauiri), 

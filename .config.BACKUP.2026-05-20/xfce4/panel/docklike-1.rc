@@ -1,0 +1,10 @@
+[user]
+showPreviews=true
+showWindowCount=true
+middleButtonBehavior=1
+indicatorStyle=1
+inactiveIndicatorStyle=1
+indicatorOrientation=0
+indicatorColorFromTheme=true
+forceIconSize=false
+keyComboActive=true
