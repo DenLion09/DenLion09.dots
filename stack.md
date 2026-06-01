@@ -6,7 +6,7 @@ Estrategia de instalación (distro-agnóstico):
 2. ¿Es CLI? → **Homebrew**
 3. ¿Es servicio? → **Podman**
 4. ¿No existe en nada? → **Script oficial**
-5. ¿Driver/lib sistema? → **apt / gestor nativo**
+5. ¿Driver/lib sistema? → **gestor nativo**
 
 ---
 
@@ -15,13 +15,12 @@ Estrategia de instalación (distro-agnóstico):
 ### GUI - Sistema y configuracion
 
 - [ ] Software (Flatpak GUI) - Simple rampisa y eficiente. GTK3/4.
-- [ ] Blak Box terminal. Hermoza, configurable, GTK3/4
+- Por definir [ ], terminal: gpu aceleracion, compaitible con ligaduras, tan o mas ligera que xfce-terminal
 
 ### 🧠 Desarrollo + IA
 
 - [x] **Jan** (`ai.jan.Jan`) — Asistente IA local 100% offline. Descarga y corre modelos (Llama, Qwen, Gemma) sin conexión. API compatible con OpenAI en `localhost:1337`. MCP support.
 - [x] **OpenCode GUI (beta)** (`ai.opencode.opencode`) — Coding agent open-source, multi-model, extensible vía plugins.
-- [x] **Gentle AI** (config: `~/.config/opencode/AGENTS.md`) — Orquestador SDD con skills especializados (explore, propose, spec, design, tasks, apply, verify, archive). Corre sobre OpenCode.
 - [x] **DBeaver** (`io.dbeaver.DBeaverCommunity`) — Gestor multi-DB (PostgreSQL, MongoDB, etc.)
 - [x] **Bruno** (`com.usebruno.Bruno`) — API testing offline-first
 - [x] **GitHub Desktop** (`io.github.shiftey.Desktop`) — Cliente Git GUI. Fork comunitario con soporte Linux. Diffs syntax highlighted, gestión de PRs, integración con editor y terminal.
@@ -42,17 +41,15 @@ Estrategia de instalación (distro-agnóstico):
 
 > Para Hyprland/Noctalia: todas GTK para mantener theme consistente
 
-| Categoría   | App (Flatpak)            | ID Flatpak                        | Notas                  |
-| ----------- | ------------------------ | --------------------------------- | ---------------------- |
-|             | **Black Box** (KGX)      | `com.raggesilver.BlackBox`        | GTK4 native            |
-| Archivos    | **Nautilus**             | `org.gnome.Nautilus`              | Offic. GNOME Files     |
-|             | **Thunar**               | `org.xfce.Thunar`                 | Más ligero             |
-| Video       | **Celluloid**            | `io.github.GnomeDoctor.Celluloid` | GTK4, MPV frontend     |
-|             | **GNOME Videos** (Totem) | `org.gnome.Totem`                 | Reproductor oficial    |
-| Visor       | **Loupe**                | `org.gnome.Loupe`                 | Visor de imágenes GTK4 |
-|             | **Eye of GNOME**         | `org.gnome.eog`                   | Alternativa            |
-| Calculadora | **GNOME Calculator**     | `org.gnome.Calculator`            | GTK4                   |
-| Mapas       | **Photon**               | `com.github.maoschanz.Photon`     | Visor de fotos GTK     |
+| Categoría | App (Flatpak)            | ID Flatpak                        | Notas                  |
+| --------- | ------------------------ | --------------------------------- | ---------------------- |
+| Archivos  | **Nautilus**             | `org.gnome.Nautilus`              | Offic. GNOME Files     |
+|           | **Thunar**               | `org.xfce.Thunar`                 | Más ligero             |
+| Video     | **Celluloid**            | `io.github.GnomeDoctor.Celluloid` | GTK4, MPV frontend     |
+|           | **GNOME Videos** (Totem) | `org.gnome.Totem`                 | Reproductor oficial    |
+| Visor     | **Loupe**                | `org.gnome.Loupe`                 | Visor de imágenes GTK4 |
+|           | **Eye of GNOME**         | `org.gnome.eog`                   | Alternativa            |
+| Mapas     | **Photon**               | `com.github.maoschanz.Photon`     | Visor de fotos GTK     |
 
 ### 🔧 Sistema
 
@@ -86,7 +83,7 @@ Estrategia de instalación (distro-agnóstico):
 
 ---
 
-## 🍺 Homebrew — CLI + Fonts
+## Homebrew — CLI + Fonts
 
 ### Shell
 
@@ -132,23 +129,17 @@ Estrategia de instalación (distro-agnóstico):
 
 ## 📜 Scripts oficiales
 
-- [ ] **nvm** — Node version manager (`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash`)
-- [ ] **uv** — Python version manager + package resolver (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
-- [ ] **rustup** — Rust toolchain (`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`)
-- [ ] **Ollama** — LLMs locales (`curl -fsSL https://ollama.com/install.sh | sh`)
 - [ ] **mise** — Version manager todo-en-uno (opcional, unifica fnm + uv + rustup)
 
 ---
 
 ## 🛠️ Version Managers
 
-| Lenguaje | Tool       | Comando                           |
-| -------- | ---------- | --------------------------------- |
-| Node.js  | **fnm**    | `fnm install 22`                  |
-| Python   | **uv**     | `uv python install 3.12`          |
-| Rust     | **rustup** | `rustup toolchain install stable` |
-| Go       | **g**      | `g install 1.22`                  |
-| Java     | **sdkman** | `sdk install java 21`             |
+| Lenguaje | Tool       | Comando                         |
+| -------- | ---------- | ------------------------------- |
+| Node.js  | **fnm**    | `mise install 22`               |
+| Python   | **uv**     | `mise python install 3.12`      |
+| Rust     | **rustup** | `mise toolchain install stable` |
 
 ## 📦 Gestores de paquetes de lenguajes
 
@@ -157,7 +148,6 @@ Estrategia de instalación (distro-agnóstico):
 | Python   | **pipx**          | Apps CLI Python (httpie, poetry, cookiecutter) |
 | Rust     | **cargo install** | Apps CLI Rust                                  |
 | Node     | **pnpm**          | Proyectos JS/TS                                |
-| Go       | **go install**    | Apps CLI Go                                    |
 
 ---
 
@@ -168,12 +158,10 @@ Estrategia de instalación (distro-agnóstico):
 - JavaScript / TypeScript
 - Python
 - Rust
-- Go
 
 ### Frameworks
 
 - **React** / **Next** / **Nest**
-- **Astro**
 - **Express**
 - **Tauri** (Rust)
 - **oclif** (CLI)
@@ -200,6 +188,5 @@ Estrategia de instalación (distro-agnóstico):
 
 ## Pendientes
 
-- [ ] Probar **Zed** como editor alternativo
 - [ ] Solución a paquetes sin conexión
 - [ ] Solución a documentación sin conexión
