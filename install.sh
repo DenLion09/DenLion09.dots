@@ -740,6 +740,66 @@ deploy_configs() {
     || print_warn "No se desplegaron configuraciones"
 }
 
+# ─── Desplegar config de fish desde el repo ──────────────────────────────────
+deploy_repo_fish() {
+  local src="$REPO_DIR/fish"
+  local dst="${XDG_CONFIG_HOME:-$HOME/.config}/fish"
+  print_header "Configuración de Fish desde el repo"
+
+  [ -d "$src" ] || { print_warn "No se encontró fish/ en el repo"; return 1; }
+  print_info "Origen: $src"
+  print_info "Destino: $dst"
+
+  # Backup de config existente (si la hay)
+  if [ -f "$dst/config.fish" ] && [ ! -L "$dst/config.fish" ]; then
+    local backup="${dst}.bak.$(date +%s)"
+    print_info "Respaldando config actual → ${backup}"
+    cp -r "$dst" "$backup" 2>/dev/null || true
+  fi
+
+  mkdir -p "$dst"
+  cp -r "$src/"* "$dst/" 2>/dev/null
+  cp -r "$src/".[!.]* "$dst/" 2>/dev/null || true
+  print_ok "Config de fish desplegada desde el repo"
+}
+
+# ─── Desplegar config de Neovim desde el repo ────────────────────────────────
+deploy_repo_nvim() {
+  local nvim_src="$REPO_DIR/nvim"
+  local dst="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+  print_header "Configuración de Neovim desde el repo"
+
+  # Si el submodule está vacío (fresh clone sin init), intentar inicializarlo
+  if [ ! -f "$nvim_src/init.lua" ]; then
+    print_info "Inicializando submódulo de Neovim..."
+    git -C "$REPO_DIR" submodule update --init --recursive 2>/dev/null || {
+      print_warn "No se pudo inicializar el submódulo nvim."
+      print_warn "Cloná manualmente: git submodule update --init"
+      return 1
+    }
+  fi
+
+  [ -d "$nvim_src" ] && [ -f "$nvim_src/init.lua" ] || {
+    print_warn "No se encontró nvim/init.lua en el repo"
+    return 1
+  }
+
+  print_info "Origen: $nvim_src"
+  print_info "Destino: $dst"
+
+  # Backup de config existente
+  if [ -f "$dst/init.lua" ] && [ ! -L "$dst/init.lua" ]; then
+    local backup="${dst}.bak.$(date +%s)"
+    print_info "Respaldando config actual → ${backup}"
+    cp -r "$dst" "$backup" 2>/dev/null || true
+  fi
+
+  mkdir -p "$dst"
+  cp -r "$nvim_src/"* "$dst/" 2>/dev/null
+  cp -r "$nvim_src/".[!.]* "$dst/" 2>/dev/null || true
+  print_ok "Config de Neovim desplegada desde el repo"
+}
+
 configure_fish_shell() {
   if [ "${SHELL:-}" = "/usr/bin/fish" ] || [ "${SHELL:-}" = "/bin/fish" ]; then
     return 0
@@ -819,6 +879,16 @@ mode_install_all() {
 
   # Configs
   deploy_configs
+
+  echo
+  print_info "¿Querés desplegar configs desde el repo (fish, nvim)?"
+  if menu_confirm "Desplegar fish del repo"; then
+    deploy_repo_fish
+  fi
+  if menu_confirm "Desplegar nvim del repo"; then
+    deploy_repo_nvim
+  fi
+
   fix_debian_binaries
   configure_fish_shell
 
@@ -883,6 +953,16 @@ mode_one_by_one() {
   echo
   print_summary "$ok" "$fail" "$skip"
   deploy_configs
+
+  echo
+  print_info "¿Querés desplegar configs desde el repo (fish, nvim)?"
+  if menu_confirm "Desplegar fish del repo"; then
+    deploy_repo_fish
+  fi
+  if menu_confirm "Desplegar nvim del repo"; then
+    deploy_repo_nvim
+  fi
+
   fix_debian_binaries
   configure_fish_shell
 }
@@ -974,6 +1054,16 @@ mode_selection() {
   echo
   print_summary "$ok" "$fail" "$skip"
   deploy_configs
+
+  echo
+  print_info "¿Querés desplegar configs desde el repo (fish, nvim)?"
+  if menu_confirm "Desplegar fish del repo"; then
+    deploy_repo_fish
+  fi
+  if menu_confirm "Desplegar nvim del repo"; then
+    deploy_repo_nvim
+  fi
+
   fix_debian_binaries
   configure_fish_shell
 }
@@ -986,6 +1076,16 @@ mode_deploy_configs() {
   print_header "Despliegue de Configuraciones"
   menu_confirm "¿Desplegar configuraciones desde backup?" || return
   deploy_configs
+
+  echo
+  print_info "También podés desplegar configs desde el repo:"
+  if menu_confirm "Desplegar fish del repo"; then
+    deploy_repo_fish
+  fi
+  if menu_confirm "Desplegar nvim del repo"; then
+    deploy_repo_nvim
+  fi
+
   echo
   print_info "Configuraciones desplegadas. Recarga tu shell o reinicia apps."
   menu_prompt "Presiona Enter..." >/dev/null
