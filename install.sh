@@ -5,7 +5,7 @@
 # TUI interactiva en bash puro, cero dependencias externas.
 # Respeta las reglas de DenLion09.dots.md:
 #   CLI  → script oficial del repo
-#   GUI  → apt del repositorio oficial
+#   GUI  → descarga de la pagina web o el repo oficial de github
 #   Driver/lib → gestor nativo
 #   No brew, no flatpak (con alternativas nativas)
 # =============================================================================
@@ -145,7 +145,100 @@ HAS_SUDO="no"; command -v sudo >/dev/null 2>&1 && HAS_SUDO="yes"
 SUDO=""; [ "$HAS_SUDO" = "yes" ] && SUDO="sudo"
 
 # ============================================================================
-# 3. ESTRATEGIAS DE INSTALACIÓN
+# 3. SOPORTE A PROBLEMAS DE RED
+# ============================================================================
+
+NETWORK_STATUS=""
+NETWORK_CHECKED=false
+
+check_network() {
+  local hosts=("https://github.com" "https://google.com" "https://raw.githubusercontent.com")
+  local reachable=0
+
+  print_info "Verificando conexión a Internet..."
+  for host in "${hosts[@]}"; do
+    curl -s --connect-timeout 5 --max-time 10 "$host" >/dev/null 2>&1 && \
+      reachable=$((reachable + 1))
+  done
+
+  if [ "$reachable" -ge 2 ]; then
+    NETWORK_STATUS="ok"
+    print_ok "Conexión a Internet verificada"
+    return 0
+  elif [ "$reachable" -ge 1 ]; then
+    NETWORK_STATUS="partial"
+    print_warn "Conexión parcial — solo algunos hosts alcanzables"
+    return 1
+  else
+    NETWORK_STATUS="down"
+    print_err "Sin conexión a Internet"
+    return 2
+  fi
+}
+
+# Download con reintentos, timeout y feedback en TUI
+dl_with_retry() {
+  local url=$1 dest=$2
+  local max_retries=${3:-3}
+  local connect_timeout=${4:-15}
+  local max_time=${5:-120}
+
+  rm -f "$dest"
+  local attempt=1
+  while [ "$attempt" -le "$max_retries" ]; do
+    if curl -fsSL --connect-timeout "$connect_timeout" --max-time "$max_time" \
+      "$url" -o "$dest" 2>/dev/null; then
+      return 0
+    fi
+    if [ "$attempt" -lt "$max_retries" ]; then
+      local delay=$((attempt * 3))
+      print_warn "Descarga fallida (intento ${attempt}/${max_retries}) — reintentando en ${delay}s..."
+      sleep "$delay"
+    fi
+    attempt=$((attempt + 1))
+  done
+
+  rm -f "$dest"
+  return 1
+}
+
+# Descarga un script y lo ejecuta (pipe seguro con retry)
+curl_pipe_sh_retry() {
+  local url=$1
+  local tmpd; tmpd=$(mktemp -d)
+  local script="$tmpd/install.sh"
+
+  dl_with_retry "$url" "$script" 3 15 60 || { rm -rf "$tmpd"; return 1; }
+  chmod +x "$script"
+  sh "$script" >/dev/null 2>&1
+  local rc=$?
+  rm -rf "$tmpd"
+  return $rc
+}
+
+# API GET con retry (para GitHub releases, etc.)
+curl_api_retry() {
+  local url=$1
+  local max_retries=${2:-3}
+  local result=""
+  local attempt=1
+
+  while [ "$attempt" -le "$max_retries" ]; do
+    result=$(curl -s --connect-timeout 10 --max-time 30 "$url" 2>/dev/null)
+    if [ -n "$result" ]; then
+      echo "$result"
+      return 0
+    fi
+    attempt=$((attempt + 1))
+    [ "$attempt" -le "$max_retries" ] && sleep $((attempt * 2))
+  done
+
+  echo ""
+  return 1
+}
+
+# ============================================================================
+# 4. ESTRATEGIAS DE INSTALACIÓN
 # ============================================================================
 
 cmd_exists() { command -v "$1" >/dev/null 2>&1; }
@@ -162,7 +255,7 @@ apt_update() { $SUDO apt-get update -qq >/dev/null 2>&1; }
 dl_deb() {
   local url=$1
   local tmpd; tmpd=$(mktemp -d)
-  curl -fsSL "$url" -o "$tmpd/pkg.deb" 2>/dev/null || { rm -rf "$tmpd"; return 1; }
+  dl_with_retry "$url" "$tmpd/pkg.deb" 3 15 120 || { rm -rf "$tmpd"; return 1; }
   $SUDO dpkg -i "$tmpd/pkg.deb" >/dev/null 2>&1 || {
     $SUDO apt-get install -f -y >/dev/null 2>&1
     $SUDO dpkg -i "$tmpd/pkg.deb" >/dev/null 2>&1
@@ -174,13 +267,13 @@ dl_appimage() {
   local url=$1 name=$2
   local dest="$HOME/.local/bin/$name"
   mkdir -p "$HOME/.local/bin"
-  curl -fsSL "$url" -o "$dest" 2>/dev/null || return 1
+  dl_with_retry "$url" "$dest" 3 15 120 || return 1
   chmod +x "$dest" && return 0
 }
 
 curl_pipe_sh() {
   local url=$1
-  curl -fsSL "$url" | sh >/dev/null 2>&1
+  curl_pipe_sh_retry "$url"
   return $?
 }
 
@@ -216,7 +309,7 @@ fix_debian_binaries() {
 }
 
 # ============================================================================
-# 4. REGISTRO DE HERRAMIENTAS
+# 5. REGISTRO DE HERRAMIENTAS
 # ============================================================================
 # Almacenamos en un archivo temporal con separador \007 (inalterable por texto).
 # Formato: nombre|categoria|descripcion|runner|argumento|verificador
@@ -344,7 +437,7 @@ tool_reg "plugin-pj" "Fisher"   "Project jumper — salta a proyectos por nombre
   "fisher_pkg" "oh-my-fish/plugin-pj" "test -f \$HOME/.config/fish/functions/pj.fish"
 
 # ============================================================================
-# 5. INSTALADORES ESPECÍFICOS
+# 6. INSTALADORES ESPECÍFICOS
 # ============================================================================
 
 # ─── atuin: script oficial, fallback a cargo ────────────────────────────────
@@ -369,8 +462,8 @@ install_font() {
   mkdir -p "$fd"
   local tmpd; tmpd=$(mktemp -d)
   print_info "Descargando Cascadia Cove Nerd Font..."
-  curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip" \
-    -o "$tmpd/CascadiaCode.zip" 2>/dev/null || { rm -rf "$tmpd"; return 1; }
+  dl_with_retry "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaCode.zip" \
+    "$tmpd/CascadiaCode.zip" 3 15 120 || { rm -rf "$tmpd"; return 1; }
   unzip -qo "$tmpd/CascadiaCode.zip" -d "$tmpd/fonts" 2>/dev/null
   cp "$tmpd/fonts"/*.ttf "$fd/" 2>/dev/null || true
   fc-cache -f "$fd" >/dev/null 2>&1
@@ -383,7 +476,7 @@ install_mise() {
   cmd_exists mise && return 0
   local mise_bin="$HOME/.local/bin/mise"
   [ -x "$mise_bin" ] && return 0
-  curl -fsSL https://mise.jdx.dev/install.sh | sh >/dev/null 2>&1
+  curl_pipe_sh_retry "https://mise.jdx.dev/install.sh"
   [ -x "$mise_bin" ] && add_local_bin_to_path
 }
 
@@ -411,8 +504,13 @@ install_rust() {
 install_mongosh() {
   cmd_exists mongosh && return 0
   print_info "Configurando repositorio oficial de MongoDB..."
-  curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
-    $SUDO gpg --dearmor -o /usr/share/keyrings/mongodb-server-8.0.gpg >/dev/null 2>&1 || true
+  local tmpd; tmpd=$(mktemp -d)
+  dl_with_retry "https://www.mongodb.org/static/pgp/server-8.0.asc" "$tmpd/mongodb.asc" 3 15 30 || {
+    print_warn "No se pudo descargar la clave GPG de MongoDB (problemas de red)"
+    rm -rf "$tmpd"; return 1
+  }
+  $SUDO gpg --dearmor -o /usr/share/keyrings/mongodb-server-8.0.gpg < "$tmpd/mongodb.asc" >/dev/null 2>&1 || true
+  rm -rf "$tmpd"
   echo "deb [signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg] https://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main" | \
     $SUDO tee /etc/apt/sources.list.d/mongodb-org-8.0.list >/dev/null
   $SUDO apt-get update -qq >/dev/null 2>&1
@@ -444,8 +542,8 @@ install_bruno() {
   test -f "$HOME/.local/bin/bruno" && return 0
   print_info "Buscando Bruno AppImage..."
   local url
-  url=$(curl -s https://api.github.com/repos/usebruno/bruno/releases/latest \
-    | grep "browser_download_url.*AppImage" | head -1 | cut -d'"' -f4) 2>/dev/null || url=""
+  url=$(curl_api_retry "https://api.github.com/repos/usebruno/bruno/releases/latest" \
+    | grep "browser_download_url.*AppImage" | head -1 | cut -d'"' -f4) || url=""
   [ -z "$url" ] && { print_warn "Bruno requiere descarga manual: https://www.usebruno.com/downloads"; return 1; }
   dl_appimage "$url" "bruno" || { print_warn "No se pudo descargar Bruno"; return 1; }
 }
@@ -460,8 +558,8 @@ install_opencode() {
     arm64|aarch64) arch="aarch64" ;;
     *) print_warn "Arquitectura no soportada para OpenCode: $OS_ARCH"; return 1 ;;
   esac
-  url=$(curl -s https://api.github.com/repos/opencode-ai/opencode/releases/latest \
-    | grep "browser_download_url.*${arch}.*linux" | grep -v '.sha' | head -1 | cut -d'"' -f4) 2>/dev/null || url=""
+  url=$(curl_api_retry "https://api.github.com/repos/opencode-ai/opencode/releases/latest" \
+    | grep "browser_download_url.*${arch}.*linux" | grep -v '.sha' | head -1 | cut -d'"' -f4) || url=""
   [ -z "$url" ] && { print_warn "OpenCode requiere descarga manual: https://github.com/opencode-ai/opencode/releases"; return 1; }
   dl_appimage "$url" "opencode" || { print_warn "No se pudo descargar OpenCode"; return 1; }
 }
@@ -474,8 +572,8 @@ install_godot() {
   mkdir -p "$HOME/.local/bin"
   local url="https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip"
   local tmpd; tmpd=$(mktemp -d)
-  curl -fsSL "$url" -o "$tmpd/godot.zip" 2>/dev/null || {
-    print_warn "Godot necesita descarga manual: https://godotengine.org/download/"; rm -rf "$tmpd"; return 1
+  dl_with_retry "$url" "$tmpd/godot.zip" 3 15 180 || {
+    print_warn "Godot no se pudo descargar (problemas de red): https://godotengine.org/download/"; rm -rf "$tmpd"; return 1
   }
   unzip -qo "$tmpd/godot.zip" -d "$tmpd/extract" 2>/dev/null
   local bin; bin=$(find "$tmpd/extract" -name "Godot*" -type f 2>/dev/null | head -1)
@@ -492,8 +590,8 @@ install_drawio() {
   test -f "$HOME/.local/bin/drawio" && return 0
   print_info "Buscando draw.io AppImage..."
   local url
-  url=$(curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest \
-    | grep "browser_download_url.*x86_64.*AppImage" | head -1 | cut -d'"' -f4) 2>/dev/null || url=""
+  url=$(curl_api_retry "https://api.github.com/repos/jgraph/drawio-desktop/releases/latest" \
+    | grep "browser_download_url.*x86_64.*AppImage" | head -1 | cut -d'"' -f4) || url=""
   [ -z "$url" ] && { print_warn "draw.io requiere descarga manual: https://github.com/jgraph/drawio-desktop/releases"; return 1; }
   dl_appimage "$url" "drawio" || { print_warn "No se pudo descargar draw.io"; return 1; }
 }
@@ -519,9 +617,10 @@ install_neovim() {
   print_info "Descargando Neovim (última release oficial)..."
   local url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
   local tmpd; tmpd=$(mktemp -d)
-  curl -fsSL "$url" -o "$tmpd/nvim.tar.gz" 2>/dev/null || {
-    print_warn "No se pudo descargar Neovim"; rm -rf "$tmpd"; return 1
+  dl_with_retry "$url" "$tmpd/nvim.tar.gz" 3 15 180 || {
+    print_warn "No se pudo descargar Neovim (problemas de red)"; rm -rf "$tmpd"; return 1
   }
+  print_info "Extrayendo Neovim..."
   $SUDO rm -rf /opt/nvim-linux-x86_64
   $SUDO tar -C /opt -xzf "$tmpd/nvim.tar.gz" 2>/dev/null || {
     print_warn "No se pudo extraer Neovim"; rm -rf "$tmpd"; return 1
@@ -552,7 +651,15 @@ install_portless() {
 install_fisher() {
   test -f "$HOME/.config/fish/functions/fisher.fish" && return 0
   cmd_exists fish || return 1
-  fish -c "curl -fsSL https://git.io/fisher | source && fisher install jorgebucaran/fisher" >/dev/null 2>&1
+  local tmpd; tmpd=$(mktemp -d)
+  dl_with_retry "https://git.io/fisher" "$tmpd/fisher.fish" 3 15 30 || {
+    rm -rf "$tmpd"
+    return 1
+  }
+  fish -c "source $tmpd/fisher.fish && fisher install jorgebucaran/fisher" >/dev/null 2>&1
+  local rc=$?
+  rm -rf "$tmpd"
+  return $rc
 }
 install_fisher_pkg() {
   local pkg=$1
@@ -604,7 +711,7 @@ install_tool() {
 }
 
 # ============================================================================
-# 6. VERIFICACIÓN Y CONFIGURACIÓN
+# 7. VERIFICACIÓN Y CONFIGURACIÓN
 # ============================================================================
 
 check_installed() {
@@ -644,7 +751,7 @@ configure_fish_shell() {
 }
 
 # ============================================================================
-# 7. MODO 1: TODO DE UNA
+# 8. MODO 1: TODO DE UNA
 # ============================================================================
 
 mode_install_all() {
@@ -660,6 +767,14 @@ mode_install_all() {
   # Preparar sistema
   print_step "0/${total}" "Preparando sistema..."
   run_bg "Actualizando repositorios" apt_update
+
+  # Verificar conectividad antes de arrancar
+  if ! check_network; then
+    print_warn "Problemas de red detectados. Las descargas usarán reintentos automáticos."
+    print_info "Si ves muchos fallos, revisá tu conexión y ejecutá el script de nuevo."
+    echo
+    menu_confirm "¿Continuar de todas formas?" || return
+  fi
 
   for cat in "${categories[@]}"; do
     step=$((step + 1))
@@ -718,7 +833,7 @@ mode_install_all() {
 }
 
 # ============================================================================
-# 8. MODO 2: UNO POR UNO
+# 9. MODO 2: UNO POR UNO
 # ============================================================================
 
 mode_one_by_one() {
@@ -732,6 +847,7 @@ mode_one_by_one() {
   done
 
   print_info "${#all_tools[@]} herramientas disponibles."
+  check_network >/dev/null 2>&1 || print_warn "Problemas de red — las descargas usarán reintentos."
   menu_confirm "¿Comenzar?" || return
 
   local ok=0 fail=0 skip=0
@@ -772,7 +888,7 @@ mode_one_by_one() {
 }
 
 # ============================================================================
-# 9. MODO 3: SELECCIÓN CON CHECKBOXES
+# 10. MODO 3: SELECCIÓN CON CHECKBOXES
 # ============================================================================
 
 mode_selection() {
@@ -838,6 +954,7 @@ mode_selection() {
 
   echo
   print_info "${#selected[@]} herramienta(s) seleccionadas."
+  check_network >/dev/null 2>&1 || print_warn "Problemas de red — las descargas usarán reintentos."
   menu_confirm "¿Comenzar instalación?" || return
 
   local ok=0 fail=0 skip=0
@@ -862,7 +979,7 @@ mode_selection() {
 }
 
 # ============================================================================
-# 10. MODO 4: SOLO CONFIGS
+# 11. MODO 4: SOLO CONFIGS
 # ============================================================================
 
 mode_deploy_configs() {
@@ -875,7 +992,7 @@ mode_deploy_configs() {
 }
 
 # ============================================================================
-# 11. MODO 5: ESTADO
+# 12. MODO 5: ESTADO
 # ============================================================================
 
 mode_check_status() {
@@ -907,7 +1024,7 @@ mode_check_status() {
 }
 
 # ============================================================================
-# 12. RESUMEN GENÉRICO
+# 13. RESUMEN GENÉRICO
 # ============================================================================
 
 print_summary() {
@@ -920,7 +1037,7 @@ print_summary() {
 }
 
 # ============================================================================
-# 13. MENÚ PRINCIPAL
+# 14. MENÚ PRINCIPAL
 # ============================================================================
 
 main_menu() {
@@ -962,7 +1079,7 @@ main_menu() {
 }
 
 # ============================================================================
-# 14. ENTRY POINT
+# 15. ENTRY POINT
 # ============================================================================
 
 # Validar sistema
