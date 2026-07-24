@@ -740,52 +740,44 @@ deploy_configs() {
     || print_warn "No se desplegaron configuraciones"
 }
 
-# ─── Desplegar config de fish desde el repo ──────────────────────────────────
+# ─── Clonar config de fish desde GitHub ──────────────────────────────────────
 deploy_repo_fish() {
-  local src="$REPO_DIR/fish"
   local dst="${XDG_CONFIG_HOME:-$HOME/.config}/fish"
-  print_header "Configuración de Fish desde el repo"
+  local clone_url="https://github.com/DenLion09/DenLion09.dots.git"
+  print_header "Fish — clonar config desde GitHub"
 
-  [ -d "$src" ] || { print_warn "No se encontró fish/ en el repo"; return 1; }
-  print_info "Origen: $src"
-  print_info "Destino: $dst"
-
-  # Backup de config existente (si la hay)
+  # Backup de config existente
   if [ -f "$dst/config.fish" ] && [ ! -L "$dst/config.fish" ]; then
     local backup="${dst}.bak.$(date +%s)"
     print_info "Respaldando config actual → ${backup}"
     cp -r "$dst" "$backup" 2>/dev/null || true
   fi
 
-  mkdir -p "$dst"
-  cp -r "$src/"* "$dst/" 2>/dev/null
-  cp -r "$src/".[!.]* "$dst/" 2>/dev/null || true
-  print_ok "Config de fish desplegada desde el repo"
+  local tmpd; tmpd=$(mktemp -d)
+  print_info "Clonando repo (solo fish/)..."
+  git clone --depth 1 --filter=blob:none --no-checkout "$clone_url" "$tmpd" >/dev/null 2>&1 || {
+    print_err "No se pudo clonar el repo"; rm -rf "$tmpd"; return 1
+  }
+  git -C "$tmpd" sparse-checkout set fish >/dev/null 2>&1
+  git -C "$tmpd" checkout >/dev/null 2>&1
+
+  if [ -d "$tmpd/fish" ]; then
+    mkdir -p "$dst"
+    cp -r "$tmpd/fish/"* "$dst/" 2>/dev/null
+    cp -r "$tmpd/fish/".[!.]* "$dst/" 2>/dev/null || true
+    print_ok "Config de fish clonada desde GitHub → ~/.config/fish/"
+  else
+    print_warn "No se encontró fish/ en el repo"
+    rm -rf "$tmpd"; return 1
+  fi
+  rm -rf "$tmpd"
 }
 
-# ─── Desplegar config de Neovim desde el repo ────────────────────────────────
+# ─── Clonar config de Neovim desde GitHub ────────────────────────────────────
 deploy_repo_nvim() {
-  local nvim_src="$REPO_DIR/nvim"
   local dst="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
-  print_header "Configuración de Neovim desde el repo"
-
-  # Si el submodule está vacío (fresh clone sin init), intentar inicializarlo
-  if [ ! -f "$nvim_src/init.lua" ]; then
-    print_info "Inicializando submódulo de Neovim..."
-    git -C "$REPO_DIR" submodule update --init --recursive 2>/dev/null || {
-      print_warn "No se pudo inicializar el submódulo nvim."
-      print_warn "Cloná manualmente: git submodule update --init"
-      return 1
-    }
-  fi
-
-  [ -d "$nvim_src" ] && [ -f "$nvim_src/init.lua" ] || {
-    print_warn "No se encontró nvim/init.lua en el repo"
-    return 1
-  }
-
-  print_info "Origen: $nvim_src"
-  print_info "Destino: $dst"
+  local clone_url="https://github.com/DenLion09/DenLion09.dots.git"
+  print_header "Neovim — clonar config desde GitHub"
 
   # Backup de config existente
   if [ -f "$dst/init.lua" ] && [ ! -L "$dst/init.lua" ]; then
@@ -794,10 +786,34 @@ deploy_repo_nvim() {
     cp -r "$dst" "$backup" 2>/dev/null || true
   fi
 
-  mkdir -p "$dst"
-  cp -r "$nvim_src/"* "$dst/" 2>/dev/null
-  cp -r "$nvim_src/".[!.]* "$dst/" 2>/dev/null || true
-  print_ok "Config de Neovim desplegada desde el repo"
+  local tmpd; tmpd=$(mktemp -d)
+  print_info "Clonando repo (solo nvim/)..."
+  git clone --depth 1 --filter=blob:none --no-checkout "$clone_url" "$tmpd" >/dev/null 2>&1 || {
+    print_err "No se pudo clonar el repo"; rm -rf "$tmpd"; return 1
+  }
+  git -C "$tmpd" sparse-checkout set nvim >/dev/null 2>&1
+  git -C "$tmpd" checkout >/dev/null 2>&1
+
+  # Inicializar submódulo de nvim
+  if [ -f "$tmpd/.gitmodules" ]; then
+    git -C "$tmpd" submodule update --init --recursive >/dev/null 2>&1 || true
+  fi
+
+  if [ -d "$tmpd/nvim" ] && [ -f "$tmpd/nvim/init.lua" ]; then
+    mkdir -p "$dst"
+    cp -r "$tmpd/nvim/"* "$dst/" 2>/dev/null
+    cp -r "$tmpd/nvim/".[!.]* "$dst/" 2>/dev/null || true
+    print_ok "Config de Neovim clonada desde GitHub → ~/.config/nvim/"
+  elif [ -d "$tmpd/nvim" ]; then
+    # El submodulo esta hueco (sin init), copiar lo que haya
+    mkdir -p "$dst"
+    cp -r "$tmpd/nvim/"* "$dst/" 2>/dev/null || true
+    print_warn "nvim/ sin contenido — cloná el submódulo manualmente si falta algo"
+  else
+    print_warn "No se encontró nvim/ en el repo"
+    rm -rf "$tmpd"; return 1
+  fi
+  rm -rf "$tmpd"
 }
 
 configure_fish_shell() {
