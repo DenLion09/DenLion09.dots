@@ -1,0 +1,32 @@
+# github-colorblind-dark — GitHub Dark mode, colorblind-accessible palette
+# Basado en los colores oficiales de GitHub para modo oscuro con enfoque daltónico
+# https://github.com/primer/primitives
+
+set --global fish_color_normal e6edf3
+set --global fish_color_command 58a6ff
+set --global fish_color_keyword f778ba
+set --global fish_color_quote d29922
+set --global fish_color_redirection e6edf3
+set --global fish_color_end d29922
+set --global fish_color_error f85149
+set --global fish_color_param bc8cff
+set --global fish_color_comment 8b949e
+set --global fish_color_selection --background=1f6feb
+set --global fish_color_search_match --background=1f6feb
+set --global fish_color_operator 39d2c0
+set --global fish_color_escape f778ba
+set --global fish_color_autosuggestion 6e7681
+set --global fish_color_cancel --reverse
+set --global fish_color_cwd 39d2c0
+set --global fish_color_cwd_root f85149
+set --global fish_color_host e6edf3
+set --global fish_color_host_remote d29922
+set --global fish_color_status f85149
+set --global fish_color_user 58a6ff
+set --global fish_color_valid_path --underline
+
+set --global fish_pager_color_progress 8b949e
+set --global fish_pager_color_prefix 58a6ff
+set --global fish_pager_color_completion e6edf3
+set --global fish_pager_color_description 8b949e
+set --global fish_pager_color_selected_background --background=1f6feb

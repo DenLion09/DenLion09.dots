@@ -69,19 +69,17 @@ carapace _carapace | source
 
 set -g fish_greeting ""
 
-# Enable vi mode
-fish_vi_key_bindings
+# Emacs key bindings (default)
 
 # Set nvim as default editor for opencode and other tools
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
-## alias
-if test (uname) = Darwin
-    alias ls='ls --color=auto'
-else
-    alias ls='gls --color=auto'
-end
+## Alias — eza como reemplazo de ls
+alias ls='eza --icons'
+alias ll='eza -l --icons'
+alias la='eza -a --icons'
+alias lla='eza -la --icons'
 
 alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
 alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
