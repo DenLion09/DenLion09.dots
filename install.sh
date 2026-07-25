@@ -98,8 +98,8 @@ spinner_run() {
     i=$(( (i + 1) % ${#spin} ))
     sleep 0.1
   done
-  wait "$pid"
-  local rc=$?
+  local rc=0
+  wait "$pid" 2>/dev/null || rc=$?
   if [ $rc -eq 0 ]; then
     printf "\r  ${C_GREEN}${CHECK}${C_RESET} ${msg}   \n"
   else
@@ -758,12 +758,12 @@ deploy_repo_fish() {
   git clone --depth 1 --filter=blob:none --no-checkout "$clone_url" "$tmpd" >/dev/null 2>&1 || {
     print_err "No se pudo clonar el repo"; rm -rf "$tmpd"; return 1
   }
-  git -C "$tmpd" sparse-checkout set fish >/dev/null 2>&1
-  git -C "$tmpd" checkout >/dev/null 2>&1
+  git -C "$tmpd" sparse-checkout set fish >/dev/null 2>&1 || true
+  git -C "$tmpd" checkout >/dev/null 2>&1 || { rm -rf "$tmpd"; return 1; }
 
   if [ -d "$tmpd/fish" ]; then
     mkdir -p "$dst"
-    cp -r "$tmpd/fish/"* "$dst/" 2>/dev/null
+    cp -r "$tmpd/fish/"* "$dst/" 2>/dev/null || true
     cp -r "$tmpd/fish/".[!.]* "$dst/" 2>/dev/null || true
     print_ok "Config de fish clonada desde GitHub → ~/.config/fish/"
   else
@@ -791,8 +791,8 @@ deploy_repo_nvim() {
   git clone --depth 1 --filter=blob:none --no-checkout "$clone_url" "$tmpd" >/dev/null 2>&1 || {
     print_err "No se pudo clonar el repo"; rm -rf "$tmpd"; return 1
   }
-  git -C "$tmpd" sparse-checkout set nvim >/dev/null 2>&1
-  git -C "$tmpd" checkout >/dev/null 2>&1
+  git -C "$tmpd" sparse-checkout set nvim >/dev/null 2>&1 || true
+  git -C "$tmpd" checkout >/dev/null 2>&1 || { rm -rf "$tmpd"; return 1; }
 
   # Inicializar submódulo de nvim
   if [ -f "$tmpd/.gitmodules" ]; then
@@ -801,7 +801,7 @@ deploy_repo_nvim() {
 
   if [ -d "$tmpd/nvim" ] && [ -f "$tmpd/nvim/init.lua" ]; then
     mkdir -p "$dst"
-    cp -r "$tmpd/nvim/"* "$dst/" 2>/dev/null
+    cp -r "$tmpd/nvim/"* "$dst/" 2>/dev/null || true
     cp -r "$tmpd/nvim/".[!.]* "$dst/" 2>/dev/null || true
     print_ok "Config de Neovim clonada desde GitHub → ~/.config/nvim/"
   elif [ -d "$tmpd/nvim" ]; then
@@ -842,7 +842,7 @@ mode_install_all() {
 
   # Preparar sistema
   print_step "0/${total}" "Preparando sistema..."
-  run_bg "Actualizando repositorios" apt_update
+  run_bg "Actualizando repositorios" apt_update || true
 
   # Verificar conectividad antes de arrancar
   if ! check_network; then
