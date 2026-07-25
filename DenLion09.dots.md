@@ -127,6 +127,7 @@ Estrategia de instalación (distro-agnóstico):
 - **Podman**: contenedores rootless para servicios (PostgreSQL, etc.)
 - **pgcli**: CLI de PostgreSQL con autocompletado y syntax highlighting
 - **mongosh**: MongoDB Shell oficial
+- **posting**: Cliente api de terminal "alternativa abruno"
 
 ## Aplicaciones de desarrollo
 
@@ -164,6 +165,8 @@ Estrategia de instalación (distro-agnóstico):
 | Capturas CLI | **grim + slurp** | `grim`, `slurp` | Screenshots desde terminal para Wayland (keyboard shortcuts) |
 | Conectividad | **LocalSend** | | Intercambio de archivos entre dispositivos de la misma red |
 | Wi-Fi AP | **linux-wifi-hotspot** | `lakinduakash/linux-wifi-hotspot` | Crear hotspot WiFi desde la terminal |
+- **BalenaEtcher**: flasheador de dispositivos booteables
+- **GParted**: modificador de partiiones y gestion de discos
 
 ## Herramientas del Sistema
 

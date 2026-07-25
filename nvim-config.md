@@ -27,6 +27,7 @@ Basada en [TinyVim](https://github.com/NvChad/tinyvim) de NvChad — minimalista
 │           ├── conform.lua
 │           ├── lspconfig.lua
 │           ├── oil.lua
+│           ├── opencode.lua
 │           ├── render-markdown.lua
 │           ├── snacks.lua
 │           ├── telescope.lua
@@ -39,7 +40,7 @@ Basada en [TinyVim](https://github.com/NvChad/tinyvim) de NvChad — minimalista
 - Desactiva netrw (oil.nvim toma el control de navegación de directorios)
 - Carga: `options`, `mappings`, `commands`
 - Bootstrap de lazy.nvim (clonado automático si no existe)
-- Carga los plugins y aplica el colorscheme **github_dark_colorblind** (por defecto, con toggle al tema claro)
+- Carga los plugins (el colorscheme lo define el plugin github-nvim-theme)
 
 ## options.lua — Opciones globales
 
@@ -85,19 +86,64 @@ Basada en [TinyVim](https://github.com/NvChad/tinyvim) de NvChad — minimalista
 | `<C-n>` | Toggle NvimTree |
 | `<C-h>` | Foco en NvimTree |
 
-### Telescope
+### Find — Telescope (archivos)
 
 | Atajo | Acción |
 |-------|--------|
 | `<leader>ff` | Buscar archivos |
 | `<leader>fo` | Archivos recientes |
 | `<leader>fw` | Live grep (buscar texto) |
-| `<leader>gt` | Git status |
+
+### Search — Telescope (código/contenido)
+
+| Atajo | Acción |
+|-------|--------|
 | `<leader>sb` | Buffers abiertos |
 | `<leader>sh` | Help tags |
 | `<leader>sk` | Keymaps |
 | `<leader>sd` | Diagnostics |
 | `<leader>sm` | Marks |
+
+### Git
+
+| Atajo | Acción |
+|-------|--------|
+| `<leader>gs` | Git status (Telescope) |
+| `<leader>gg` | Lazygit (Snacks) |
+
+### Code (LSP, format)
+
+| Atajo | Acción |
+|-------|--------|
+| `<leader>cf` | Formatear con conform.nvim |
+| `<leader>ci` | Cursor diagnostics — abre float con diagnóstico bajo el cursor |
+
+### OpenCode
+
+| Atajo | Modo | Acción |
+|-------|------|--------|
+| `<leader>oa` | Normal/Visual | Ask — promptea a OpenCode con contexto `@this:` |
+| `<leader>os` | Normal | Select — menú de prompts, comandos y servidores |
+| `go` | Normal | Operator — envía rango vía motion (ej: `goiw`) |
+
+### Markdown
+
+| Atajo | Acción |
+|-------|--------|
+| `<leader>md` | Toggle render-markdown |
+| `<leader>mp` | Preview render-markdown |
+
+### Terminal
+
+| Atajo | Acción |
+|-------|--------|
+| `<leader>tt` | Toggle terminal (Snacks) |
+
+### Dashboard
+
+| Atajo | Acción |
+|-------|--------|
+| `<leader>d` | Abrir dashboard (Snacks) |
 
 ### Comentarios
 
@@ -105,27 +151,6 @@ Basada en [TinyVim](https://github.com/NvChad/tinyvim) de NvChad — minimalista
 |-------|--------|
 | `<leader>/` (normal) | Comentar/descomentar línea |
 | `<leader>/` (visual) | Comentar/descomentar selección |
-
-### Formateo
-
-| Atajo | Acción |
-|-------|--------|
-| `<leader>fm` | Formatear con conform.nvim |
-
-### Snacks (terminal, dashboard)
-
-| Atajo | Acción |
-|-------|--------|
-| `<leader>tt` | Toggle terminal |
-| `<leader>d` | Abrir dashboard |
-| `<leader>o` | Abrir oil.nvim (navegador de archivos) |
-
-### Markdown / Mermaid
-
-| Atajo | Acción |
-|-------|--------|
-| `<leader>md` | Toggle render-markdown |
-| `<leader>mp` | Preview render-markdown |
 
 ## commands.lua — Comandos y Autocmds
 
@@ -250,11 +275,12 @@ Configuración de servidores LSP. Usa la API moderna `vim.lsp.enable()` (Neovim 
 | `gl` | Diagnostic float |
 | `[d` / `]d` | Diagnostic anterior/siguiente |
 | `[e` / `]e` | Error anterior/siguiente |
+| `<leader>ci` | Cursor diagnostics — abre float con diagnóstico bajo el cursor |
 | `<leader>cl` | Diagnostic a location list |
 
 ### stevearc/conform.nvim
 
-Formateador automático. **Formatea al guardar** (formateo automático con `format_on_save`). También manual con `<leader>fm`.
+Formateador automático. **Formatea al guardar** (formateo automático con `format_on_save`). También manual con `<leader>cf`.
 
 | Filetype | Formateador |
 |----------|-------------|
@@ -288,6 +314,7 @@ Suite de utilidades (carga inmediata, priority 1000). Módulos activados:
 | animate | Animaciones suaves (scroll, cursor) |
 | dashboard | Pantalla de inicio personalizada con header ASCII y acceso rápido a oil.nvim |
 | gh | Integración con GitHub |
+| input | Input mejorado con LSP completions (usado por opencode.nvim Ask) |
 | git | Git integrado (hunks, signs, blame) |
 | rename | Renombrar inteligente |
 | scope | Seguimiento del scope actual (función, bloque) |
@@ -302,14 +329,57 @@ Ayuda contextual de atajos. Grupos definidos:
 
 | Prefijo | Grupo |
 |---------|-------|
+| `<leader>c` | code |
 | `<leader>f` | find |
 | `<leader>g` | git |
-| `<leader>c` | code |
+| `<leader>m` | markdown |
+| `<leader>o` | opencode |
 | `<leader>s` | search |
 | `<leader>t` | terminal |
 | `<leader>w` | workspace |
 
 Borde redondeado en la ventana.
+
+### nickjvandyke/opencode.nvim
+
+Plugin Neovim que integra [OpenCode](https://opencode.ai/) en Neovim — prompts, contexto del editor, comandos y eventos sin salir de Neovim.
+
+**Archivos de configuración:**
+
+| Archivo | Propósito |
+|---------|-----------|
+| `lua/plugins/init.lua` | Plugin spec lazy.nvim (version pin `*`) |
+| `lua/plugins/configs/opencode.lua` | `vim.g.opencode_opts` con arranque en snacks.terminal |
+| `lua/plugins/configs/snacks.lua` | Módulo `input` activado para LSP completions en Ask |
+
+**Integraciones:**
+- **snacks.terminal**: arranca `opencode --port` en terminal derecha si no está corriendo
+- **snacks.input**: autocompletado LSP y resaltado en el prompt Ask
+
+**Contextos disponibles en prompts:**
+
+| Placeholder | Contexto |
+|-------------|----------|
+| `@this` | Rango/selección actual, o posición del cursor |
+| `@buffer` | Buffer actual |
+| `@buffers` | Buffers abiertos |
+| `@diagnostics` | Diagnósticos LSP en el rango/buffer |
+| `@marks` | Marcas globales |
+| `@quickfix` | Lista quickfix |
+| `@visible` | Texto visible en pantalla |
+
+**Prompts incorporados (acceso vía `<leader>os`):**
+
+| Prompt | Acción |
+|--------|--------|
+| `diagnostics` | Explica diagnósticos |
+| `document` | Documenta el código |
+| `explain` | Explica el código y su contexto |
+| `fix` | Corrige diagnósticos |
+| `implement` | Implementa código |
+| `optimize` | Optimiza rendimiento y legibilidad |
+| `review` | Revisa corrección y legibilidad |
+| `test` | Añade tests |
 
 ### nvimdev/indentmini.nvim
 

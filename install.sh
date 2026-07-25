@@ -743,7 +743,7 @@ deploy_configs() {
 # ─── Clonar config de fish desde GitHub ──────────────────────────────────────
 deploy_repo_fish() {
   local dst="${XDG_CONFIG_HOME:-$HOME/.config}/fish"
-  local clone_url="https://github.com/DenLion09/DenLion09.dots.git"
+  local clone_url="${DEPLOY_REPO_FISH_URL:-https://github.com/DenLion09/DenLion09.dots.git}"
   print_header "Fish — clonar config desde GitHub"
 
   # Backup de config existente
@@ -837,10 +837,9 @@ mode_install_all() {
   menu_confirm "¿Iniciar instalación completa?" || { print_info "Cancelado"; return; }
 
   local categories=("Terminal" "CLI Tools" "Font" "Dev Env" "Dev Tools" "Dev Apps" "Fisher")
-  local step=0 total=${#categories[@]}
-  local global_ok=0 global_fail=0 global_skip=0
 
   # Preparar sistema
+  local total=${#categories[@]}
   print_step "0/${total}" "Preparando sistema..."
   run_bg "Actualizando repositorios" apt_update || true
 
@@ -852,46 +851,8 @@ mode_install_all() {
     menu_confirm "¿Continuar de todas formas?" || return
   fi
 
-  for cat in "${categories[@]}"; do
-    step=$((step + 1))
-    echo
-    print_step "${step}/${total}" "${cat}"
-    print_divider
-
-    local tools; tools=$(tools_in "$cat")
-    if [ -z "$tools" ]; then
-      print_warn "(sin herramientas)"
-      continue
-    fi
-
-    # Convertir a lista (los nombres no tienen espacios)
-    local tlist=()
-    while IFS= read -r t; do tlist+=("$t"); done <<< "$tools"
-
-    local ok=0 fail=0 skip=0
-    for tool in "${tlist[@]}"; do
-      local desc; desc=$(tool_desc "$tool")
-      if check_installed "$tool"; then
-        skip=$((skip + 1))
-        printf "  ${C_DIM}${BULLET} %s — %s ${C_GREEN}(ok)${C_RESET}\n" "$tool" "$desc"
-      else
-        printf "  ${C_CYAN}${BULLET}${C_RESET} Instalando ${C_BOLD}%s${C_RESET}...\n" "$tool"
-        if install_tool "$tool"; then
-          print_ok "${tool} instalado"
-          ok=$((ok + 1))
-        else
-          print_err "${tool} — falló la instalación"
-          fail=$((fail + 1))
-        fi
-      fi
-    done
-
-    local t="${#tlist[@]}"
-    echo -e "  ${C_DIM}→ ${ok} exitosos, ${fail} fallos, ${skip} omitidos (${t} total)${C_RESET}"
-    global_ok=$((global_ok + ok))
-    global_fail=$((global_fail + fail))
-    global_skip=$((global_skip + skip))
-  done
+  install_category_loop "${categories[@]}"
+  local global_ok=$CAT_OK global_fail=$CAT_FAIL global_skip=$CAT_SKIP
 
   # Configs
   deploy_configs
@@ -1140,6 +1101,398 @@ mode_check_status() {
 }
 
 # ============================================================================
+# 12.5 MODO STARTUP — Configuración inicial de Debian Desktop
+# ============================================================================
+
+# Shared category loop — itera categorías e instala herramientas.
+# Usa CAT_OK, CAT_FAIL, CAT_SKIP (globales) para devolver resultados.
+install_category_loop() {
+  local categories=("$@")
+  local step=0 total=${#categories[@]}
+  CAT_OK=0 CAT_FAIL=0 CAT_SKIP=0
+
+  for cat in "${categories[@]}"; do
+    step=$((step + 1))
+    echo
+    print_step "${step}/${total}" "${cat}"
+    print_divider
+
+    local tools; tools=$(tools_in "$cat")
+    if [ -z "$tools" ]; then
+      print_warn "(sin herramientas)"
+      continue
+    fi
+
+    local tlist=()
+    while IFS= read -r t; do tlist+=("$t"); done <<< "$tools"
+
+    local ok=0 fail=0 skip=0
+    for tool in "${tlist[@]}"; do
+      local desc; desc=$(tool_desc "$tool")
+      if check_installed "$tool"; then
+        skip=$((skip + 1))
+        printf "  ${C_DIM}${BULLET} %s — %s ${C_GREEN}(ok)${C_RESET}\n" "$tool" "$desc"
+      else
+        printf "  ${C_CYAN}${BULLET}${C_RESET} Instalando ${C_BOLD}%s${C_RESET}...\n" "$tool"
+        if install_tool "$tool"; then
+          print_ok "${tool} instalado"
+          ok=$((ok + 1))
+        else
+          print_err "${tool} — falló la instalación"
+          fail=$((fail + 1))
+        fi
+      fi
+    done
+
+    local t="${#tlist[@]}"
+    echo -e "  ${C_DIM}→ ${ok} exitosos, ${fail} fallos, ${skip} omitidos (${t} total)${C_RESET}"
+    CAT_OK=$((CAT_OK + ok))
+    CAT_FAIL=$((CAT_FAIL + fail))
+    CAT_SKIP=$((CAT_SKIP + skip))
+  done
+}
+
+# Globales para el resumen de mode_startup
+STARTUP_OK=0
+STARTUP_FAIL=0
+STARTUP_SKIP=0
+
+# ─── Step 1: Desktop Environment ─────────────────────────────────────────
+# Wayland tools + Noctalia v5 (APT) / v4 (Quickshell fallback) + LabWC +
+# LightDM session files + .dmrc
+step_desktop_env() {
+  # Guard: todo listo?
+  if pkg_installed noctalia && pkg_installed labwc && [ -f "$HOME/.dmrc" ]; then
+    print_info "Entorno de escritorio ya configurado (ok)"
+    STARTUP_SKIP=$((STARTUP_SKIP + 1))
+    return 0
+  fi
+
+  local ok=0 fail=0 skip=0
+
+  # R7: Wayland tools
+  print_info "Herramientas Wayland..."
+  for pkg in wayland-protocols libwayland-dev wayland-utils; do
+    if pkg_installed "$pkg"; then
+      skip=$((skip + 1))
+      printf "  ${C_DIM}${BULLET} %s ${C_GREEN}(ok)${C_RESET}\n" "$pkg"
+    elif apt_install "$pkg"; then
+      ok=$((ok + 1))
+      print_ok "$pkg instalado"
+    else
+      fail=$((fail + 1))
+      print_err "$pkg — falló la instalación"
+    fi
+  done
+
+  # R8–R9: Noctalia (v5 APT, fallback v4/Quickshell)
+  print_info "Noctalia Shell..."
+  if pkg_installed noctalia; then
+    skip=$((skip + 1))
+    print_info "Noctalia ya instalado (ok)"
+  else
+    local noctalia_ok=true
+    local tmpd; tmpd=$(mktemp -d)
+
+    # Keyring
+    print_info "Descargando keyring Noctalia..."
+    dl_with_retry "https://pkg.noctalia.dev/deb/nickh-archive-keyring.deb" \
+      "$tmpd/nickh-archive-keyring.deb" 2 15 60 || noctalia_ok=false
+    if $noctalia_ok; then
+      $SUDO dpkg -i "$tmpd/nickh-archive-keyring.deb" >/dev/null 2>&1 || noctalia_ok=false
+    fi
+
+    # Repo sources
+    if $noctalia_ok; then
+      print_info "Agregando repositorio Noctalia v5..."
+      $SUDO sh -c "curl -fsSL 'https://pkg.noctalia.dev/deb/noctalia-trixie.sources' \
+        -o /etc/apt/sources.list.d/noctalia-trixie.sources" 2>/dev/null || noctalia_ok=false
+    fi
+
+    # apt update + install
+    if $noctalia_ok; then
+      apt_update
+      if apt_install noctalia; then
+        print_ok "Noctalia v5 instalado"
+        ok=$((ok + 1))
+      else
+        noctalia_ok=false
+      fi
+    fi
+
+    rm -rf "$tmpd"
+
+    # Fallback v4/Quickshell
+    if ! $noctalia_ok; then
+      print_warn "Noctalia v5 no disponible — probando v4/Quickshell..."
+      if cmd_exists qs || cmd_exists noctalia-shell; then
+        print_info "Noctalia v4/Quickshell ya presente (ok)"
+        skip=$((skip + 1))
+      else
+        print_warn "Noctalia desktop session puede no estar disponible"
+        fail=$((fail + 1))
+      fi
+    fi
+  fi
+
+  # R10: LabWC
+  print_info "LabWC..."
+  if pkg_installed labwc; then
+    skip=$((skip + 1))
+    print_info "LabWC ya instalado (ok)"
+  elif apt_install labwc; then
+    ok=$((ok + 1))
+    print_ok "LabWC instalado"
+  else
+    fail=$((fail + 1))
+    print_err "LabWC — falló la instalación"
+  fi
+
+  # R11: LightDM + session files
+  print_info "LightDM + sesiones..."
+  if pkg_installed lightdm; then
+    skip=$((skip + 1))
+    print_info "LightDM ya instalado (ok)"
+  elif apt_install lightdm; then
+    ok=$((ok + 1))
+    print_ok "LightDM instalado"
+  else
+    print_err "LightDM — falló la instalación"
+    fail=$((fail + 1))
+  fi
+
+  # Session .desktop files (via temp file + sudo cp para compatibilidad con set -e)
+  local wl_dir="/usr/share/wayland-sessions"
+  local xs_dir="/usr/share/xsessions"
+  $SUDO mkdir -p "$wl_dir" "$xs_dir" 2>/dev/null || true
+
+  local tmpf; tmpf=$(mktemp)
+  cat > "$tmpf" << 'EOF'
+[Desktop Entry]
+Name=Noctalia
+Comment=Noctalia Shell Desktop (Wayland)
+Exec=noctalia
+Type=Application
+EOF
+  $SUDO cp "$tmpf" "$wl_dir/noctalia.desktop" 2>/dev/null && \
+    print_ok "Session file: wayland-sessions/noctalia.desktop" || \
+    { print_err "No se pudo escribir wayland-sessions/noctalia.desktop"; fail=$((fail + 1)); }
+
+  cat > "$tmpf" << 'EOF'
+[Desktop Entry]
+Name=Noctalia
+Comment=Noctalia Shell Desktop (X11 fallback)
+Exec=noctalia
+Type=Application
+EOF
+  $SUDO cp "$tmpf" "$xs_dir/noctalia.desktop" 2>/dev/null && \
+    print_ok "Session file: xsessions/noctalia.desktop" || \
+    { print_err "No se pudo escribir xsessions/noctalia.desktop"; fail=$((fail + 1)); }
+  rm -f "$tmpf"
+
+  # R12: .dmrc
+  if [ -z "${HOME:-}" ]; then
+    print_warn "\$HOME no está definido — saltando .dmrc"
+    fail=$((fail + 1))
+  else
+    if [ -f "$HOME/.dmrc" ]; then
+      local dmrc_bak="$HOME/.dmrc.bak.$(date +%s)"
+      cp "$HOME/.dmrc" "$dmrc_bak" 2>/dev/null || true
+      print_info ".dmrc respaldado → $(basename "$dmrc_bak")"
+    fi
+    cat > "$HOME/.dmrc" << 'EOF'
+[Desktop]
+Session=noctalia
+EOF
+    print_ok ".dmrc escrito — sesión por defecto: noctalia"
+    ok=$((ok + 1))
+  fi
+
+  # Sub-step summary
+  echo -e "  ${C_DIM}→ escritorio: ${ok} exitosos, ${fail} fallos, ${skip} omitidos${C_RESET}"
+  STARTUP_OK=$((STARTUP_OK + ok))
+  STARTUP_FAIL=$((STARTUP_FAIL + fail))
+  STARTUP_SKIP=$((STARTUP_SKIP + skip))
+}
+
+# ─── Step 2: Terminal ───────────────────────────────────────────────────
+step_terminal() {
+  cmd_exists xfce4-terminal && {
+    print_info "xfce4-terminal ya instalado (ok)"
+    STARTUP_SKIP=$((STARTUP_SKIP + 1))
+    return 0
+  }
+
+  print_info "Instalando xfce4-terminal..."
+  if install_tool "xfce4-terminal"; then
+    print_ok "xfce4-terminal instalado"
+    STARTUP_OK=$((STARTUP_OK + 1))
+  else
+    print_err "xfce4-terminal — falló la instalación"
+    STARTUP_FAIL=$((STARTUP_FAIL + 1))
+  fi
+}
+
+# ─── Step 3: Shell ──────────────────────────────────────────────────────
+step_shell() {
+  # Guard
+  if cmd_exists fish && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/config.fish" ]; then
+    print_info "Fish shell ya configurado (ok)"
+    STARTUP_SKIP=$((STARTUP_SKIP + 1))
+    return 0
+  fi
+
+  local ok=0 fail=0 skip=0
+
+  # Fish package
+  print_info "Fish Shell..."
+  if cmd_exists fish; then
+    skip=$((skip + 1))
+    print_info "fish ya instalado (ok)"
+  elif install_tool "fish"; then
+    ok=$((ok + 1))
+    print_ok "fish instalado"
+  else
+    fail=$((fail + 1))
+    print_err "fish — falló la instalación"
+  fi
+
+  # deploy_repo_fish (non-interactive, sin prompt)
+  if cmd_exists fish; then
+    print_info "Config de fish desde GitHub..."
+    deploy_repo_fish || print_warn "No se pudo clonar config de fish (continuando)"
+  fi
+
+  # Fisher plugins (solo si fish está disponible)
+  if cmd_exists fish; then
+    print_info "Plugins de Fisher..."
+    local fisher_tools
+    fisher_tools=$(tools_in "Fisher")
+    if [ -n "$fisher_tools" ]; then
+      local ftlist=()
+      while IFS= read -r t; do ftlist+=("$t"); done <<< "$fisher_tools"
+      for tool in "${ftlist[@]}"; do
+        if check_installed "$tool"; then
+          skip=$((skip + 1))
+          printf "  ${C_DIM}${BULLET} %s ${C_GREEN}(ok)${C_RESET}\n" "$tool"
+        elif install_tool "$tool"; then
+          ok=$((ok + 1))
+          print_ok "${tool} instalado"
+        else
+          fail=$((fail + 1))
+          print_err "${tool} — falló la instalación"
+        fi
+      done
+    else
+      print_warn "(sin plugins Fisher)"
+    fi
+  fi
+
+  echo -e "  ${C_DIM}→ shell: ${ok} exitosos, ${fail} fallos, ${skip} omitidos${C_RESET}"
+  STARTUP_OK=$((STARTUP_OK + ok))
+  STARTUP_FAIL=$((STARTUP_FAIL + fail))
+  STARTUP_SKIP=$((STARTUP_SKIP + skip))
+}
+
+# ─── Step 4: System Apps ────────────────────────────────────────────────
+# Todas las categorías vía install_category_loop, SIN post-install hooks
+step_apps() {
+  local categories=("Terminal" "CLI Tools" "Font" "Dev Env" "Dev Tools" "Dev Apps" "Fisher")
+  install_category_loop "${categories[@]}"
+  STARTUP_OK=$((STARTUP_OK + CAT_OK))
+  STARTUP_FAIL=$((STARTUP_FAIL + CAT_FAIL))
+  STARTUP_SKIP=$((STARTUP_SKIP + CAT_SKIP))
+}
+
+# ─── Startup orchestrator ───────────────────────────────────────────────
+mode_startup() {
+  print_header "Startup — Configuración Inicial de Escritorio"
+  print_info "Secuencia: Escritorio → Terminal → Shell → Apps"
+  echo
+  menu_confirm "¿Iniciar configuración de startup?" || { print_info "Cancelado"; return; }
+
+  # Resetear contadores
+  STARTUP_OK=0 STARTUP_FAIL=0 STARTUP_SKIP=0
+
+  # Verificar red
+  if ! check_network; then
+    print_warn "Problemas de red detectados. Las descargas usarán reintentos."
+    echo
+    menu_confirm "¿Continuar de todas formas?" || return
+  fi
+
+  # Preparar sistema
+  run_bg "Actualizando repositorios" apt_update || true
+
+  # Steps
+  print_step "1/4" "Entorno de Escritorio"
+  step_desktop_env
+  echo
+
+  print_step "2/4" "Terminal"
+  step_terminal
+  echo
+
+  print_step "3/4" "Shell"
+  step_shell
+  echo
+
+  print_step "4/4" "Apps del Sistema"
+  step_apps
+  echo
+
+  # Rollup summary
+  print_header "Startup — Resumen"
+  local total=$((STARTUP_OK + STARTUP_FAIL + STARTUP_SKIP))
+  print_ok "Exitosos: ${STARTUP_OK}"
+  [ "$STARTUP_FAIL" -gt 0 ] && print_err "Fallos: ${STARTUP_FAIL}" || true
+  [ "$STARTUP_SKIP" -gt 0 ] && print_info "Omitidos (ya instalados): ${STARTUP_SKIP}" || true
+  echo -e "  ${C_DIM}→ ${total} operaciones totales${C_RESET}"
+  [ "$STARTUP_FAIL" -gt 0 ] && echo -e "  ${C_YELLOW}${BULLET}${C_RESET} Algunos componentes requieren instalación manual"
+  echo
+  print_info "Cierra sesión y vuelve a entrar para aplicar todos los cambios."
+  menu_prompt "Presiona Enter para volver al menú..." >/dev/null
+}
+
+# ─── RED Test: deploy_repo_fish URL boundary ────────────────────────────
+# Verifica que deploy_repo_fish maneja URLs inalcanzables sin crash
+test_startup_git_url_boundary() {
+  print_header "RED Test: deploy_repo_fish — URL inalcanzable"
+  local old_url="${DEPLOY_REPO_FISH_URL:-}"
+  local rc=0
+
+  print_info "Probando con URL inválida..."
+  export DEPLOY_REPO_FISH_URL="https://github.com/invalid-repo-no-existe-12345.git"
+
+  local output
+  output=$(deploy_repo_fish 2>&1) || rc=$?
+
+  if [ $rc -ne 0 ]; then
+    print_ok "RED TEST PASSED — deploy_repo_fish retornó $rc (error esperado)"
+    if echo "$output" | grep -qi "warning\|error\|no se pudo\|fall"; then
+      print_ok "RED TEST — contiene mensaje de advertencia/error"
+    else
+      print_warn "RED TEST — retornó error pero sin mensaje claro"
+    fi
+  else
+    print_err "RED TEST FAILED — deploy_repo_fish retornó 0 (debió fallar)"
+    rc=1
+  fi
+
+  # Restaurar URL original
+  if [ -n "$old_url" ]; then
+    export DEPLOY_REPO_FISH_URL="$old_url"
+  else
+    unset DEPLOY_REPO_FISH_URL
+  fi
+
+  echo
+  [ $rc -eq 0 ] && print_ok "RED TEST completado exitosamente" \
+    || print_warn "RED TEST encontró un problema (revisar arriba)"
+  return $rc
+}
+
+# ============================================================================
 # 13. RESUMEN GENÉRICO
 # ============================================================================
 
@@ -1176,11 +1529,14 @@ main_menu() {
     echo -e "  ${C_BOLD}5${C_RESET}   Ver estado"
     echo -e "      ${C_DIM}Qué está instalado y qué falta${C_RESET}"
     echo
+    echo -e "  ${C_BOLD}6${C_RESET}   Startup"
+    echo -e "      ${C_DIM}Configuración inicial de Debian Desktop${C_RESET}"
+    echo
     echo -e "  ${C_RED}q${C_RESET}   Salir"
     echo
 
     local choice
-    read -r -p "$(echo -e "  ${C_YELLOW}${ARROW}${C_RESET} Opción [1-5/q]: ")" choice </dev/tty
+    read -r -p "$(echo -e "  ${C_YELLOW}${ARROW}${C_RESET} Opción [1-6/q]: ")" choice </dev/tty
 
     case "$choice" in
       1) mode_install_all ;;
@@ -1188,6 +1544,7 @@ main_menu() {
       3) mode_selection ;;
       4) mode_deploy_configs ;;
       5) mode_check_status ;;
+      6) mode_startup ;;
       q|Q) echo; print_ok "¡Hasta luego!"; exit 0 ;;
       *) ;;
     esac
