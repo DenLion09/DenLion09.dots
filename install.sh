@@ -407,8 +407,22 @@ tool_reg "portless"  "Dev Tools" "Reemplaza puertos por URLs .localhost para des
   "function"  "install_portless" "cmd_exists portless"
 
 # --- Grupo: Dev Apps (GUI) ---
-tool_reg "xfce4-terminal" "Dev Apps" "Terminal ligera para Wayland" \
-  "apt"       "xfce4-terminal" "cmd_exists xfce4-terminal"
+tool_reg "kitty"      "Dev Apps"  "Terminal GPU-accelerada — tabs, Wayland, Nerd Fonts" \
+  "apt"       "kitty"      "cmd_exists kitty"
+tool_reg "alacritty"  "Dev Apps"  "Terminal ultraligera — Rust, GPU, Wayland" \
+  "apt"       "alacritty"  "cmd_exists alacritty"
+tool_reg "nautilus"                     "Dev Apps"  "GNOME Files — gestor de archivos" \
+  "apt"       "nautilus"                   "cmd_exists nautilus"
+tool_reg "nautilus-extension-gnome-console" "Dev Apps"  "'Abrir terminal aquí' en Nautilus" \
+  "apt"       "nautilus-extension-gnome-console" "test -f /usr/share/nautilus-python/extensions/gnome-console.py"
+tool_reg "file-roller"                  "Dev Apps"  "Gestor de archivos comprimidos" \
+  "apt"       "file-roller"                "cmd_exists file-roller"
+tool_reg "p7zip-full"                   "Dev Apps"  "Soporte para 7z" \
+  "apt"       "p7zip-full"                 "pkg_installed p7zip-full"
+tool_reg "unrar"                        "Dev Apps"  "Extracción de RAR" \
+  "apt"       "unrar"                      "cmd_exists unrar"
+tool_reg "sushi"                        "Dev Apps"  "Vista previa rápida de archivos (Spacebar)" \
+  "apt"       "sushi"                      "cmd_exists sushi"
 tool_reg "github-desktop" "Dev Apps" "GitHub Desktop — cliente gráfico de Git" \
   "function"  "install_github_desktop" "cmd_exists github-desktop || test -f /usr/share/applications/github-desktop.desktop"
 tool_reg "dbeaver"  "Dev Apps"  "Gestor multi-DB (PostgreSQL, MongoDB, etc.)" \
@@ -826,6 +840,22 @@ configure_fish_shell() {
   fi
 }
 
+# ─── Set default apps ───────────────────────────────────────────────────
+configure_default_apps() {
+  print_header "Configurando aplicaciones por defecto"
+
+  # Nautilus como gestor de archivos por defecto
+  local mime_dir="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
+  mkdir -p "$mime_dir"
+  local mime_file="$mime_dir/mimeapps.list"
+  [ -f "$mime_file" ] && grep -q "inode/directory=nautilus" "$mime_file" 2>/dev/null && {
+    print_info "Nautilus ya es el gestor de archivos por defecto (ok)"
+    return 0
+  }
+  echo "inode/directory=nautilus.desktop" >> "$mime_file"
+  print_ok "Nautilus configurado como gestor de archivos por defecto"
+}
+
 # ============================================================================
 # 8. MODO 1: TODO DE UNA
 # ============================================================================
@@ -868,6 +898,7 @@ mode_install_all() {
 
   fix_debian_binaries
   configure_fish_shell
+  configure_default_apps
 
   echo
   print_header "Instalación Completa — Finalizada"
@@ -942,6 +973,7 @@ mode_one_by_one() {
 
   fix_debian_binaries
   configure_fish_shell
+  configure_default_apps
 }
 
 # ============================================================================
@@ -1043,6 +1075,7 @@ mode_selection() {
 
   fix_debian_binaries
   configure_fish_shell
+  configure_default_apps
 }
 
 # ============================================================================
@@ -1396,20 +1429,38 @@ EOF
 
 # ─── Step 2: Terminal ───────────────────────────────────────────────────
 step_terminal() {
-  cmd_exists xfce4-terminal && {
-    print_info "xfce4-terminal ya instalado (ok)"
-    STARTUP_SKIP=$((STARTUP_SKIP + 1))
-    return 0
-  }
+  local ok=0 fail=0 skip=0
 
-  print_info "Instalando xfce4-terminal..."
-  if install_tool "xfce4-terminal"; then
-    print_ok "xfce4-terminal instalado"
-    STARTUP_OK=$((STARTUP_OK + 1))
+  # Kitty
+  print_info "Kitty terminal..."
+  if cmd_exists kitty; then
+    skip=$((skip + 1))
+    print_info "kitty ya instalado (ok)"
+  elif install_tool "kitty"; then
+    ok=$((ok + 1))
+    print_ok "kitty instalado"
   else
-    print_err "xfce4-terminal — falló la instalación"
-    STARTUP_FAIL=$((STARTUP_FAIL + 1))
+    fail=$((fail + 1))
+    print_err "kitty — falló la instalación"
   fi
+
+  # Alacritty
+  print_info "Alacritty terminal..."
+  if cmd_exists alacritty; then
+    skip=$((skip + 1))
+    print_info "alacritty ya instalado (ok)"
+  elif install_tool "alacritty"; then
+    ok=$((ok + 1))
+    print_ok "alacritty instalado"
+  else
+    fail=$((fail + 1))
+    print_err "alacritty — falló la instalación"
+  fi
+
+  echo -e "  ${C_DIM}→ terminal: ${ok} exitosos, ${fail} fallos, ${skip} omitidos${C_RESET}"
+  STARTUP_OK=$((STARTUP_OK + ok))
+  STARTUP_FAIL=$((STARTUP_FAIL + fail))
+  STARTUP_SKIP=$((STARTUP_SKIP + skip))
 }
 
 # ─── Step 3: Shell ──────────────────────────────────────────────────────

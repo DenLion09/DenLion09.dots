@@ -70,7 +70,6 @@ Estrategia de instalación (distro-agnóstico):
 | `desktop-set` | `echo "Session=..." > ~/.dmrc` | Cambia sesión por defecto |
 | `desktop-apply` | `sed -i en lightdm.conf` | Aplica cambio de sesión (sudo) |
 | `desktop-status` | `grep` en `.dmrc` y `lightdm.conf` | Muestra la sesión activa |
-| `theme-refresh` | `labwc-theme-noctalia` | Regenera colores desde Noctalia |
 
 ### Entorno
 
@@ -131,7 +130,7 @@ Estrategia de instalación (distro-agnóstico):
 
 ## Aplicaciones de desarrollo
 
-- **XFCE4-terminal** Simple, rapida
+- **Kitty / Alacritty** Terminal GPU-accelerada (kitty) y ultraligera (alacritty)
 - **Github Desktop** Cliente de github Nativo
 - **OpenPencil** App de diseño tipo figma con MCP para ia
 - **opencode** App de terminal para agente de ia
@@ -156,7 +155,12 @@ Estrategia de instalación (distro-agnóstico):
 
 ## Sistema
 
-- Archivos   **Thunar**                `org.xfce.Thunar`                  Más ligero             
+- Archivos   **Nautilus**              `org.gnome.Nautilus`               Gestor de archivos GNOME
+  - **Sushi** — Vista previa rápida con Spacebar
+  - **Nautilus Console** — Abrir terminal desde el menú contextual
+  - **File Roller** — Gestor de archivos comprimidos
+  - **p7zip-full** — Soporte para 7z
+  - **unrar** — Extracción de RAR
 - Video      **mpv**                  `mpv`                               Wayland nativo, ultraligero 
 - Visor      **Loupe**                 `org.gnome.Loupe`                  Visor de imágenes GTK4 
 - Fotos      **Photon**                `com.github.maoschanz.Photon`      Visor de fotos GTK4    

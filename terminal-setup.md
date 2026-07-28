@@ -64,7 +64,6 @@ El archivo `config.fish` maneja cinco bloques:
 | `fzfbat` | `fzf --preview="bat --theme=gruvbox-dark --color=always {}"` | Buscar archivos con previsualización vía bat |
 | `fzfnvim` | `nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")` | Abrir archivo con fzf + nvim |
 | `hotspot` | Wrapper de `create_ap` | Toggle WiFi hotspot on/off (interfaces: wlp0s20f3 / enp1s0) |
-| `theme-refresh` | `labwc-theme-noctalia` | Regenera colores de ventanas desde Noctalia |
 
 > **Nota**: `ll`, `la`, `lla` están documentados pero no definidos explícitamente en `config.fish`. Pueden depender de `plugin-pj` o de la configuración por defecto de fish. Si no funcionan, hay que agregarlos como aliases en `config.fish`.
 
