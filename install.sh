@@ -646,6 +646,9 @@ install_neovim() {
   # Symlink para tener nvim en el PATH global
   $SUDO ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim 2>/dev/null || true
   print_ok "Neovim instalado en /opt/nvim-linux-x86_64"
+
+  # Desplegar config de Neovim automáticamente
+  deploy_repo_nvim
 }
 
 # ─── Neovide (GUI para Neovim) ──────────────────────────────────────────────
@@ -657,6 +660,9 @@ install_neovide() {
     | grep "browser_download_url.*AppImage" | head -1 | cut -d'"' -f4) || url=""
   [ -z "$url" ] && { print_warn "Neovide requiere descarga manual: https://github.com/neovide/neovide/releases"; return 1; }
   dl_appimage "$url" "neovide" || { print_warn "No se pudo descargar Neovide"; return 1; }
+
+  # Desplegar config de Neovim automáticamente (neovide la comparte)
+  deploy_repo_nvim
 }
 
 # ─── Portless (Vercel Labs) ─────────────────────────────────────────────────
@@ -805,6 +811,13 @@ deploy_repo_fish() {
 deploy_repo_nvim() {
   local dst="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
   local clone_url="https://github.com/DenLion09/DenLion09.dots.git"
+
+  # Guard: ya está desplegada?
+  if [ -f "$dst/init.lua" ]; then
+    print_info "Config de Neovim ya presente en $dst (ok)"
+    return 0
+  fi
+
   print_header "Neovim — clonar config desde GitHub"
 
   # Backup de config existente
