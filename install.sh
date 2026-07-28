@@ -431,6 +431,8 @@ tool_reg "bruno"    "Dev Apps"  "API testing offline-first" \
   "function"  "install_bruno" "test -f \$HOME/.local/bin/bruno || test -f /usr/share/applications/bruno.desktop"
 tool_reg "neovim"   "Dev Apps"  "Editor de texto TUI superextensible (última release oficial)" \
   "function"  "install_neovim" "cmd_exists nvim"
+tool_reg "neovide"  "Dev Apps"  "GUI gráfica para Neovim — Qt, Wayland, animaciones" \
+  "function"  "install_neovide" "test -f \$HOME/.local/bin/neovide"
 tool_reg "opencode" "Dev Apps"  "Terminal agentic AI para desarrollo" \
   "function"  "install_opencode" "cmd_exists opencode"
 tool_reg "godot"    "Dev Apps"  "Motor de videojuegos Godot Engine" \
@@ -646,6 +648,17 @@ install_neovim() {
   print_ok "Neovim instalado en /opt/nvim-linux-x86_64"
 }
 
+# ─── Neovide (GUI para Neovim) ──────────────────────────────────────────────
+install_neovide() {
+  test -f "$HOME/.local/bin/neovide" && return 0
+  print_info "Buscando Neovide AppImage..."
+  local url
+  url=$(curl_api_retry "https://api.github.com/repos/neovide/neovide/releases/latest" \
+    | grep "browser_download_url.*AppImage" | head -1 | cut -d'"' -f4) || url=""
+  [ -z "$url" ] && { print_warn "Neovide requiere descarga manual: https://github.com/neovide/neovide/releases"; return 1; }
+  dl_appimage "$url" "neovide" || { print_warn "No se pudo descargar Neovide"; return 1; }
+}
+
 # ─── Portless (Vercel Labs) ─────────────────────────────────────────────────
 install_portless() {
   cmd_exists portless && return 0
@@ -717,6 +730,7 @@ install_tool() {
         install_drawio)       install_drawio ;;
         install_openpencil)   install_openpencil ;;
         install_neovim)       install_neovim ;;
+        install_neovide)      install_neovide ;;
         install_portless)     install_portless ;;
         *) return 1 ;;
       esac ;;

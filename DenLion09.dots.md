@@ -136,7 +136,8 @@ Estrategia de instalación (distro-agnóstico):
 - **opencode** App de terminal para agente de ia
 - **DBeaver**  — Gestor multi-DB (PostgreSQL, MongoDB, etc.)
 - **Bruno** (`com.usebruno.Bruno`) — API testing offline-first
-- **NVim** - editor de texto TUI superextencible
+- **NVim** - editor de texto TUI superextensible
+- **Neovide** — GUI gráfica para Neovim (Qt, Wayland, animaciones fluidas)
 - **Lunacy** (`com.icons8.Lunacy`) — Editor gráfico para UI/UX.
 - **Godot Engine**: motor de videojuegos
 - **draw.io** (`com.jgraph.drawio.desktop`) — Diagramas y mapas conceptuales
