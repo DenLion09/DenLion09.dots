@@ -1233,10 +1233,10 @@ step_grub() {
 
 # ─── Step 1: Desktop Environment ─────────────────────────────────────────
 # Wayland tools + Noctalia v5 (APT) / v4 (Quickshell fallback) + LabWC +
-# LightDM session files + .dmrc
+# greetd + Noctalia Greeter
 step_desktop_env() {
   # Guard: todo listo?
-  if pkg_installed noctalia && pkg_installed labwc && [ -f "$HOME/.dmrc" ]; then
+  if pkg_installed noctalia && pkg_installed labwc && pkg_installed noctalia-greeter && [ -f /etc/greetd/config.toml ]; then
     print_info "Entorno de escritorio ya configurado (ok)"
     STARTUP_SKIP=$((STARTUP_SKIP + 1))
     return 0
@@ -1322,23 +1322,36 @@ step_desktop_env() {
     print_err "LabWC — falló la instalación"
   fi
 
-  # R11: LightDM + session files
-  print_info "LightDM + sesiones..."
-  if pkg_installed lightdm; then
+  # R11: greetd + Noctalia Greeter
+  print_info "greetd + Noctalia Greeter..."
+
+  # Install greetd (Debian Trixie main)
+  if pkg_installed greetd; then
     skip=$((skip + 1))
-    print_info "LightDM ya instalado (ok)"
-  elif apt_install lightdm; then
+    print_info "greetd ya instalado (ok)"
+  elif apt_install greetd; then
     ok=$((ok + 1))
-    print_ok "LightDM instalado"
+    print_ok "greetd instalado"
   else
-    print_err "LightDM — falló la instalación"
+    print_err "greetd — falló la instalación"
     fail=$((fail + 1))
   fi
 
-  # Session .desktop files (via temp file + sudo cp para compatibilidad con set -e)
+  # Install noctalia-greeter from Noctalia backports
+  if pkg_installed noctalia-greeter; then
+    skip=$((skip + 1))
+    print_info "noctalia-greeter ya instalado (ok)"
+  elif $SUDO apt-get install -y -t trixie-backports noctalia-greeter >/dev/null 2>&1; then
+    ok=$((ok + 1))
+    print_ok "noctalia-greeter instalado"
+  else
+    print_err "noctalia-greeter — falló la instalación"
+    fail=$((fail + 1))
+  fi
+
+  # Session .desktop file (Wayland only)
   local wl_dir="/usr/share/wayland-sessions"
-  local xs_dir="/usr/share/xsessions"
-  $SUDO mkdir -p "$wl_dir" "$xs_dir" 2>/dev/null || true
+  $SUDO mkdir -p "$wl_dir" 2>/dev/null || true
 
   local tmpf; tmpf=$(mktemp)
   cat > "$tmpf" << 'EOF'
@@ -1352,34 +1365,26 @@ EOF
     print_ok "Session file: wayland-sessions/noctalia.desktop" || \
     { print_err "No se pudo escribir wayland-sessions/noctalia.desktop"; fail=$((fail + 1)); }
 
+  # greetd config
   cat > "$tmpf" << 'EOF'
-[Desktop Entry]
-Name=Noctalia
-Comment=Noctalia Shell Desktop (X11 fallback)
-Exec=noctalia
-Type=Application
+[terminal]
+vt = 1
+
+[default_session]
+command = "noctalia-greeter"
+user = "greeter"
 EOF
-  $SUDO cp "$tmpf" "$xs_dir/noctalia.desktop" 2>/dev/null && \
-    print_ok "Session file: xsessions/noctalia.desktop" || \
-    { print_err "No se pudo escribir xsessions/noctalia.desktop"; fail=$((fail + 1)); }
+  $SUDO cp "$tmpf" "/etc/greetd/config.toml" 2>/dev/null && \
+    print_ok "greetd config: /etc/greetd/config.toml" || \
+    { print_err "No se pudo escribir /etc/greetd/config.toml"; fail=$((fail + 1)); }
   rm -f "$tmpf"
 
-  # R12: .dmrc
-  if [ -z "${HOME:-}" ]; then
-    print_warn "\$HOME no está definido — saltando .dmrc"
-    fail=$((fail + 1))
+  # Enable greetd service
+  if $SUDO systemctl enable greetd >/dev/null 2>&1; then
+    print_ok "greetd service enabled"
   else
-    if [ -f "$HOME/.dmrc" ]; then
-      local dmrc_bak="$HOME/.dmrc.bak.$(date +%s)"
-      cp "$HOME/.dmrc" "$dmrc_bak" 2>/dev/null || true
-      print_info ".dmrc respaldado → $(basename "$dmrc_bak")"
-    fi
-    cat > "$HOME/.dmrc" << 'EOF'
-[Desktop]
-Session=noctalia
-EOF
-    print_ok ".dmrc escrito — sesión por defecto: noctalia"
-    ok=$((ok + 1))
+    print_err "greetd — falló al habilitar el servicio"
+    fail=$((fail + 1))
   fi
 
   # Sub-step summary

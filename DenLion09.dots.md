@@ -86,7 +86,7 @@ Estrategia de instalación (distro-agnóstico):
 - **Compositor**: Wayland
 - **Controlador de ventanas**: Labwc
 - **Wayland desktop Shell**: Noctalia Shell
-- **Gestor de sesión**: LightDM
+- **Gestor de sesión**: greetd + Noctalia Greeter
 
 #### Plugins de Noctalia activos
 
