@@ -1157,6 +1157,80 @@ STARTUP_OK=0
 STARTUP_FAIL=0
 STARTUP_SKIP=0
 
+# ─── Step 0: GRUB Bootloader ────────────────────────────────────────────
+# Clona la config de GRUB desde el repo GitHub y la aplica al sistema.
+step_grub() {
+  local grub_src="$REPO_DIR/grub/grub"
+  local grub_dst="/etc/default/grub"
+
+  # Guard: ya está actualizado?
+  if [ -f "$grub_dst" ] && diff -q "$grub_src" "$grub_dst" >/dev/null 2>&1; then
+    print_info "GRUB ya está en la configuración deseada (ok)"
+    STARTUP_SKIP=$((STARTUP_SKIP + 1))
+    return 0
+  fi
+
+  local ok=0 fail=0
+
+  # Si el archivo local no existe, clonar desde GitHub
+  if [ ! -f "$grub_src" ]; then
+    print_info "Clonando config de GRUB desde GitHub..."
+    local clone_url="https://github.com/DenLion09/DenLion09.dots.git"
+    local tmpd; tmpd=$(mktemp -d)
+    git clone --depth 1 --filter=blob:none --no-checkout "$clone_url" "$tmpd" >/dev/null 2>&1 || {
+      print_err "No se pudo clonar el repo para obtener grub/"; rm -rf "$tmpd"; fail=$((fail + 1))
+      STARTUP_FAIL=$((STARTUP_FAIL + fail)); return 1
+    }
+    git -C "$tmpd" sparse-checkout set grub >/dev/null 2>&1 || true
+    git -C "$tmpd" checkout >/dev/null 2>&1 || {
+      print_err "No se pudo hacer checkout de grub/"; rm -rf "$tmpd"; fail=$((fail + 1))
+      STARTUP_FAIL=$((STARTUP_FAIL + fail)); return 1
+    }
+    if [ -f "$tmpd/grub/grub" ]; then
+      mkdir -p "$REPO_DIR/grub"
+      cp "$tmpd/grub/grub" "$grub_src" 2>/dev/null || true
+      print_ok "Config de GRUB clonada desde GitHub"
+    else
+      print_err "No se encontró grub/grub en el repo"
+      rm -rf "$tmpd"; fail=$((fail + 1))
+      STARTUP_FAIL=$((STARTUP_FAIL + fail)); return 1
+    fi
+    rm -rf "$tmpd"
+  fi
+
+  # Aplicar la configuración al sistema
+  if [ -f "$grub_src" ]; then
+    print_info "Aplicando configuración de GRUB al sistema..."
+    $SUDO cp "$grub_src" "$grub_dst" 2>/dev/null && {
+      $SUDO chmod 644 "$grub_dst" 2>/dev/null
+      print_ok "Config de GRUB copiada a $grub_dst"
+      ok=$((ok + 1))
+    } || {
+      print_err "No se pudo copiar la config de GRUB"
+      fail=$((fail + 1))
+    }
+
+    # Ejecutar update-grub para aplicar
+    if [ "$ok" -gt 0 ]; then
+      print_info "Ejecutando update-grub..."
+      if $SUDO update-grub >/dev/null 2>&1; then
+        print_ok "update-grub ejecutado correctamente"
+        ok=$((ok + 1))
+      else
+        print_warn "update-grub falló — ejecutalo manualmente después"
+        fail=$((fail + 1))
+      fi
+    fi
+  else
+    print_err "Archivo de configuración de GRUB no encontrado en $grub_src"
+    fail=$((fail + 1))
+  fi
+
+  echo -e "  ${C_DIM}→ grub: ${ok} exitosos, ${fail} fallos${C_RESET}"
+  STARTUP_OK=$((STARTUP_OK + ok))
+  STARTUP_FAIL=$((STARTUP_FAIL + fail))
+}
+
 # ─── Step 1: Desktop Environment ─────────────────────────────────────────
 # Wayland tools + Noctalia v5 (APT) / v4 (Quickshell fallback) + LabWC +
 # LightDM session files + .dmrc
@@ -1407,7 +1481,7 @@ step_apps() {
 # ─── Startup orchestrator ───────────────────────────────────────────────
 mode_startup() {
   print_header "Startup — Configuración Inicial de Escritorio"
-  print_info "Secuencia: Escritorio → Terminal → Shell → Apps"
+  print_info "Secuencia: GRUB → Escritorio → Terminal → Shell → Apps"
   echo
   menu_confirm "¿Iniciar configuración de startup?" || { print_info "Cancelado"; return; }
 
@@ -1425,19 +1499,23 @@ mode_startup() {
   run_bg "Actualizando repositorios" apt_update || true
 
   # Steps
-  print_step "1/4" "Entorno de Escritorio"
+  print_step "1/5" "GRUB — Gestor de Arranque"
+  step_grub
+  echo
+
+  print_step "2/5" "Entorno de Escritorio"
   step_desktop_env
   echo
 
-  print_step "2/4" "Terminal"
+  print_step "3/5" "Terminal"
   step_terminal
   echo
 
-  print_step "3/4" "Shell"
+  print_step "4/5" "Shell"
   step_shell
   echo
 
-  print_step "4/4" "Apps del Sistema"
+  print_step "5/5" "Apps del Sistema"
   step_apps
   echo
 

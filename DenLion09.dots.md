@@ -156,17 +156,17 @@ Estrategia de instalación (distro-agnóstico):
 
 ## Sistema
 
-| Archivos  | **Thunar**               | `org.xfce.Thunar`                 | Más ligero             |
-| Video     | **mpv**                 | `mpv`                              | Wayland nativo, ultraligero |
-| Visor     | **Loupe**                | `org.gnome.Loupe`                 | Visor de imágenes GTK4 |
-| Fotos     | **Photon**               | `com.github.maoschanz.Photon`     | Visor de fotos GTK4    |
-| Juegos    | **Lutris** | | Game Launcher para juegos y emuladores
-| Capturas   | **Flameshot** | `org.flameshot.Flameshot` | Screenshots con anotaciones |
-| Capturas CLI | **grim + slurp** | `grim`, `slurp` | Screenshots desde terminal para Wayland (keyboard shortcuts) |
-| Conectividad | **LocalSend** | | Intercambio de archivos entre dispositivos de la misma red |
-| Wi-Fi AP | **linux-wifi-hotspot** | `lakinduakash/linux-wifi-hotspot` | Crear hotspot WiFi desde la terminal |
+- Archivos   **Thunar**                `org.xfce.Thunar`                  Más ligero             
+- Video      **mpv**                  `mpv`                               Wayland nativo, ultraligero 
+- Visor      **Loupe**                 `org.gnome.Loupe`                  Visor de imágenes GTK4 
+- Fotos      **Photon**                `com.github.maoschanz.Photon`      Visor de fotos GTK4    
+- Juegos     **Lutris** Game Launcher para juegos y emuladores
+- Capturas    **Flameshot** `org.flameshot.Flameshot`  Screenshots con anotaciones 
+- Capturas CLI  **grim + slurp**  `grim`, `slurp`  Screenshots desde terminal para Wayland (keyboard shortcuts) 
+- Conectividad  **LocalSend** Intercambio de archivos entre dispositivos de la misma red 
+- Wi-Fi AP  **linux-wifi-hotspot** `lakinduakash/linux-wifi-hotspot`  Crear hotspot WiFi desde la terminal 
 - **BalenaEtcher**: flasheador de dispositivos booteables
-- **GParted**: modificador de partiiones y gestion de discos
+- **GParted**: modificador de particiones y gestion de discos
 
 ## Herramientas del Sistema
 
@@ -196,7 +196,14 @@ Estrategia de instalación (distro-agnóstico):
 
 ### Grub
 
-- Configuración de Grub (actual)
+- **Archivo de configuración**: `grub/grub` en el repo → `/etc/default/grub` en el sistema
+- **Modo Startup**: fase `1/5` — clona `grub/grub` del repo, aplica permisos y ejecuta `update-grub`
+- **Timeout**: `GRUB_TIMEOUT=0` — arranque inmediato sin esperar entrada
+- **Menú**: `GRUB_TIMEOUT_STYLE=hidden` — oculto completamente
+- **Colores**: personalizados vía `GRUB_CFG_COLOR_CUSTOM`, normal/highlight en `black/black` (invisible)
+- **Background**: `GRUB_BACKGROUND="/boot/grub/boot.png"`
+- **Kernel params**: `quiet splash loglevel=0 vt.global_cursor_default=0 systemd.show_status=false rd.systemd.show_status=false` — arranque 100% silencioso
+- **os-prober**: `GRUB_DISABLE_OS_PROBER=false` — habilitado para dual-boot
 
 ### Startup
 
