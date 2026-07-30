@@ -4,10 +4,9 @@
 # =============================================================================
 # TUI interactiva en bash puro, cero dependencias externas.
 # Respeta las reglas de DenLion09.dots.md:
-#   CLI  → script oficial del repo
-#   GUI  → descarga de la pagina web o el repo oficial de github
-#   Driver/lib → gestor nativo
-#   No brew, no flatpak (con alternativas nativas)
+#   GUI  → empaquetado oficial del repo (si existe)
+#   No flatpak por defecto, solo como excepción cuando no hay .deb oficial
+#   No brew — herramientas CLI via cargo/pip/script oficial
 # =============================================================================
 # Modos:
 #   1. Todo de una  — instala todo en secuencia automática
@@ -355,8 +354,8 @@ tool_reg "fzf"        "Terminal"  "Fuzzy finder universal" \
   "apt"       "fzf"        "cmd_exists fzf"
 tool_reg "carapace"   "Terminal"  "Autocompletado universal para shell" \
   "apt"       "carapace-bin" "cmd_exists carapace"
-tool_reg "btop"       "Terminal"  "Monitor del sistema CLI" \
-  "apt"       "btop"       "cmd_exists btop"
+tool_reg "bottom"    "Terminal"  "Monitor del sistema CLI — Rust, más ligero que btop" \
+  "function"  "install_bottom" "cmd_exists btm"
 
 # --- Grupo: CLI Tools ---
 tool_reg "ripgrep"    "CLI Tools" "grep ultrarápido (rg)" \
@@ -461,6 +460,12 @@ install_atuin() {
   cmd_exists atuin && return 0
   curl_pipe_sh "https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh" || \
     cargo_install "atuin"
+}
+
+# ─── bottom (btm): Rust system monitor ─────────────────────────────────────
+install_bottom() {
+  cmd_exists btm && return 0
+  cargo_install "bottom"
 }
 
 # ─── bat: apt (batcat) + symlink ────────────────────────────────────────────
@@ -721,11 +726,13 @@ install_tool() {
     bat)      install_bat ;;
     rust)     install_rust ;;
     pip)      pip_install "$arg" ;;
+    cargo)    cargo_install "$arg" ;;
     fisher)   install_fisher ;;
     fisher_pkg) install_fisher_pkg "$arg" ;;
     function)
       case "$arg" in
         install_font)         install_font ;;
+        install_bottom)       install_bottom ;;
         install_mise_node)    install_mise_node ;;
         install_mongosh)      install_mongosh ;;
         install_github_desktop) install_github_desktop ;;

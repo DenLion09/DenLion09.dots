@@ -1,11 +1,12 @@
 # Configuracion de Sistema - Debian 13 Trixie
 
-Estrategia de instalación (distro-agnóstico):
+Estrategia de instalación:
 
 - 1. ¿Es GUI? → **Empaquetado oficial directo del repositorio (si existe)**
-- 2. ¿Es CLI? → **ScriptOficial directo del repositorio (si existe)**
+- 2. ¿Es CLI? → **Script oficial o cargo/pip (si no está empaquetado)**
 - 3. ¿Driver/lib de sistema? → **Gestor nativo**
-- 4. no brew no flatpack - cacheo personalizado
+- 4. **No brew** — herramientas CLI via cargo/pip/script oficial
+- 5. **Flatpak solo como excepción** — cuando no existe .deb oficial y las dependencias nativas son inmanejables
 
 > [important] Crear TUI para automatizar la Instalación, Configuracion y Actualizacion, Backups
 
@@ -23,7 +24,7 @@ Estrategia de instalación (distro-agnóstico):
 - **atuin**: historial de comandos con búsqueda fuzzy
 - **fzf**: fuzzy finder
 - **carapace**: autocompletado universal
-- **btop**: System CLI taskmanager
+- **bottom (btm)**: System CLI taskmanager — Rust, más ligero que btop
 - **grep**: **ripgrep (rg)** grep ultrarapido
 - **find**: **fd** — find moderno y rápido
 - **navegacion**: **eza** — ls moderno con colores e iconos
@@ -95,19 +96,44 @@ Estrategia de instalación (distro-agnóstico):
 | `catwalk` | Catwalk screensaver |
 | `custom-commands` | Comandos personalizados desde el launcher |
 | `dmenu` | Lanzador tipo dmenu |
-| `fancy-audiovisualizer` | Visualizador de audio |
 | `file-search` | Búsqueda de archivos |
 | `kaomoji-provider` | Insertar kaomojis desde el launcher |
 | `keybind-cheatsheet` | Guía de atajos de teclado |
-| `news` | Feed de noticias |
 | `noctalia-calculator` | Calculadora integrada |
 | `osk-toggle` | Teclado en pantalla on/off |
-| `pomodoro` | Temporizador pomodoro |
 | `screen-toolkit` | Herramientas de pantalla (capturas, etc.) |
 | `timer` | Temporizador simple |
 | `todo` | Lista de tareas |
 | `usb-drive-manager` | Gestor de dispositivos USB |
 | `web-search` | Búsqueda web desde el launcher |
+
+### Para probar
+
+**GNOME Core + Wayland**:
+- **Shell/Compositor**: gnome-shell (Mutter) — Wayland nativo
+- **Gestor de sesión**: GDM (gdm3)
+- **Paquetes core**: solo gnome-shell, gnome-session, gdm3
+
+**KDE Plasma Core + Wayland**:
+- **Shell**: plasma-desktop (plasma-workspace)
+- **Compositor**: KWin — Wayland nativo
+- **Gestor de sesión**: SDDM
+- **Paquetes core**: solo plasma-desktop, kwin-wayland, sddm
+
+**Wayland + Noctalia Shell + KWin (script de tiling)**:
+- **Shell**: Noctalia Shell (sin cambios)
+- **Compositor**: KWin (reemplaza Labwc)
+- **Gestor de sesión**: greetd (sin cambios)
+- **Tiling temporal**: script KWin custom (~350 líneas JS)
+- **Requisitos del script**:
+  - Máquina de estados por ventana: floating → half (↑↓←→) → corner (↑↓ desde half) → maximized (↑ si única app) → minimized (↓ desde half-bottom)
+  - Transiciones con Super + flechas siguiendo el estado actual de cada ventana
+  - Grids dinámicos 2‑3‑4 columnas según la cantidad de ventanas abiertas (adaptativo, no fijo)
+  - Nuevas ventanas tileadas sobre la posición del cursor
+  - Grid por defecto configurable por monitor
+  - Alt + Right Click → resize desde borde más cercano ✅ (ya incluido en KWin)
+- **Instalación mínima**: `kwin-wayland plasma-workspace layer-shell-qt` (sin plasma-desktop completo)
+- **Nota**: Noctalia Shell funciona sobre KWin porque KWin 6.3.6 implementa `wlr-layer-shell`.
 
 ## Entornos de desarrollo
 
@@ -188,7 +214,6 @@ Estrategia de instalación (distro-agnóstico):
 | Herramienta | Propósito |
 |-------------|-----------|
 | **restic** | Backups cifrados a repos remotos |
-| **borgbackup** | Backups deduplicados y comprimidos |
 | **rsync** | Sincronización incremental de archivos |
 
 ## Comunicación

@@ -1,4 +1,7 @@
 if status is-interactive
+    # Clear al inicio para startup visual limpio
+    clear
+
     # Commands to run in interactive sessions can go here
     # Install Fisher if not installed
     if not functions -q fisher
@@ -42,7 +45,6 @@ end
 
 # Initialize tools
 starship init fish | source
-zoxide init fish | source
 atuin init fish | source
 if command -v fzf &> /dev/null
 fzf --fish | source
@@ -116,5 +118,4 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
-clear
 

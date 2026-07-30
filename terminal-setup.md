@@ -264,13 +264,12 @@ format = '[[   $time ](fg:subtext0)]($style)'
 - **Inicialización**: genera archivos `.fish` en `~/.config/fish/completions/` para cada comando detectado
 - Se activa con: `carapace _carapace | source`
 
-### btop — System CLI taskmanager
+### bottom (btm) — System CLI taskmanager
 
-- **Versión**: 1.3.2
-- **Config**: `~/.config/btop/btop.conf`
-- Tema: Default (con `theme_background=false` para transparencia)
-- Métricas: CPU, memoria, discos, red, procesos
-- Presets: cpu+proc, cpu+mem+net, cpu+block+net
+- **Instalación**: `cargo install bottom`
+- **Alternativa a**: btop — escrito en Rust, consume menos recursos
+- **Métricas**: CPU, memoria, discos, red, procesos
+- Tema por defecto con soporte para gráficos en terminal
 
 ### ripgrep (rg) — grep ultrarápido
 
@@ -328,17 +327,17 @@ format = '[[   $time ](fg:subtext0)]($style)'
 Orden de carga en `config.fish`:
 
 ```
-1. Fisher bootstrap (si no existe)
-2. Detección de plataforma + PATH
-3. starship init fish | source
-4. atuin init fish | source
-5. fzf --fish | source
-6. carapace completions
-7. fish_greeting = ""
-8. EDITOR/VISUAL = nvim
+1. Clear — pantalla limpia al abrir la terminal
+2. Fisher bootstrap (si no existe)
+3. Detección de plataforma + PATH
+4. starship init fish | source
+5. atuin init fish | source
+6. fzf --fish | source
+7. carapace completions
+8. fish_greeting = ""
+9. EDITOR/VISUAL = nvim
 10. Aliases (ls, fzfbat, fzfnvim)
 11. Colores syntax highlighting + pager
-12. clear
 ```
 
 ## Variables de entorno
