@@ -42,3 +42,19 @@ Nivel 5: Visión de Negocio, Producto y FinOps
    * Qué aprender: Transformación de necesidades de usuario en historias de usuario modulares y ejecutables por agentes.
  * Métricas de Producto y KPIs
    * Qué aprender: Medición del impacto real del software (retención, latencia percibida, conversión) más allá de la compilación técnica.
+1. Documentos Técnicos y de Arquitectura (Los que se mantienen y los nuevos)
+ * RFCs (Request for Comments) y ADRs (Architecture Decision Records): Los ADRs se han convertido en el estándar de la industria moderna para registrar decisiones arquitectónicas críticas (por ejemplo, por qué se eligió Tauri frente a Electron o por qué se estructuró de cierto modo el IPC). Reemplazaron a los pesados documentos formales de diseño monolítico, aunque el concepto de justificación técnica se mantiene.
+ * Diagramas C4 (Model): La evolución moderna de los diagramas UML tradicionales. Permiten documentar la arquitectura en capas (Contexto, Contenedores, Componentes y Código) de manera visual y clara para que los agentes de IA o nuevos humanos entiendan el sistema sin ambigüedades.
+ * Contratos de API Abiertos (OpenAPI / Swagger / AsyncAPI): Indispensables para definir la comunicación entre servicios o componentes de forma estricta y legible tanto para humanos como para analizadores automáticos.
+ * Manuales de Procedimientos de Despliegue (Runbooks): Documentación operativa heredada del mundo SysAdmin que hoy sobrevive en la cultura DevOps para guiar respuestas ante incidentes o despliegues complejos en producción.
+2. Técnicas Clave (Actuales y Legadas vigentes)
+ * Behavior-Driven Development (BDD) y Especificación por Ejemplo: Técnica donde los requerimientos de negocio se escriben en un formato ejecutable y comprensible (sintaxis Given-When-Then). Funciona como el puente definitivo de entendimiento que luego la IA utiliza para generar código de pruebas o validación.
+ * Análisis Estático y Dinámico (SAST / DAST): Técnicas heredadas de la ciberseguridad clásica que hoy se ejecutan de forma automatizada en cada pipeline para auditar el código generado antes de que llegue a producción.
+ * Pruebas de Mutación (Mutation Testing): Una técnica avanzada de control de calidad donde se introducen fallos deliberadamente en el código para comprobar si la suite de pruebas (o la IA que las escribió) es verdaderamente capaz de detectarlos.
+ * Feature Flagging (Despliegues Oscuros): Técnica moderna para desacoplar el despliegue técnico del lanzamiento comercial, permitiendo activar o desactivar funcionalidades en caliente de forma segura.
+3. Normas Internacionales y Estándares de la Industria
+ * ISO/IEC/IEEE 12207 (Ingeniería de Software - Procesos del Ciclo de Vida): La norma internacional madre que define los procesos estándar para gestionar el software desde su concepción hasta su retirada.
+ * ISO/IEC/IEEE 15288 (Ingeniería de Sistemas - Procesos del Ciclo de Vida): Utilizada para regular la interacción entre los elementos de hardware, software y sistemas operativos complejos (altamente relevante para arquitecturas de escritorio nativas como Tauri).
+ * OWASP Top 10: El estándar normativo de facto en la industria para la clasificación y mitigación de riesgos de ciberseguridad en aplicaciones web y de escritorio.
+ * Semantic Versioning (SemVer - 2.0.0): La convención universal obligatoria para el control de versiones (MAJOR.MINOR.PATCH) que garantiza la estabilidad de las dependencias y contratos en ecosistemas modernos de desarrollo.
+
